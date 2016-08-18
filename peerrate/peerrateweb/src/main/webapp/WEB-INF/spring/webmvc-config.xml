@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd                 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd                 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security 
+        http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task.xsd 
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<util:properties id="manifest" location="META-INF/MANIFEST.MF"
+		scope="singleton" />
+	<context:property-placeholder
+		location="classpath*:META-INF/spring/*.properties, classpath:application.properties,
+        classpath:environment.properties"
+		ignore-unresolvable="true" />
+
+	<util:properties id="app" local-override="true" />
+
+	<context:component-scan base-package="com.strateratech.dhs.peerrate.web.controller"
+		use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Controller"
+			type="annotation" />
+	</context:component-scan>	
+	<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" />
+
+	<tx:annotation-driven mode="aspectj"
+		transaction-manager="transactionManager" proxy-target-class="true" />
+
+
+
+	<!-- you can't call it objectMapper for some reason -->
+ 	 <bean name="jacksonObjectMapper"
+		class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"
+		p:simpleDateFormat="yyyy-MM-dd'T'HH:mm:ssZ" p:indentOutput="true" 
+		>
+		 <property name="featuresToDisable">
+     <array>
+       <util:constant static-field="com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS"/>
+     
+     </array>
+   </property>
+		
+    </bean>
+
+	<!-- setup spring MVC -->
+	<mvc:annotation-driven conversion-service="applicationConversionService" 
+		validator="validator">
+		<mvc:message-converters register-defaults="true" >
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+ 				<property name="objectMapper" ref="jacksonObjectMapper" />
+			</bean>
+
+		</mvc:message-converters>
+		
+	</mvc:annotation-driven>
+	
+	<mvc:interceptors>
+	
+    	<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        	<property name="paramName" value="locale" />
+    	</bean>
+    	
+    	<!-- org.springframework.web.servlet.mvc.WebContentInterceptor
+    	gov.uspto.pe2e.cpc.ipc.rest.web.controller.interceptor.CacheControlInterceptor
+    	 -->  	
+    	 <bean class="net.rossillo.spring.web.mvc.CacheControlHandlerInterceptor" />
+  <!-- 
+		<bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+		          <property name="cacheSeconds" value="3600"/>
+		          <property name="useExpiresHeader" value="true"/>
+		          <property name="useCacheControlHeader" value="true"/>
+		          <property name="useCacheControlNoStore" value="false"/>
+		          <property name="alwaysMustRevalidate" value="true"/>
+		</bean>-->
+		  
+	</mvc:interceptors>
+
+
+	<mvc:default-servlet-handler />
+	<mvc:view-controller path="/login" />
+	<mvc:view-controller path="/about" view-name="about" />
+
+
+	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+	<mvc:resources mapping="/webjars/**"
+		location="classpath:/META-INF/resources/webjars/" />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources -->
+	<!--<mvc:resources location="/, classpath:/META-INF/web-resources/" mapping="/resources/**"/> -->
+
+	<!--Installs application converters and formatters -->
+	<bean
+		class="com.strateratech.dhs.peerrate.web.controller.ApplicationConversionServiceFactoryBean"
+		id="applicationConversionService" />
+	<!-- Swagger Documentation plugin -->
+
+	<bean name="applicationSwaggerConfig"
+		class="gov.uspto.pe2e.cpc.ipc.rest.web.config.ApplicationSwaggerConfig" />
+	<!-- If anyone has time, we need to start building in custom Jackson transformers 
+		as well as Content Negotiating View Resolvers. Since we are using Jackson 
+		for json serialization, we should get XML (JAXB) views for free as long as 
+		we configure the content negotiating view resolver correctly, which we need 
+		to do anyways. -->
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<!-- All configuration is now done by the manager - since Spring V3.2 -->
+		<property name="contentNegotiationManager" ref="cnManager" />
+	</bean>
+
+
+	<bean id="cnManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="ignoreAcceptHeader" value="false" />
+		<property name="defaultContentType" value="application/json" />
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix" value="WEB-INF/views/" />
+		<property name="suffix" value=".jspx" />
+	</bean>
+
+	<!-- I18N Support -->
+	<bean id="localeResolver"
+			class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+<!-- 		
+	<bean id="getMethodCacheControlBuilder" class="org.springframework.http.CacheControl">
+		<constructor-arg><bean></bean></constructor-arg>
+	</bean>
+	-->
+</beans>

@@ -1,0 +1,4 @@
+<Context path="/peerratetweb" crossContext="true" reloadable="true" debug="1">
+	<ResourceLink name="jdbc/peerrateDatasource" global="jdbc/peerrateDatasource" 
+		type="javax.sql.DataSource"/>
+</Context>

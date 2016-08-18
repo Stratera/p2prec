@@ -1,0 +1,9 @@
+<jboss-web>
+	<!-- ... -->
+	<resource-ref>
+		<jndi-name>java:jboss/datasources/peerratetDatasource</jndi-name>
+		<res-ref-name>jdbc/peerrateDatasource</res-ref-name>
+
+	</resource-ref>
+	<!-- ... -->
+</jboss-web>

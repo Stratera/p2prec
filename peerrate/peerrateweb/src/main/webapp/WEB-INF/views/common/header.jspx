@@ -1,0 +1,13 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+        xmlns:html="http://www.w3.org/1999/xhtml" version="2.0"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+        <jsp:output omit-xml-declaration="yes" />
+        <jsp:directive.page contentType="text/html;charset=UTF-8" />
+        <header id="site"> 
+          	<div class="leftCol" >	
+          	<!--  We should have a logo for our about page -->
+	 		<!--  	<a href="${pageContext['request'].contextPath}/"><img src="${pageContext['request'].contextPath}/resources/images/logo.gif" height="62" width="200"/></a> -->
+	 		</div>	
+        </header>
+</jsp:root>

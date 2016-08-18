@@ -1,0 +1,71 @@
+<div xmlns:spring="http://www.springframework.org/tags" 
+xmlns:jsp="http://java.sun.com/JSP/Page" 
+xmlns:c="http://java.sun.com/jsp/jstl/core" 
+xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+xmlns:sec="http://www.springframework.org/security/tags"
+version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<table id="buildProperties">
+		<thead>
+			<tr>
+				<th colspan="2">${manifest['description']} Build / Manifest Properties</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Group Id</td>
+				<td>${manifest['groupId']}</td>
+			</tr>
+			<tr>
+				<td>Artifact Id</td>
+				<td>${manifest['artifactId']}</td>
+			</tr>
+			<tr>
+				<td>Version</td>
+				<td>${manifest['version']}</td>
+			</tr>
+			<tr>
+				<td>Build Timestamp</td>
+				<td>${manifest['build-date']}</td>
+			</tr>
+			<tr>
+				<td>Created By</td>
+				<td>${manifest['Created-By']}</td>
+			</tr>
+			<tr>
+				<td>Build JDK</td>
+				<td>${manifest['Build-Jdk']}</td>
+			</tr>
+			<tr>
+				<td>Built By</td>
+				<td>${manifest['Built-By']}</td>
+			</tr>
+			
+			<tr>
+				<td>JVM Start Time</td>
+				<td><fmt:formatDate value="${jvmStartTime}" pattern="yyyy-MM-dd HH:mm:ss.SSS"/></td>
+			</tr>
+		</tbody>
+	</table>
+	<br/>
+	<sec:authorize access="isAuthenticated()">
+	<div>
+	<div>Username: ${sessionScope.SPRING_SECURITY_CONTEXT.authentication.name} (This means you are logged in)</div>
+	<table>
+		<tbody>
+		<sec:authentication property="authorities" var="roles" scope="page" />
+
+    <c:forEach var="role" items="${roles}">
+    <tr><td>${role}</td></tr>
+    </c:forEach>
+
+		</tbody>
+	</table>
+	</div>
+
+	</sec:authorize>
+	
+	
+</div>

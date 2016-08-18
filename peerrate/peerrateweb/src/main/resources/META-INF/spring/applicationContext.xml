@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+    xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/batch
+    http://www.springframework.org/schema/batch/spring-batch.xsd
+    http://www.springframework.org/schema/cache 
+    http://www.springframework.org/schema/cache/spring-cache.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/jee
+	http://www.springframework.org/schema/jee/spring-jee.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/data/jpa
+    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+<!-- 
+<bean id="sysProperties" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" value="#{@systemProperties}"/>
+        <property name="targetMethod" value="putAll"/>
+        <property name="arguments">
+            <util:properties>
+                <prop key="javax.xml.parsers.DocumentBuilderFactory">com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl</prop>
+                <prop key="javax.xml.parsers.SAXParserFactory">com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl</prop>
+                <prop key="javax.xml.transform.TransformerFactory">com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl</prop>
+            </util:properties>
+        </property>
+    </bean>
+-->    
+   
+	<!-- This will automatically locate any and all property files you have 
+		within your classpath, provided they fall under the META-INF/spring directory. 
+		The located property files are parsed and their values can then be used within 
+		application context files in the form of ${propertyKey}. -->
+	<context:property-placeholder
+		location="classpath*:META-INF/spring/*.properties, classpath:application.properties,
+        classpath:environment.properties"
+		ignore-unresolvable="true" />
+	<context:component-scan base-package="com.strateratech.dhs.peerrate">
+		<context:exclude-filter expression="org.springframework.stereotype.Controller"
+			type="annotation" />
+	</context:component-scan>
+	<context:annotation-config />
+	<context:spring-configured />
+	<cache:annotation-driven cache-manager="cacheManager"  />
+
+	<util:map id="notificationSingleton" key-type="java.lang.String" value-type="java.long.Object">
+	</util:map>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+<!--  		<property name="basename" value="classpath:messages" />-->
+		<property name="basename" value="${message_bundle_location}" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="fallbackToSystemLocale" value="false"/>
+	</bean>
+	
+		
+		
+	<bean id="messageLocator" class="org.springframework.validation.beanvalidation.MessageSourceResourceBundleLocator">
+	    <constructor-arg index="0" ref="messageSource" />
+	</bean>
+	
+	<!-- SPRING LOCALE MESSAGE INTERPOLATOR -->
+	
+	<bean id="messageInterpolator" class="org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator">
+	    <constructor-arg index="0">
+	        <bean id="hibernateMessageInterpolator" class="org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator">
+	            <constructor-arg name="userResourceBundleLocator" ref="messageLocator" />
+	            <constructor-arg name="cacheMessages" value="true"/>
+	        </bean>
+	    </constructor-arg>
+	</bean>
+	<!-- SPRING VALIDATOR -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	    <property name="messageInterpolator" ref="messageInterpolator" />
+	</bean>
+	
+	<!-- SPRING ANNOTATION VALIDATION CONFIGURATION -->
+	
+	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+	    <property name="validator" ref="validator"/>
+	</bean>
+	<!-- Uncomment the following as soon as the db connectivity has been set 
+		up -->
+	<jee:jndi-lookup id="dataSource" jndi-name="${datasourceName}" />
+
+	<util:properties id="app" local-override="true" />
+	<!-- Uncomment the following as soon as the db connectivity has been set 
+		up -->
+	<bean
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		id="entityManagerFactory">
+		<property name="packagesToScan" value="com.strateratech.dhs.peerrate.entity" />
+		<property name="mappingResources">
+			<value>orm.xml</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.ddlauto.setting}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+				<!--  <prop key="hibernate.cache.provider_class">org.hibernate.cache.SingletonEhCacheProvider</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
+				</prop>-->
+				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop>
+				
+			</props>
+		</property>
+
+	</bean>
+	
+
+	<!-- Uncomment the following as soon as the db connectivity has been set 
+		up -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcache"/>
+	</bean>
+	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml"/>
+		<property name="shared" value="true"/>
+	</bean>
+	<tx:annotation-driven mode="proxy"
+		transaction-manager="transactionManager" proxy-target-class="true" />
+
+	<!-- Scan for Spring Data repositories -->
+	<jpa:repositories base-package="com.strateratech.dhs.peerrate.entity.repository" />
+	<jpa:auditing auditor-aware-ref="strateraAuditAware" />
+	<!-- 
+	Servlet Filters that require injection need be specified as Spring deligating proxy 
+	filters in the web.xml then have the bean definition (who's id matches the filter name)
+	and injection properties specified in the spring config as normal spring bean.  All
+	Spring Injectable filters need to be specified here. 
+	 -->
+	<!-- Begin Servlet Filter definitions -->
+<!--  	<bean id="revisionVersionFilter" class="gov.uspto.pe2e.cpc.ipc.rest.web.jee.filter.RevisionVersionFilter">
+		<property name="classificationSchemeRepository" ref="classificationSchemeRepository"/>
+		<property name="documentAdapterConfig" ref="documentAdapterConfig"/>
+
+	</bean>
+-->
+	<!-- <task:annotation-driven executor="taskExecutor" scheduler="taskScheduler" 
+		/> <task:executor id="taskExecutor" pool-size="20" rejection-policy="CALLER_RUNS" 
+		/> <task:scheduler id="taskScheduler" pool-size="10" /> -->
+		<task:annotation-driven executor="taskExecutor" scheduler="taskScheduler"/> 
+		<task:executor id="taskExecutor" pool-size="50" rejection-policy="CALLER_RUNS"/> 
+		<task:scheduler id="taskScheduler" pool-size="10" />
+		
+	<bean id="jobExplorer" class="org.springframework.batch.core.explore.support.MapJobExplorerFactoryBean">
+		<property name="repositoryFactory" ref="&amp;jobRepository" />
+	</bean>		
+		
+  	<bean id="jobRepository"
+  		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+  			<property name="transactionManager" ref="schedulingTransactionManager" />
+  		<!--  
+  		<property name="dataSource" ref="dataSource" />
+  		<property name="databaseType" value="" /> -->
+  	</bean>
+
+    <bean id="schedulingTransactionManager"
+  class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+
+
+    <bean id="jobLauncher"
+  		class="org.springframework.batch.core.launch.support.SimpleJobLauncher" >
+  		<property name="jobRepository" ref="jobRepository" />
+  		<!-- Job launchers are made asynchronous by simply adding a taskExecutor -->
+  		<property name="taskExecutor" ref="taskExecutor"/>
+    </bean>
+		
+		
+		
+		
+</beans>

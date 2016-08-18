@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<decorators defaultdir="/WEB-INF/views/common">
+<!--<decorator name="default" page="public_template.jspx">
+
+        <pattern>/public*</pattern>
+        <pattern>/</pattern>
+    </decorator>-->
+    <decorator name="main" page="template.jspx">
+    	<pattern>*</pattern>
+    </decorator>
+    <excludes>
+        <pattern>/plainPage.htm</pattern>
+        <pattern>/ajax/*</pattern>
+        <pattern>/info/*</pattern>
+        
+        <pattern>/*/ajax/*</pattern>
+    	<pattern>/swagger-ui.html*</pattern>
+        <!-- <pattern>/login</pattern>-->
+    	
+    </excludes>    
+</decorators>

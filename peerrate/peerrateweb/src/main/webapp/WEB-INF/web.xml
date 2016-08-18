@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+	<display-name>peerrateweb</display-name>
+
+	<description>Strateratech Peerrate Rest Webapp</description>
+
+	<context-param>
+		<param-name>datasourceName</param-name>
+		<param-value>jdbc/peerrateDatasource</param-value>
+	</context-param>
+
+
+	<!-- Enable escaping of form submission contents -->
+	<context-param>
+		<param-name>defaultHtmlEscape</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:META-INF/spring/applicationContext*.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.strateratech.dhs.peerrate.web.jee.listener.InitAppContextPropertiesListener</listener-class>
+	</listener>
+	<!-- Uncomment the following listener as soon as the databse jndi resource 
+		is configured properly -->
+	<listener>
+		<listener-class>com.strateratech.dhs.peerrate.web.jee.listener.DatabaseMigrationListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>net.sf.ehcache.constructs.web.ShutdownListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+
+
+	<filter>
+		<filter-name>HttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>SpringRequestContextFilter</filter-name>
+		<filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+	</filter>
+	<filter>
+   		<filter-name>etagFilter</filter-name>
+   		<filter-class>org.springframework.web.filter.ShallowEtagHeaderFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<!-- Reenable the following once we have access to database -->
+	<filter>
+		<filter-name>OpenEntityManagerInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	</filter>
+
+
+	<filter>
+		<filter-name>revisionVersionFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<!-- Needed for Error pages. Sets decorator for all error pages by setting 
+		request attribute decorator to public. -->
+	<!-- <filter> <filter-name>clearSiteMeshAppliedOnce</filter-name> <filter-class>org.codeconsole.sitemesh.filter.ClearSitemeshAppliedOnceFilter</filter-class> 
+		<init-param> <param-name>decorator-attribute</param-name> <param-value>defat</param-value> 
+		</init-param> </filter> <filter> <filter-name>sitemeshFilter</filter-name> 
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class> 
+		</filter> -->
+
+	<!-- <filter-mapping> <filter-name>clearSiteMeshAppliedOnce</filter-name> 
+		<url-pattern>/*</url-pattern> <dispatcher>ERROR</dispatcher> </filter-mapping> -->
+	<!-- Needed for Error pages. Sets decorator for all error pages by setting 
+		request attribute decorator to public. -->
+	<filter>
+		<filter-name>clearSiteMeshAppliedOnce</filter-name>
+		<filter-class>org.codeconsole.sitemesh.filter.ClearSitemeshAppliedOnceFilter</filter-class>
+		<init-param>
+			<param-name>decorator-attribute</param-name>
+			<param-value>default</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>sitemeshFilter</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+		<!-- <filter-class>org.apache.catalina.filters.CorsFilter</filter-class> -->
+		<init-param>
+			<param-name>cors.allowGenericHttpRequests</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>*</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.allowSubdomains</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>GET, HEAD, POST, OPTIONS</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportedHeaders</param-name>
+			<param-value>*</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.exposedHeaders</param-name>
+			<param-value>X-TENANT-ID</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportsCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.maxAge</param-name>
+			<param-value>3600</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>clearSiteMeshAppliedOnce</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>revisionVersionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>etagFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>HttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<filter-mapping>
+		<filter-name>SpringRequestContextFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>OpenEntityManagerInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>sitemeshFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<!-- <dispatcher>FORWARD</dispatcher> -->
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Handles Spring requests -->
+	<servlet>
+		<servlet-name>peerrate</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>WEB-INF/spring/webmvc-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>peerrate</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>200</session-timeout>
+	</session-config>
+	<!-- <error-page> <exception-type>java.lang.Exception</exception-type> <location>/uncaughtException</location> 
+		</error-page> <error-page> <error-code>404</error-code> <location>/resourceNotFound</location> 
+		</error-page> -->
+
+	<resource-ref>
+		<description>USPTO Rest Datasource</description>
+		<res-ref-name>jdbc/cpcipcrestDatasource</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+
+		<res-sharing-scope>Shareable</res-sharing-scope>
+
+	</resource-ref>
+</web-app>
+

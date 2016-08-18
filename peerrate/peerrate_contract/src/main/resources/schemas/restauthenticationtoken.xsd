@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" targetNamespace="http://rest.ipc.cpc.pe2e.uspto.gov/contract/saml"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:cpc="http://rest.ipc.cpc.pe2e.uspto.gov/contract/saml"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	elementFormDefault="qualified"
+    jaxb:version="2.1"
+    xmlns:annox="http://annox.dev.java.net"
+   	jaxb:extensionBindingPrefixes="xjc annox" 
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	>
+
+
+	<xs:annotation>
+		<xs:appinfo>
+			<jaxb:globalBindings>
+				<jaxb:javaType xmlns="http://java.sun.com/xml/ns/jaxb"
+					name="java.util.Date" xmlType="xs:dateTime"
+					parseMethod="com.strateratech.dhs.peerrate.contract.adapter.XsdDateTimeUtils.parseDate"
+					printMethod="com.strateratech.dhs.peerrate.contract.adapter.XsdDateTimeUtils.printDate" />
+				<jaxb:javaType xmlns="http://java.sun.com/xml/ns/jaxb"
+					name="java.util.Date" xmlType="xs:date"
+					parseMethod="com.strateratech.dhs.peerrate.contract.adapter.XsdDateTimeUtils.parseDate"
+					printMethod="com.strateratech.dhs.peerrate.contract.adapter.XsdDateTimeUtils.printDate" />
+
+			</jaxb:globalBindings>
+		</xs:appinfo>
+	</xs:annotation>
+
+	
+
+	<xs:complexType name="RestAuthenticationToken">
+		<xs:sequence>
+
+			<xs:element name="username" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="email" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="firstName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="lastName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+
+			<xs:element name="tenant" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			
+			<xs:element name="authorities" type="xs:string"
+						minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
+ 

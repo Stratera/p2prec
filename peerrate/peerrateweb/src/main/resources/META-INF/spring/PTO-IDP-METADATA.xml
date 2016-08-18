@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor Id="EntityDescriptor-1-c87a1f25eeb2d2af8a32449a7b318b93" entityID="https://opd-xmltest-a-706.etc.uspto.gov:9443/" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+   <IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <KeyDescriptor use="signing">
+         <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <X509Data>
+               <X509Certificate>MIID8zCCAtugAwIBAgIJAN12XxgXri0mMA0GCSqGSIb3DQEBBQUAMIGEMQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3RvbjENMAsGA1UEChMEdGVzdDEUMBIGA1UECxMLRGV2ZWxvcG1lbnQxEjAQBgNVBAMTCXVzcHRvLmdvdjEnMCUGCSqGSIb3DQEJARYYbWFyYXQuc2tseWFyb3ZAdXNwdG8uZ292MB4XDTE0MDgxMjEwMzgwMVoXDTE5MDgxMTEwMzgwMVowgYQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9uMQ0wCwYDVQQKEwR0ZXN0MRQwEgYDVQQLEwtEZXZlbG9wbWVudDESMBAGA1UEAxMJdXNwdG8uZ292MScwJQYJKoZIhvcNAQkBFhhtYXJhdC5za2x5YXJvdkB1c3B0by5nb3YwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDD72+BP3r7g1iDZnVIUI/CI8V80DbapU3lTD3r95kCUfc1IJ/EHiJ+YeZiPiUrhY7LqaJzCbMOZGOwlC1aewSfhy16wlrMF1Umw8vvSjesPklGqvfv6edeOCOvKK8W/wQgM4ihd50fIj3+fP7p3DTRcRIIMfNu6Cj1zK3QLamvI/Iu8M7KGlkcQZtwMBsNRCbt5l8Mc0JEHcXFc2lCU9aQ8xGl5gJQMiDgj5pxQkaPXHWRw/I6RO+UMtmbe520ZyREGByal20SLKnSz6Y7rj8biiASfvP/prCHiUAEMRcndqZ6157NNRgFp5hlKh4sngN4e9Cxe1rLv5SSx3XbW5K9AgMBAAGjZjBkMBIGA1UdEwEB/wQIMAYBAf8CAQEwDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBRQJ6wxiTGfUkb/qxGyo5bPmhYx3DAfBgNVHSMEGDAWgBRQJ6wxiTGfUkb/qxGyo5bPmhYx3DANBgkqhkiG9w0BAQUFAAOCAQEAJTTVs3pFpC3Eu/rEhJS6UOM4jSEnsHxazbPImsAKSDBSKV0IkHhKqNpV56I4jCK5hLKPPm4qebQek8mXD2VS+MlhrENKtN6ATcx+BCkVrGNPeYhxF7Ldf4e0eB5A9Gq6rcvyMdcmub40cKZUWHK9/oPh+jOp6/apOCDtBAsmOhy5CHg6jl5B9xBwX8DQ/Nz3n8yGzsAxzvQSRqQNgM/981g/77xU02oRop4yibr6loRe35rLsUCdRdCWHPtYCml7ZF86f1FxVLAUZfV6HhzquHZLsGq3t+MiMYNN3VCPaJknaQzlii4Cjx3hMmum7cwXz5mwbSU3FfXkWqO5kZ9esA==</X509Certificate>
+            </X509Data>
+         </KeyInfo>
+      </KeyDescriptor>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://opd-xmltest-a-706.etc.uspto.gov:9443/saml2/websso/idp"/>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://opd-xmltest-a-706.etc.uspto.gov:9443/saml2/websso/idp"/>
+      <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://opd-xmltest-a-706.etc.uspto.gov:9443/saml2/websso/idp"/>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://opd-xmltest-a-706.etc.uspto.gov:9443/saml2/websso/idp"/>
+   </IDPSSODescriptor>
+ </EntityDescriptor>
