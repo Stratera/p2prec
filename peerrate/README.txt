@@ -75,6 +75,23 @@ A: Assuming your version is 1.2.7 (and you are working on trunk)
    NOTE: remember to delete all the tmp files created by the version plugin.
    These files are copies of the original poms and child poms named pom.xml.versionsBackup    
    
-      
+Q: How do I configure saml for my developer workstation?
+A: each instance of the application is a separate Service Provider (SP).  Each separate SP needs its own copy
+	of the saml metadata and that metadata needs to be registered with the IDP.  You can register the SP 
+	metadata for _YOUR_INSTANCE_ by downloading the file from {yourserver}/peerrateweb/saml/metadata 
+	and uploading the resulting xml file to the IDP through whatever mechanism your IDP provides for metadata.
+	NOTE:  Make sure each environment (except prod) has a value for the environmental property
+		environmental_idp_entity_id_suffix.  Examples values listed below (include colons in propery vals):
+		Env										Sample Value
+		---------------------------------------------------------------
+		dev										:dev
+		matt's local tomcat dev workstation		:mattlocal
+		stagingg								:staging
+		qa										:qa
+	
+Q: Isn't saml metadata bidirectional (meaning I have to register the IDP metadata with our applicaiton the 
+	same way we register our metadata with them}?  
+A: Yes! But in fact, this app is preconfigured to use SSO circle and the metadata for SSO circle is already
+	registered in this app.	      
    
 				  
