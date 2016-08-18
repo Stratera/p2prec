@@ -14,11 +14,6 @@
              http://www.springframework.org/schema/security 
              http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
-	<util:map id="idp_issuer">
-		<entry key="USPTO" value="${uspto_issuer_regex:USPTO}"/>
-		<entry key="EPO" value="${epo_issuer_regex:EPO}"/>
-		
-	</util:map>
     <context:property-placeholder
     	location="classpath*:META-INF/spring/*.properties, classpath:application.properties,
         classpath:environment.properties"
@@ -152,7 +147,7 @@
   <bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
 	<constructor-arg>
 		<bean class="org.springframework.security.saml.metadata.MetadataGenerator">
-			<property name="entityId" value="urn:gov:uspto:cpcipcrest${environmental_idp_entity_id_suffix:}"/>
+			<property name="entityId" value="urn:com.strateratech.dhs.peerrate${environmental_idp_entity_id_suffix:}"/>
 			<property value="false" name="wantAssertionSigned"/>
             <property value="false" name="requestSigned"/>
 			
