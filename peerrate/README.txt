@@ -81,7 +81,7 @@ A: each instance of the application is a separate Service Provider (SP).  Each s
 	metadata for _YOUR_INSTANCE_ by downloading the file from {yourserver}/peerrateweb/saml/metadata 
 	and uploading the resulting xml file to the IDP through whatever mechanism your IDP provides for metadata.
 	NOTE:  Make sure each environment (except prod) has a value for the environmental property
-		environmental_idp_entity_id_suffix.  Examples values listed below (include colons in propery vals):
+		"environmental_idp_entity_id_suffix".  Examples values listed below (include colons in property vals):
 		Env										Sample Value
 		---------------------------------------------------------------
 		dev										:dev
