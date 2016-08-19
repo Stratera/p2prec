@@ -1,6 +1,5 @@
 This readme file outlines procedures for handling the project source and general deployment and administration.
 
-
 Developer Setup
 ----------------
 1) install java
