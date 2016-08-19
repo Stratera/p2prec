@@ -25,42 +25,38 @@
 	http://www.springframework.org/schema/util/spring-util-4.0.xsd
 	http://www.springframework.org/schema/data/jpa
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-    
-    <bean
-    class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-    <property
-        name="targetObject">
-        <!-- System.getProperties() -->
-        <bean
-            class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-            <property name="targetClass" value="java.lang.System" />
-            <property name="targetMethod" value="getProperties" />
-        </bean>
-    </property>
-    <property
-        name="targetMethod"
-        value="putAll" />
-    <property
-        name="arguments">
-        <!-- The new Properties -->
-        <util:properties>
-        	<!--  This allows custom url handlers to be registered for test scope -->
-            <prop
-                key="java.protocol.handler.pkgs">com.strateratech.dhs.peerrate.testingsupport.protocols</prop>
 
-        </util:properties>
-    </property>
-</bean>
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<!-- System.getProperties() -->
+			<bean
+				class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="java.lang.System" />
+				<property name="targetMethod" value="getProperties" />
+			</bean>
+		</property>
+		<property name="targetMethod" value="putAll" />
+		<property name="arguments">
+			<!-- The new Properties -->
+			<util:properties>
+				<!-- This allows custom url handlers to be registered for test scope -->
+				<prop key="java.protocol.handler.pkgs">com.strateratech.dhs.peerrate.testingsupport.protocols
+				</prop>
 
-    
-    <bean id="dataSource" destroy-method="close"
+			</util:properties>
+		</property>
+	</bean>
+
+
+	<bean id="dataSource" destroy-method="close"
 		class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
 		<property name="driverClassName" value="org.h2.Driver" />
 		<property name="url" value="jdbc:h2:mem:test" />
 		<property name="username" value="sa" />
 		<property name="password" value="sa" />
 	</bean>
-	
+
 	<!-- This will automatically locate any and all property files you have 
 		within your classpath, provided they fall under the META-INF/spring directory. 
 		The located property files are parsed and their values can then be used within 
@@ -70,5 +66,5 @@
 		<context:include-filter expression="org.springframework.stereotype.Controller"
 			type="annotation" />
 	</context:component-scan>
-	
+
 </beans>
