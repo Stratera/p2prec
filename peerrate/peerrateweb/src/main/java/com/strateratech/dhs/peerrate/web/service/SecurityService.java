@@ -31,12 +31,12 @@ import gov.uspto.pe2e.cpc.ipc.rest.contract.saml.RestAuthenticationToken;
 @Service("securityService")
 public class SecurityService {
     private static final Logger log = LoggerFactory.getLogger(SecurityService.class);
-    public static final String SYSTEM_USERNAME = "cpcipcrestweb_svc";
+    public static final String SYSTEM_USERNAME = "peerrateweb_svc";
 	public static final String SYSTEM_USERNAME_MASK = "SYSTEM";
 	
 	public static final String AUTHENTICATED_USERNAME_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     @Inject 
-    private StrateratechSamlUserDetailsService samlUserDetailsService;
+    private StrateratechSamlUserDetailsService strateratechSamlUserDetailsService;
 
     @Value("${first_name_field_key:firstName}")
     private String firstNameFieldKey;

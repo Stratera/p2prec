@@ -18,7 +18,7 @@
     	location="classpath*:META-INF/spring/*.properties, classpath:application.properties,
         classpath:environment.properties"
     	ignore-unresolvable="true" />
-	<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 	<!-- HTTP security configurations -->
 <!-- 	<http auto-config="true" use-expressions="true" create-session="ifRequired">
 		<intercept-url pattern="/login" access="permitAll"
@@ -140,9 +140,9 @@
         <property name="idpSelectionPath" value="/WEB-INF/views/security/idpSelection.jsp"/>
     </bean>
 -->
-	<bean id="samlIDPDiscovery" class="gov.uspto.pe2e.cpc.ipc.rest.web.service.saml.UsptoSamlDiscovery">
+<!--	<bean id="samlIDPDiscovery" class="com.strateratech.dhs.peerrate.CustomIdpDiscoveryClass">
 		<property name="idpDiscoveryService" ref="idpDiscoveryService"/>
-    </bean>
+    </bean> -->
     <!-- Filter automatically generates default SP metadata -->
   <bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
 	<constructor-arg>
@@ -154,11 +154,11 @@
 			<property name="extendedMetadata">
 				<bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
 					<property name="signMetadata" value="false"/>
-					<property name="idpDiscoveryEnabled" value="true"/>
+					<property name="idpDiscoveryEnabled" value="false"/>
 				</bean>
 			</property>
 			
-			<property name="entityBaseURL" value="${saml_entity_base_url:http://localhost:8080/cpcipcrestweb}"/>
+			<property name="entityBaseURL" value="${saml_entity_base_url:http://localhost:8080/peerrateweb}"/>
 		</bean>
 	</constructor-arg>
 </bean>
@@ -197,37 +197,7 @@
                     </constructor-arg>
                     <property name="parserPool" ref="parserPool"/>
                 </bean>
-                <bean class="org.springframework.security.saml.metadata.ExtendedMetadataDelegate">
-                    <constructor-arg>
-                        <bean class="org.opensaml.saml2.metadata.provider.FilesystemMetadataProvider">
-                            <constructor-arg>
-                                <value type="java.io.File">classpath:${classpath_idp_metadata_xml_file:META-INF/spring/PTO-IDP-METADATA.xml}</value>
-                            </constructor-arg>
-                            <property name="parserPool" ref="parserPool"/>
-                        </bean>
-                    </constructor-arg>
-                    <constructor-arg>
-                        <bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
-                        </bean>
-                    </constructor-arg>
-                </bean>
-
-              <bean class="org.springframework.security.saml.metadata.ExtendedMetadataDelegate">
-                  <constructor-arg>
-                      <bean class="org.opensaml.saml2.metadata.provider.FilesystemMetadataProvider">
-                          <constructor-arg>
-                              <value type="java.io.File">classpath:${classpath_epo_metadata_xml_file:META-INF/spring/PTO-IDP-METADATA.xml}</value>
-                          </constructor-arg>
-                          <property name="parserPool" ref="parserPool"/>
-                      </bean>
-                  </constructor-arg>
-                  <constructor-arg>
-                      <bean class="org.springframework.security.saml.metadata.ExtendedMetadata">
-                      </bean>
-                  </constructor-arg>
-              </bean>
-
-
+           
             </list>
         </constructor-arg>
         <!-- OPTIONAL used when one of the metadata files contains information about this service provider -->
@@ -236,7 +206,7 @@
         <!-- <property name="defaultIDP" value="http://localhost:8080/opensso"/> -->
     </bean>
 
-    <bean id="samlUserDetailsService" class="gov.uspto.pe2e.cpc.ipc.rest.web.service.saml.UsptoSAMLUserDetailsService">
+    <bean id="samlUserDetailsService" class="com.strateratech.dhs.peerrate.web.service.saml.StrateratechSamlUserDetailsService">
 		<property name="defaultRoles">
 			<util:list>
 				<value type="java.lang.String">EMPLOYEE</value>
@@ -365,7 +335,7 @@
     <bean id="parserPoolHolder" class="org.springframework.security.saml.parser.ParserPoolHolder" scope="singleton"/>
 
 
-<bean class="gov.uspto.pe2e.cpc.ipc.rest.web.security.RestAccessDeniedHandler" id="restAccessDeniedHandler">
+<bean class="com.strateratech.dhs.peerrate.web.security.RestAccessDeniedHandler" id="restAccessDeniedHandler">
 	<property name="restHeader" value="Accept"/>
 </bean>
 

@@ -21,7 +21,7 @@ import gov.uspto.pe2e.cpc.ipc.rest.contract.saml.RestAuthenticationToken;
  * @date Oct 19, 2015
  * @version 1.1
  */
-@Service("cpcAuditAware")
+@Service("strateratechAuditAware")
 public class StrateratechAuditAware implements AuditorAware<String> {
 	
     @Inject

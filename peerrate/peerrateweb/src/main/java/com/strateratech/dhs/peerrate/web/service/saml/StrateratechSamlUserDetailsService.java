@@ -44,7 +44,6 @@ public class StrateratechSamlUserDetailsService implements org.springframework.s
     private static final Logger log = LoggerFactory.getLogger(StrateratechSamlUserDetailsService.class);
     private static final String ROLE_MAPPER_PROPERTIES = "role_permission_mapping.properties";
     private HashMap<ApplicationRole, List<ApplicationPermission>> rolePermissionMap;
-    private Map<String, String> issuerRegexMap;
 
     private List<String> defaultRoles;
 
@@ -205,16 +204,6 @@ public class StrateratechSamlUserDetailsService implements org.springframework.s
                 gas.add(new RestGrantedAuthority(org, role, permission));
             }
         }
-    }
-
-    /**
-     * Setter Method
-     * 
-     * @param issuerRegexMap
-     * @since Mar 10, 2016
-     */
-    public void setIssuerRegexMap(Map<String, String> issuerRegexMap) {
-        this.issuerRegexMap = issuerRegexMap;
     }
 
     /**

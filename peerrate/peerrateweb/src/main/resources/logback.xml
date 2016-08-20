@@ -45,6 +45,5 @@
     <logger name="org.dbunit" level="WARN"/>
     <logger name="org.apache" level="ERROR"/>
     <logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="WARN"/>
-    <logger name="gov.uspto" level="DEBUG" />
     
 </configuration>

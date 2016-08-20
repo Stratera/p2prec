@@ -66,5 +66,13 @@
 		<context:include-filter expression="org.springframework.stereotype.Controller"
 			type="annotation" />
 	</context:component-scan>
+	
+	 <bean id="samlUserDetailsService" class="com.strateratech.dhs.peerrate.web.service.saml.StrateratechSamlUserDetailsService">
+		<property name="defaultRoles">
+			<util:list>
+				<value type="java.lang.String">EMPLOYEE</value>
+			</util:list>
+		</property>    
+    </bean>
 
 </beans>

@@ -25,19 +25,12 @@ public enum ApplicationRole {
 	 * This is the lowest level role in the app.  If a user has no roles in saml assertions,
 	 * he is assigned this role so that all our security logic will work
 	 */
-	EMPLOYEE(ApplicationPermission.NAVIGATOR_LIST, 
-			ApplicationPermission.NAVIGATOR_SEARCH, 
-			ApplicationPermission.NAVIGATOR_SIMPLE_EDIT),
+	EMPLOYEE(ApplicationPermission.PEER_DISCOVER, 
+	        ApplicationPermission.PEER_RATE),
 	/**
-	 * Classifiers have different permission sets
+	 * Manager have different permission sets
 	 */
-	PROJECTCOORDINATOR(ApplicationPermission.NAVIGATOR_LIST, 
-			ApplicationPermission.NAVIGATOR_SEARCH, 
-			ApplicationPermission.NAVIGATOR_SIMPLE_EDIT,
-			ApplicationPermission.PROPOSAL_LIST,
-			ApplicationPermission.PROPOSAL_SEARCH,
-			ApplicationPermission.PROPOSAL_CREATE,
-			ApplicationPermission.PROPOSAL_UPDATE),
+	MANAGER(ApplicationPermission.RATING_ALTER, ApplicationPermission.RATING_APPROVAL, ApplicationPermission.RATING_DENY),
 	/**
 	 * There are no use cases defining admin features yet
 	 */

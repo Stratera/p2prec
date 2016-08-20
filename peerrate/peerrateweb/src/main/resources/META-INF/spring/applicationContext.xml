@@ -129,8 +129,8 @@
 				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
 				</prop>-->
 				<prop key="hibernate.generate_statistics">true</prop>
-				<prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop>
-				
+		<!--  		<prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop>
+				-->
 			</props>
 		</property>
 
@@ -154,7 +154,7 @@
 
 	<!-- Scan for Spring Data repositories -->
 	<jpa:repositories base-package="com.strateratech.dhs.peerrate.entity.repository" />
-	<jpa:auditing auditor-aware-ref="strateraAuditAware" />
+	<jpa:auditing auditor-aware-ref="strateratechAuditAware" />
 	<!-- 
 	Servlet Filters that require injection need be specified as Spring deligating proxy 
 	filters in the web.xml then have the bean definition (who's id matches the filter name)
@@ -162,7 +162,7 @@
 	Spring Injectable filters need to be specified here. 
 	 -->
 	<!-- Begin Servlet Filter definitions -->
-<!--  	<bean id="revisionVersionFilter" class="gov.uspto.pe2e.cpc.ipc.rest.web.jee.filter.RevisionVersionFilter">
+<!--  	<bean id="revisionVersionFilter" class="com.strateratech.dhs.peerrate.web.jee.filter.StrateratechCustomFilter">
 		<property name="classificationSchemeRepository" ref="classificationSchemeRepository"/>
 		<property name="documentAdapterConfig" ref="documentAdapterConfig"/>
 
