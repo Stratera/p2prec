@@ -17,7 +17,7 @@
     activate();
 
     function activate( ){
-      getWebDevTec()
+      getWebDevTec();
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
       }, 4000);
