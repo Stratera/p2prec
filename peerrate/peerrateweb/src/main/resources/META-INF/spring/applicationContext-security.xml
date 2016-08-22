@@ -46,11 +46,7 @@
     <security:http security="none" pattern="/info/**" />
     <security:http security="none" pattern="/idps/resolve**" />
     
-   <!--  <security:http security="none" pattern="/resources/**" />-->
-   <!--  Uncomment this line to disable security -->
-   <!-- 
-      <security:http security="none" pattern="/symbols/**" />
-   -->
+    <!--  <security:http security="none" pattern="/**" /> -->
     
   <!-- Secured pages -->
      <security:http entry-point-ref="samlEntryPoint" >
@@ -77,7 +73,7 @@
             <security:filter-chain pattern="/saml/SSO/**" filters="samlWebSSOProcessingFilter"/>
             <security:filter-chain pattern="/saml/SSOHoK/**" filters="samlWebSSOHoKProcessingFilter"/>
             <security:filter-chain pattern="/saml/SingleLogout/**" filters="samlLogoutProcessingFilter"/>
-            <security:filter-chain pattern="/saml/discovery/**" filters="samlIDPDiscovery"/>
+            <!--  <security:filter-chain pattern="/saml/discovery/**" filters="samlIDPDiscovery"/>-->
         </security:filter-chain-map>
     </bean>
 
@@ -212,7 +208,6 @@
 				<value type="java.lang.String">EMPLOYEE</value>
 			</util:list>
 		</property>    
-		<property name="issuerRegexMap" ref="idp_issuer"/>
     </bean>
 
     <!-- SAML Authentication Provider responsible for validating of received SAML messages -->

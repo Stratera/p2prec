@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    version="3.0">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
 
 	<display-name>peerrateweb</display-name>
 
@@ -77,7 +76,7 @@
 	</filter>
 
 
-	<filter>
+	<!--  <filter>
 		<filter-name>revisionVersionFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
@@ -85,7 +84,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-
+-->
 	<!-- Needed for Error pages. Sets decorator for all error pages by setting 
 		request attribute decorator to public. -->
 	<!-- <filter> <filter-name>clearSiteMeshAppliedOnce</filter-name> <filter-class>org.codeconsole.sitemesh.filter.ClearSitemeshAppliedOnceFilter</filter-class> 
@@ -165,11 +164,12 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 
+<!--  
 	<filter-mapping>
 		<filter-name>revisionVersionFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+-->
 	<filter-mapping>
 		<filter-name>etagFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -237,8 +237,8 @@
 		</error-page> -->
 
 	<resource-ref>
-		<description>USPTO Rest Datasource</description>
-		<res-ref-name>jdbc/cpcipcrestDatasource</res-ref-name>
+		<description>Peerrate Rest Datasource</description>
+		<res-ref-name>jdbc/peerrateDatasource</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 

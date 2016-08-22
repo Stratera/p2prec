@@ -120,20 +120,6 @@ public class GlobalControllerExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, I18nErrorKey.BAD_REQUEST, new Object[] { ex.getMessage() }, ex);
     }
 
-    /**
-     * Method to handle Global Exceptions - org.apache.lucene.queryparser.classic.ParseException BAD_REQUEST
-     * 
-     * TODO:  Come back here and make this handler 
-     * I18N/Internationalized (load the message from the I18N resource bundle)
-     * 
-     * @param ex
-     * @return RestError
-     */
-    @ExceptionHandler(org.apache.lucene.queryparser.classic.ParseException.class)
-    protected ResponseEntity<RestError> handleGlobalException(org.apache.lucene.queryparser.classic.ParseException ex) {
-        return buildResponse(HttpStatus.BAD_REQUEST, I18nErrorKey.SEARCH_SYNTAX_ERROR, new Object[] {  }, ex);
-    }
-
 
     /**
      * Method to handle Global Exceptions - org.springframework.security.access.AccessDeniedException BAD_REQUEST
