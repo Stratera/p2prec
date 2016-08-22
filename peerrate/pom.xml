@@ -167,7 +167,13 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.7</version>
 		</dependency>
+		
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		<!--  <dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.7</version>
@@ -177,7 +183,7 @@
 			<artifactId>logback-core</artifactId>
 			<version>1.1.7</version>
 		</dependency>
-			
+			-->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -289,8 +295,8 @@
 				</exclusion> </exclusions> -->
 		</dependency>
 		<!-- Override the default EHCACHE version -->
-		<!-- <dependency> <groupId>net.sf.ehcache</groupId> <artifactId>ehcache-core</artifactId> 
-			<version>2.6.11</version> </dependency> -->
+	 	<dependency> <groupId>net.sf.ehcache</groupId> <artifactId>ehcache-core</artifactId> 
+			<version>2.6.11</version> </dependency> 
 
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -437,7 +443,7 @@
 		</dependency>
 		
 		<!-- Lucene Search -->
-		<dependency>
+		<!--  <dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-core</artifactId>
 			<version>${version.lucene}</version>
@@ -486,7 +492,7 @@
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queryparser</artifactId>
 			<version>${version.lucene}</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
     		<groupId>com.google.code.findbugs</groupId>
     		<artifactId>jsr305</artifactId>
