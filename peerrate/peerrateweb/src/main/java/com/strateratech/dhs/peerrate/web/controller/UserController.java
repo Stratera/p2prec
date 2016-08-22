@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
 import com.strateratech.dhs.peerrate.web.service.SecurityService;
 import com.strateratech.dhs.peerrate.web.utils.RestUtils;
 
-import gov.uspto.pe2e.cpc.ipc.rest.contract.saml.RestAuthenticationToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

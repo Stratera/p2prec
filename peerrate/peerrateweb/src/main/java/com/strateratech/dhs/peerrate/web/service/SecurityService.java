@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opensaml.saml2.core.Assertion;
 import org.opensaml.saml2.core.Attribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +14,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.saml.SAMLCredential;
 import org.springframework.stereotype.Service;
 
+import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
 import com.strateratech.dhs.peerrate.web.service.saml.StrateratechSamlUserDetailsService;
-
-import gov.uspto.pe2e.cpc.ipc.rest.contract.saml.RestAuthenticationToken;
 
 /**
  * 

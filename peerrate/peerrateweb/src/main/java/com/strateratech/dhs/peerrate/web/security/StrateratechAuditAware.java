@@ -7,9 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
 import com.strateratech.dhs.peerrate.web.service.SecurityService;
-
-import gov.uspto.pe2e.cpc.ipc.rest.contract.saml.RestAuthenticationToken;
 
 /**
  * Spring service for handling the audit fields (createTs, createUsername,
