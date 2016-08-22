@@ -27,7 +27,7 @@ create table user_profile (
 	CONSTRAINT user_profile_email_unq UNIQUE (email)
 );
 
-create table rating (
+create table recognition (
 	id numeric(19,0) primary key,
 	version numeric(10,0) default 0,
 	submit_ts timestamp,
