@@ -34,7 +34,7 @@ create table user_profile (
 	update_username varchar(320),
 	CONSTRAINT user_profile_email_unq UNIQUE (email)
 );
-
+create sequence recognition_id_seq increment by 1 start with 1000;
 create table recognition (
 	id numeric(19,0) primary key,
 	version numeric(10,0) default 0,
