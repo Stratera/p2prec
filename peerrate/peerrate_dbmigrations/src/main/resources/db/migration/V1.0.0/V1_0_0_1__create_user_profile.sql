@@ -3,6 +3,10 @@ create table department (
 	id numeric(19,0) primary key,
 	version numeric(10,0) default 0,
 	name varchar(500),
+	create_ts timestamp default now(),
+	create_username varchar(320),
+	update_ts timestamp default now(),
+	update_username varchar(320),
 	constraint deptartment_name_unq unique(name)	
 );
 
@@ -24,6 +28,10 @@ create table user_profile (
 	personal_phone varchar(10),
 	description text,
 	profile_pic bytea,
+	create_ts timestamp default now(),
+	create_username varchar(320),
+	update_ts timestamp default now(),
+	update_username varchar(320),
 	CONSTRAINT user_profile_email_unq UNIQUE (email)
 );
 
@@ -37,6 +45,10 @@ create table recognition (
 	message text,
 	attachment bytea,	
 	attachment_content_type varchar(200),
+	create_ts timestamp default now(),
+	create_username varchar(320),
+	update_ts timestamp default now(),
+	update_username varchar(320),
 	foreign key(sending_user_profile_id) references user_profile(id),
 	foreign key(recipient_user_profile_id) references user_profile(id),
 	foreign key(recipient_department_id) references department(id)
