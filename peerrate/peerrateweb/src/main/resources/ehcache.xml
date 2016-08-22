@@ -8,7 +8,7 @@
  
     <defaultCache 
         timeToIdleSeconds="21600000" timeToLiveSeconds="0" diskSpoolBufferSizeMB="4096"
-        diskExpiryThreadIntervalSeconds="0"
+        diskExpiryThreadIntervalSeconds="0" maxEntriesLocalHeap ="99999"
         memoryStoreEvictionPolicy="LRU" statistics="true" eternal="true">
         
       
