@@ -23,7 +23,7 @@
 		<!-- <version.hibernate>4.2.16.Final</version.hibernate> -->
 		<version.jmockit>1.13</version.jmockit>
 		<version.maven-surefire-plugin>2.18.1</version.maven-surefire-plugin>
-		<version.maven-checkstyle-plugin>2.12.1</version.maven-checkstyle-plugin>
+		<version.maven-checkstyle-plugin>2.17</version.maven-checkstyle-plugin>
 		<version.maven-compiler-plugin.source>1.8</version.maven-compiler-plugin.source>
 		<version.maven-compiler-plugin.target>1.8</version.maven-compiler-plugin.target>
 
@@ -681,6 +681,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${version.maven-checkstyle-plugin}</version>
 			</plugin>
 		</plugins>
 	</build>
