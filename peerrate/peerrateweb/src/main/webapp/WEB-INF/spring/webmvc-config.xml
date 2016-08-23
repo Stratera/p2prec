@@ -113,7 +113,7 @@
 	<!-- Swagger Documentation plugin -->
 
 	<bean name="applicationSwaggerConfig"
-		class="gov.uspto.pe2e.cpc.ipc.rest.web.config.ApplicationSwaggerConfig" />
+		class="com.strateratech.dhs.peerrate.web.config.ApplicationSwaggerConfig" />
 	<!-- If anyone has time, we need to start building in custom Jackson transformers 
 		as well as Content Negotiating View Resolvers. Since we are using Jackson 
 		for json serialization, we should get XML (JAXB) views for free as long as 

@@ -60,8 +60,8 @@
 	</context:component-scan>
 	<context:annotation-config />
 	<context:spring-configured />
-	<cache:annotation-driven cache-manager="cacheManager"  />
-
+	<!--  <cache:annotation-driven cache-manager="cacheManager"  />
+-->
 	<util:map id="notificationSingleton" key-type="java.lang.String" value-type="java.long.Object">
 	</util:map>
 
@@ -123,13 +123,13 @@
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
-				<!--  <prop key="hibernate.cache.provider_class">org.hibernate.cache.SingletonEhCacheProvider</prop>
-				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<!--<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
-				</prop>-->
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+				-->
 				<prop key="hibernate.generate_statistics">true</prop>
-		<!--  		<prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop>
+		  		<!--  <prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop>
 				-->
 			</props>
 		</property>
@@ -142,13 +142,13 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+<!--  	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
 		<property name="cacheManager" ref="ehcache"/>
 	</bean>
 	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:ehcache.xml"/>
 		<property name="shared" value="true"/>
-	</bean>
+	</bean>-->
 	<tx:annotation-driven mode="proxy"
 		transaction-manager="transactionManager" proxy-target-class="true" />
 
@@ -162,12 +162,13 @@
 	Spring Injectable filters need to be specified here. 
 	 -->
 	<!-- Begin Servlet Filter definitions -->
-<!--  	<bean id="revisionVersionFilter" class="com.strateratech.dhs.peerrate.web.jee.filter.StrateratechCustomFilter">
-		<property name="classificationSchemeRepository" ref="classificationSchemeRepository"/>
-		<property name="documentAdapterConfig" ref="documentAdapterConfig"/>
+ 
+	<bean id="saveLoggedInUserFilter"
+		class="com.strateratech.dhs.peerrate.web.jee.filter.SaveLoggedInUserFilter">
+		<property name="userProfileService" ref="userProfileService"/>
 
-	</bean>
--->
+	</bean> 	
+
 	<!-- <task:annotation-driven executor="taskExecutor" scheduler="taskScheduler" 
 		/> <task:executor id="taskExecutor" pool-size="20" rejection-policy="CALLER_RUNS" 
 		/> <task:scheduler id="taskScheduler" pool-size="10" /> -->
