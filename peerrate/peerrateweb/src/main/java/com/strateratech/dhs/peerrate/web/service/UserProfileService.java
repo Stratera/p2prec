@@ -16,7 +16,13 @@ import com.amazonaws.services.inspector.model.Locale;
 import com.strateratech.dhs.peerrate.entity.UserProfile;
 import com.strateratech.dhs.peerrate.entity.repository.UserProfileRepository;
 import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
-
+/**
+ * General Service for interacting with repositories and converting between web layer and data layer objects
+ * @author 2020
+ * @date Aug 23, 2016
+ * @version 
+ *
+ */
 @Service
 public class UserProfileService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserProfileService.class);
@@ -30,6 +36,13 @@ public class UserProfileService {
     private SecurityService securityService;
 
 
+    /**
+     * Convert Authentication object to user profile, if user profile does not already exist using that email,
+     * store it.  When complete, return user profile (stored or existing)
+     * @param auth
+     * @return
+     * @since Aug 23, 2016
+     */
     @Transactional
     public UserProfile saveIfNotExists(Authentication auth) {
         UserProfile user = null;
@@ -45,6 +58,12 @@ public class UserProfileService {
     }
 
 
+    /**
+     * Convert from Web object to user profile object
+     * @param restToken
+     * @return
+     * @since Aug 23, 2016
+     */
     private UserProfile mapRestToUserProfile(RestAuthenticationToken restToken) {
         UserProfile user = null;
         if (restToken != null) {
