@@ -1,7 +1,7 @@
 create sequence department_id_seq increment by 1 start with 1000;
 create table department (
-	id numeric(19,0) primary key,
-	version numeric(10,0) default 0,
+	id bigint primary key,
+	version int4 default 0,
 	name varchar(500),
 	create_ts timestamp default now(),
 	create_username varchar(320),
@@ -12,13 +12,13 @@ create table department (
 
 create sequence user_profile_id_seq increment by 1 start with 1000;
 create table user_profile (
-	id numeric(19,0) primary key,
-	version numeric(10,0) default 0,
+	id bigint primary key,
+	version int4 default 0,
 	email varchar(320) not null,
 	full_name varchar(500) not null,
-	department_id numeric(19,0),
+	department_id bigint,
 	job_title varchar(100),
-	birthday date,
+	date_of_birth date,
 	office_street_address varchar(200),
 	office_city varchar(200),
 	office_state_or_prov varchar(5),
@@ -27,6 +27,7 @@ create table user_profile (
 	office_phone varchar(10),
 	personal_phone varchar(10),
 	description text,
+	profile_pic_content_type varchar(200),
 	profile_pic bytea,
 	create_ts timestamp default now(),
 	create_username varchar(320),
@@ -36,12 +37,12 @@ create table user_profile (
 );
 create sequence recognition_id_seq increment by 1 start with 1000;
 create table recognition (
-	id numeric(19,0) primary key,
-	version numeric(10,0) default 0,
+	id bigint primary key,
+	version int4 default 0,
 	submit_ts timestamp,
-	sending_user_profile_id numeric(19,0),
-	recipient_user_profile_id numeric(19,0),
-	recipient_department_id numeric(19,0),
+	sending_user_profile_id bigint,
+	recipient_user_profile_id bigint,
+	recipient_department_id bigint,
 	message text,
 	attachment bytea,	
 	attachment_content_type varchar(200),

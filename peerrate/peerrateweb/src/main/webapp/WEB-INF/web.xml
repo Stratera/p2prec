@@ -76,8 +76,8 @@
 	</filter>
 
 
-	<!--  <filter>
-		<filter-name>revisionVersionFilter</filter-name>
+ <!-- 	<filter>
+		<filter-name>saveLoggedInUserFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
 			<param-name>targetFilterLifecycle</param-name>
@@ -164,9 +164,9 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 
-<!--  
-	<filter-mapping>
-		<filter-name>revisionVersionFilter</filter-name>
+ 
+<!--  	<filter-mapping>
+		<filter-name>saveLoggedInUserFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 -->

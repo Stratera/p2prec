@@ -61,6 +61,8 @@
         <security:csrf disabled="true"/>
         <security:custom-filter before="FIRST" ref="metadataGeneratorFilter"/>
         <security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter"/>
+        
+        <security:custom-filter position="LAST" ref="saveLoggedInUserFilter"/>
         <security:access-denied-handler  ref="restAccessDeniedHandler"/>
     </security:http>
     
@@ -337,7 +339,7 @@
 <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
 <!-- This class below might be used for bearer tokens instead of saml such as JWT -->
 <!-- 
-<beans:bean id="xAuthPreAuthenticationFilter" class="gov.uspto.pe2e.cpc.ipc.rest.web.jee.filter.XAuthPreAuthenticationFilter">
+<beans:bean id="xAuthPreAuthenticationFilter" class="com.strateratech.dhs.peerrate.web.jee.filter.XAuthPreAuthenticationFilter">
     <beans:property name="authenticationManager" ref="am"/>
 </beans:bean>
 -->	

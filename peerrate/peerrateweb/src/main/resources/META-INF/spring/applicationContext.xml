@@ -162,12 +162,13 @@
 	Spring Injectable filters need to be specified here. 
 	 -->
 	<!-- Begin Servlet Filter definitions -->
-<!--  	<bean id="revisionVersionFilter" class="com.strateratech.dhs.peerrate.web.jee.filter.StrateratechCustomFilter">
-		<property name="classificationSchemeRepository" ref="classificationSchemeRepository"/>
-		<property name="documentAdapterConfig" ref="documentAdapterConfig"/>
+ 
+	<bean id="saveLoggedInUserFilter"
+		class="com.strateratech.dhs.peerrate.web.jee.filter.SaveLoggedInUserFilter">
+		<property name="userProfileService" ref="userProfileService"/>
 
-	</bean>
--->
+	</bean> 	
+
 	<!-- <task:annotation-driven executor="taskExecutor" scheduler="taskScheduler" 
 		/> <task:executor id="taskExecutor" pool-size="20" rejection-policy="CALLER_RUNS" 
 		/> <task:scheduler id="taskScheduler" pool-size="10" /> -->
