@@ -33,7 +33,7 @@
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<spring-security.version>4.0.2.RELEASE</spring-security.version>
 
-		<checkstyle.config.location>config/uspto_checkstyle.xml</checkstyle.config.location>
+		<!--<checkstyle.config.location>config/uspto_checkstyle.xml</checkstyle.config.location>-->
 		<quartz.version>2.2.1</quartz.version>
 		<version.jackson>2.5.3</version.jackson>
 		
