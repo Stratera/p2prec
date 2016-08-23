@@ -16,7 +16,7 @@
     </appender>
       <appender name="FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${LOG_DIR}/msa.log</File>
+        <File>${LOG_DIR}/peerrateweb.log</File>
         <encoder>
            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %C:%L %msg%n</pattern>
         </encoder>
