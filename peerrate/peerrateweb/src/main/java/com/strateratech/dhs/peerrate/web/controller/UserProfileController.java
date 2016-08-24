@@ -8,6 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -63,7 +64,7 @@ public class UserProfileController {
     @ApiOperation("Update the User Profile, overriding the contents of user profile for a given id")
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<UserProfile> updateUserProfile(@PathVariable("id") Long id, @RequestBody UserProfile userProfile) {
+    public ResponseEntity<UserProfile> updateUserProfile(@PathVariable("id") Long id, @Valid @RequestBody UserProfile userProfile) {
         HttpStatus status = HttpStatus.OK;
         HttpHeaders headers =RestUtils.buildRestHttpHeaders();
         UserProfile user = userProfileService.getUserProfile(id);
@@ -82,6 +83,30 @@ public class UserProfileController {
         return new ResponseEntity<UserProfile>(headers, status);
 
     }
+
+    /**
+     * Method to Parse Saml Token
+     * 
+     * @return UsptoAuthenticationToken
+     */
+    @ApiOperation("Create User Profile")
+    @RequestMapping(value="/{id}", method=RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<UserProfile> saveUserProfile(@Valid @RequestBody UserProfile user) {
+        HttpStatus status = HttpStatus.OK;
+        HttpHeaders headers =RestUtils.buildRestHttpHeaders();
+        RestAuthenticationToken authToken = securityService.mapSamlTokenToContractModel(SecurityContextHolder.getContext().getAuthentication());
+            
+        user.setId(null);
+        user = userProfileService.save(user, authToken.getEmail());
+        headers.add(HttpHeaders.LOCATION, 
+                    RestUtils.getBaseUrl()+UserProfileController.class.getAnnotation(RequestMapping.class).value()[0]
+                            +user.getId());
+
+        return new ResponseEntity<UserProfile>(headers, status);
+
+    }
+
     
     /**
      * Method to Parse Saml Token
