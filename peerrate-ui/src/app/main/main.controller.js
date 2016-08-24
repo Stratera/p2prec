@@ -6,11 +6,11 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout) {
+  function MainController() {
     var vm = this;
 
     vm.awesomeThings = [];
 
-    
+
   }
 })();
