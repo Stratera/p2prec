@@ -205,8 +205,12 @@
 						<lineRate>0</lineRate>
 						<branchRate>0</branchRate>
 						<totalLineRate>5</totalLineRate> <!--  this should be 60 for both -->
-						<totalBranchRate>5</totalBranchRate> 
+						<totalBranchRate>5</totalBranchRate>
 					</check>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
 				</configuration>
 
 				<executions>
@@ -255,6 +259,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>cobertura-maven-plugin</artifactId>
+						<version>2.6</version>
 						<configuration>
 							<check>
 								<!-- Per-class thresholds -->
@@ -264,6 +269,10 @@
 								<totalLineRate>0</totalLineRate>
 								<totalBranchRate>0</totalBranchRate>
 							</check>
+							<formats>
+								<format>html</format>
+								<format>xml</format>
+							</formats>
 						</configuration>
 					</plugin>
 				</plugins>
