@@ -569,7 +569,7 @@
                                         <artifactId>tomcat7-maven-plugin</artifactId>
                                         <version>2.2</version>
                                         <configuration>
-                                            <url>http://localhost:8080/manager/text</url>
+                                            <url>http://172.31.44.225:8080/manager/text</url>
                                             <username>deployer</username>
                                             <password>deployer</password>
                                             <path>/peerrate</path>
