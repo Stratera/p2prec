@@ -564,6 +564,17 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+                                 <plugin>
+                                        <groupId>org.apache.tomcat.maven</groupId>
+                                        <artifactId>tomcat7-maven-plugin</artifactId>
+                                        <version>2.2</version>
+                                        <configuration>
+                                            <url>http://localhost:8080/manager/text</url>
+                                            <username>deployer</username>
+                                            <password>deployer</password>
+                                            <path>/peerrate</path>
+                                        </configuration>
+                                </plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
