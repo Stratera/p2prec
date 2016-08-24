@@ -1,6 +1,7 @@
 package com.strateratech.dhs.peerrate.web.service;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -14,7 +15,9 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.strateratech.dhs.peerrate.entity.Department;
 import com.strateratech.dhs.peerrate.entity.UserProfile;
+import com.strateratech.dhs.peerrate.entity.repository.DepartmentRepository;
 import com.strateratech.dhs.peerrate.entity.repository.UserProfileRepository;
 import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
 /**
@@ -33,8 +36,16 @@ public class UserProfileService {
     @Inject
     private UserProfileRepository userProfileRepository;
     
+
+    @Inject
+    private DepartmentRepository departmentRepository;
+    
     @Inject
     private SecurityService securityService;
+    
+
+    @Inject
+    private DepartmentService departmentService;
 
 
     /**
@@ -90,4 +101,120 @@ public class UserProfileService {
         }
         return user;
     }
+
+    /**
+     * 
+     * @param id
+     * @return
+     * @since Aug 24, 2016
+     */
+    public com.strateratech.dhs.peerrate.rest.contract.UserProfile getUserProfile(Long id) {
+        UserProfile dbUP = userProfileRepository.findOne(id);
+        
+        return mapDbUserProfileToWebUserProfile(dbUP);
+    }
+    
+    /**
+     * 
+     * @param dbObj
+     * @return
+     * @since Aug 24, 2016
+     */
+    private com.strateratech.dhs.peerrate.rest.contract.UserProfile mapDbUserProfileToWebUserProfile(UserProfile dbObj) {
+        com.strateratech.dhs.peerrate.rest.contract.UserProfile up = null;
+        if (dbObj != null) {
+            up = new com.strateratech.dhs.peerrate.rest.contract.UserProfile();
+            up.setId(dbObj.getId());
+            up.setEmail(dbObj.getEmail());
+            up.setFullName(dbObj.getFullName());
+            up.setProfilePicBytes(dbObj.getProfilePic());
+            up.setProfilePicContentType(dbObj.getProfilePicContentType());
+            up.setDateOfBirth(dbObj.getDateOfBirth());
+            up.setDescription(dbObj.getDescription());
+            up.setJobTitle(dbObj.getJobTitle());
+            up.setOfficeCity(dbObj.getOfficeCity());
+            up.setOfficeStateOrProv(dbObj.getOfficeStateOrProv());
+            up.setOfficeCountry(dbObj.getOfficeCountry());
+            up.setOfficePhone(dbObj.getOfficePhone());
+            up.setPersonalPhone(dbObj.getPersonalPhone());
+            up.setOfficePostalCode(dbObj.getOfficePostalCode());
+            up.setOfficeStreetAddress(dbObj.getOfficeStreetAddress());
+            up.setDepartment(mapDbDepartmentToWebDepartment(dbObj.getDepartment()));
+        }
+        return up;
+    }
+
+
+    /**
+     * Map Department db object to web contract Department 
+     * @param department
+     * @return
+     * @since Aug 24, 2016
+     */
+    private com.strateratech.dhs.peerrate.rest.contract.Department mapDbDepartmentToWebDepartment(Department department) {
+        com.strateratech.dhs.peerrate.rest.contract.Department webDept = null;
+        if (department != null) {
+            webDept = new com.strateratech.dhs.peerrate.rest.contract.Department();
+            webDept.setId(department.getId());
+            webDept.setName(department.getName());
+        }
+        return webDept;
+    }
+    
+   /**
+    *  Map Web user to db user, save then return result mapped as web user
+    *  
+    */
+   public com.strateratech.dhs.peerrate.rest.contract.UserProfile save(com.strateratech.dhs.peerrate.rest.contract.UserProfile user, 
+           String username) {
+       UserProfile dbUser = null;
+       if (user != null) {
+           dbUser = mapWebUserToDbUser(user, username);
+           dbUser = userProfileRepository.save(dbUser);
+           user = mapDbUserProfileToWebUserProfile(dbUser);
+       }
+       return user; 
+   }
+
+
+private UserProfile mapWebUserToDbUser(com.strateratech.dhs.peerrate.rest.contract.UserProfile user, String username) {
+    UserProfile dbUser = null;
+    Date now = new Date();
+    if (user == null) {
+        if (user.getId() == null) {
+            dbUser = new UserProfile();
+        } else {
+            dbUser = userProfileRepository.findOne(user.getId());
+        }
+        dbUser.setId(user.getId());
+        dbUser.setEmail(user.getEmail());
+        dbUser.setFullName(user.getFullName());
+        dbUser.setDateOfBirth(user.getDateOfBirth());
+        dbUser.setDescription(user.getDescription());
+        dbUser.setJobTitle(user.getJobTitle());
+        dbUser.setOfficeCity(user.getOfficeCity());
+        dbUser.setOfficeCountry(user.getOfficeCountry());
+        dbUser.setOfficePhone(user.getOfficePhone());
+        dbUser.setOfficePostalCode(user.getOfficePostalCode());
+        dbUser.setOfficeStateOrProv(user.getOfficeStateOrProv());
+        dbUser.setOfficeStreetAddress(user.getOfficeStreetAddress());
+        dbUser.setPersonalPhone(user.getPersonalPhone());
+        dbUser.setProfilePic(user.getProfilePicBytes());
+        dbUser.setProfilePicContentType(user.getProfilePicContentType());
+        dbUser.setUpdateTs(now);
+        dbUser.setUpdateUsername(username);
+        if (dbUser.getCreateUsername() == null) {
+            dbUser.setCreateUsername(username);
+        }
+        if (dbUser.getCreateTs() == null) {
+            dbUser.setCreateTs(now);
+        }
+        if (user.getDepartment() != null && user.getDepartment().getName() !=  null) {
+            user.setDepartment(
+                    departmentService.mapDbDepartmentToWebDepartment(
+                            departmentRepository.findByName(user.getDepartment().getName())));
+        }
+    }
+    return dbUser;
+}
 }

@@ -50,7 +50,7 @@
 		<xs:sequence>
 			<xs:element name="id" type="xs:long" minOccurs="0"
 				maxOccurs="1" />
-			<xs:element name="fullName" type="xs:string" minOccurs="0"
+			<xs:element name="fullName" type="xs:string" minOccurs="1"
 				maxOccurs="1" />
 			<xs:element name="email"
 				minOccurs="0" maxOccurs="1">
@@ -60,7 +60,34 @@
 					</xs:restriction>
 				</xs:simpleType>	
 			</xs:element>
-			<xs:element name="recognitions" type="strat:Recognition"  minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="jobTitle" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="dateOfBirth" type="xs:dateTime" minOccurs="0"
+				maxOccurs="1" />	
+			<xs:element name="officeStreetAddress" type="xs:string" minOccurs="0"
+				maxOccurs="1" />	
+			<xs:element name="officeCity" type="xs:string" minOccurs="0"
+				maxOccurs="1" />	
+			<xs:element name="officeStateOrProv" type="xs:string" minOccurs="0"
+				maxOccurs="1" />	
+			<xs:element name="officePostalCode" type="xs:string" minOccurs="0"
+				maxOccurs="1" />				
+			<xs:element name="officeCountry" type="xs:string" minOccurs="0"
+				maxOccurs="1" />			
+			<xs:element name="officePhone" type="xs:string" minOccurs="0"
+				maxOccurs="1" />					
+			<xs:element name="personalPhone" type="xs:string" minOccurs="0"
+				maxOccurs="1" />								
+			<xs:element name="description" type="xs:string" minOccurs="0"
+				maxOccurs="1" />								
+			<xs:element name="profilePicContentType" type="xs:string" minOccurs="0"
+				maxOccurs="1" />								
+			<xs:element name="profilePicBytes" type="xs:base64Binary" minOccurs="0"
+				maxOccurs="1" />								
+			<xs:element name="department" type="strat:Department" minOccurs="0"
+				maxOccurs="1" />								
+				
+			<xs:element name="recievedRecognitions" type="strat:Recognition"  minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:appinfo>
 						<annox:annotate target="field">
@@ -72,6 +99,19 @@
     				</xs:appinfo>
     			</xs:annotation>
 			</xs:element>
+			<xs:element name="sentRecognitions" type="strat:Recognition"  minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<annox:annotate target="field">
+				  			@javax.xml.bind.annotation.XmlElementWrapper(name = "recognitions")
+				  		</annox:annotate>
+						<annox:annotate target="field">
+    						@javax.xml.bind.annotation.XmlElement(name = "recognition")
+    					</annox:annotate>
+    				</xs:appinfo>
+    			</xs:annotation>
+			</xs:element>
+			
 		</xs:sequence>
 	</xs:complexType>
 	
