@@ -15,6 +15,7 @@ exports.paths = {
   src: 'src',
   dist: 'dist',
   tmp: '.tmp',
+  vendor: 'vendor',
   e2e: 'e2e'
 };
 
