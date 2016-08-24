@@ -2,12 +2,11 @@
   'use strict';
 
   angular
-    .module('dhsChallenge',['view1'])
+    .module('dhsChallenge')
     .config(routerConfig);
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('home', {
         url: '/',
@@ -15,11 +14,12 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('view1', {
-        url: '/view1',
-        templateUrl: 'app/view1/view1.html',
-        controller: 'View1Controller',
-        controllerAs: 'view1Ctrl'
+      .state('view', {
+        url: '/view',
+        templateUrl: 'app/view/view.html',
+        controller: 'ViewController',
+        controllerAs: 'viewCtrl'
       });
+    $urlRouterProvider.otherwise('/');
   }
 })();

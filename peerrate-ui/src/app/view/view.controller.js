@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('view1',[])
-    .controller('View1Controller', View1Controller);
+  angular.module('dhsChallenge')
+    .controller('ViewController', ViewController);
 
   /** @ngInject */
-  function View1Controller() {
+  function ViewController() {
     var vm = this;
     vm.name = "DHS Challenge";
 

@@ -8,6 +8,7 @@
 
 var fs = require('fs');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 
 /**
  *  This will load all js or coffee files in the gulp directory
@@ -25,5 +26,6 @@ fs.readdirSync('./gulp').filter(function(file) {
  *  main optimization build task
  */
 gulp.task('default', ['clean'], function () {
-  gulp.start('build');
+    gulp.start('build');
+    return gutil.log('Gulp is running!')
 });

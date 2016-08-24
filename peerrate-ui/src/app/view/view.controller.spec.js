@@ -4,10 +4,10 @@
   describe('controllers', function(){
     var vm;
 
-    beforeEach(module('view1'));
+    beforeEach(module('view'));
 
     beforeEach(inject(function(_$controller_) {
-      vm = _$controller_('MainController');
+      vm = _$controller_('ViewController');
     }));
 
     it('should have a name', function() {
