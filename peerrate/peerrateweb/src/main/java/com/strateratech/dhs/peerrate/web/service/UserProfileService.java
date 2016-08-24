@@ -1,6 +1,7 @@
 package com.strateratech.dhs.peerrate.web.service;
 
 import java.io.InputStream;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -9,10 +10,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import com.amazonaws.services.inspector.model.Locale;
 import com.strateratech.dhs.peerrate.entity.UserProfile;
 import com.strateratech.dhs.peerrate.entity.repository.UserProfileRepository;
 import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
@@ -70,6 +71,10 @@ public class UserProfileService {
             user = new UserProfile();
             user.setEmail(restToken.getEmail());
             user.setFullName(restToken.getFirstName()+StringUtils.SPACE+restToken.getLastName());
+            user.setOfficeCountry(LocaleContextHolder.getLocale().getCountry());
+            if (user.getOfficeCountry() == null) {
+                user.setOfficeCountry(Locale.US.getCountry());
+            }
             InputStream is = null;
             try {
                 is = Thread.currentThread().getContextClassLoader().getResourceAsStream(DEFAULT_IMG_RESOURCE_PATH);
