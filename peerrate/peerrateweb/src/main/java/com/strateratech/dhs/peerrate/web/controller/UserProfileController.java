@@ -90,7 +90,7 @@ public class UserProfileController {
      * @return UsptoAuthenticationToken
      */
     @ApiOperation("Create User Profile")
-    @RequestMapping(value="/{id}", method=RequestMethod.POST)
+    @RequestMapping( method=RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<UserProfile> saveUserProfile(@Valid @RequestBody UserProfile user) {
         HttpStatus status = HttpStatus.OK;
