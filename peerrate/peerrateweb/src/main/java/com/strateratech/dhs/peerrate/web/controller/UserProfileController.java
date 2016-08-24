@@ -57,7 +57,7 @@ public class UserProfileController {
     @Inject
     private SecurityService securityService;
     /**
-     * Method to Parse Saml Token
+     * Method to update user profile
      * 
      * @return UsptoAuthenticationToken
      */
@@ -85,7 +85,7 @@ public class UserProfileController {
     }
 
     /**
-     * Method to Parse Saml Token
+     * Method to save user
      * 
      * @return UsptoAuthenticationToken
      */
