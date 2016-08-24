@@ -28,6 +28,13 @@
 	</xs:annotation>
 
 	<xs:complexType name="Recognition">
+		<xs:annotation>
+			<xs:appinfo>
+				<annox:annotate>
+					@javax.xml.bind.annotation.XmlRootElement
+				</annox:annotate>
+			</xs:appinfo>
+		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="id" type="xs:long" minOccurs="0"
 				maxOccurs="1" />
@@ -38,6 +45,13 @@
 	
 
 	<xs:complexType name="Department">
+		<xs:annotation>
+			<xs:appinfo>
+				<annox:annotate>
+					@javax.xml.bind.annotation.XmlRootElement
+				</annox:annotate>
+			</xs:appinfo>
+		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="id" type="xs:long" minOccurs="0"
 				maxOccurs="1" />
@@ -47,6 +61,13 @@
 	</xs:complexType>
 	
 	<xs:complexType name="UserProfile">
+		<xs:annotation>
+			<xs:appinfo>
+				<annox:annotate>
+					@javax.xml.bind.annotation.XmlRootElement
+				</annox:annotate>
+			</xs:appinfo>
+		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="id" type="xs:long" minOccurs="0"
 				maxOccurs="1" />
@@ -91,7 +112,7 @@
 				<xs:annotation>
 					<xs:appinfo>
 						<annox:annotate target="field">
-				  			@javax.xml.bind.annotation.XmlElementWrapper(name = "recognitions")
+				  			@javax.xml.bind.annotation.XmlElementWrapper(name = "recievedRecognitions")
 				  		</annox:annotate>
 						<annox:annotate target="field">
     						@javax.xml.bind.annotation.XmlElement(name = "recognition")
@@ -103,7 +124,7 @@
 				<xs:annotation>
 					<xs:appinfo>
 						<annox:annotate target="field">
-				  			@javax.xml.bind.annotation.XmlElementWrapper(name = "recognitions")
+				  			@javax.xml.bind.annotation.XmlElementWrapper(name = "sentRecognitions")
 				  		</annox:annotate>
 						<annox:annotate target="field">
     						@javax.xml.bind.annotation.XmlElement(name = "recognition")
