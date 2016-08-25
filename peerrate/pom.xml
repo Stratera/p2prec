@@ -33,7 +33,7 @@
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<spring-security.version>4.0.2.RELEASE</spring-security.version>
 
-		<!--<checkstyle.config.location>config/uspto_checkstyle.xml</checkstyle.config.location>-->
+		<!--<checkstyle.config.location>config/strateratecho_checkstyle.xml</checkstyle.config.location>-->
 		<quartz.version>2.2.1</quartz.version>
 		<version.jackson>2.5.3</version.jackson>
 		
@@ -420,6 +420,13 @@
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit</artifactId>
 			<version>1.4.0.RELEASE</version>
+			<exclusions>
+				<exclusion>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+			
 		</dependency>
 		<dependency>
 			<groupId>simple-jndi</groupId>

@@ -13,13 +13,14 @@ import com.strateratech.dhs.peerrate.web.utils.RestUtils;
  * 
  * US5079: SAML Prototype - External Domain
  * 
- * Class UsptoSamlDiscovery to support IdpDiscovery Service
+ * Class SamlDiscovery to support IdpDiscovery Service (not used)
  * 
  * @author 2020
  * @version 1.0
  * @date: 08/4/2015
  *
  */
+@Deprecated
 public class SamlDiscovery extends SAMLDiscovery {
     private static final Logger log = LoggerFactory.getLogger(SamlDiscovery.class);
 

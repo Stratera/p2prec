@@ -25,9 +25,6 @@ import com.strateratech.dhs.peerrate.web.service.saml.StrateratechSamlUserDetail
  * local context variable for use by subsequent code. Uses include but are not
  * limited to the
  * 
- * @see gov.uspto.pe2e.cpc.ipc.rest.web.service.document.adapter.DocumentAdapter
- *      and the @see
- *      gov.uspto.pe2e.cpc.ipc.rest.entity.repository.SchemeHierarchyRepository
  * 
  * @author 2020
  * @date Oct 19, 2015

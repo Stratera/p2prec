@@ -8,7 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
  * Controller Exception thrown when layered validator encounters additional validation errors beyond
  * normal JSR303 annotations on rest contract objects.  This exception is specifically thrown by
  * controller methods to trigger normal exception handling/response mapping in the 
- * @see gov.uspto.pe2e.cpc.ipc.rest.web.controller.error.GlobalControllerExceptionHandler
+ * @see com.strateratech.dhs.peerrate.web.controller.error.GlobalControllerExceptionHandler
  * 
  * Note: this class is only required because spring does not allow customm validators to be layered
  * for a given controller method* 

@@ -59,7 +59,7 @@ public class UserProfileController {
     /**
      * Method to update user profile
      * 
-     * @return UsptoAuthenticationToken
+     * @return ResponseEntity<UserProfile>
      */
     @ApiOperation("Update the User Profile, overriding the contents of user profile for a given id")
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
@@ -87,7 +87,7 @@ public class UserProfileController {
     /**
      * Method to save user
      * 
-     * @return UsptoAuthenticationToken
+     * @return ResponseEntity<UserProfile>
      */
     @ApiOperation("Create User Profile")
     @RequestMapping( method=RequestMethod.POST)
@@ -111,7 +111,7 @@ public class UserProfileController {
     /**
      * Method to Parse Saml Token
      * 
-     * @return UsptoAuthenticationToken
+     * @return ResponseEntity<UserProfile>
      */
     @ApiOperation("get user profile for a given id")
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
