@@ -8,7 +8,7 @@
     "angular-sanitize": "~1.5.3",
     "angular-messages": "~1.5.3",
     "angular-aria": "~1.5.3",
-    "angular-linq": "1.0.0",
+    "angular-linq": "~1.0.0",
     "jquery": "~2.1.4",
     "angular-ui-router": "~0.2.15",
     "angular-ui-layout": "~1.4.2",
