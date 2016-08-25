@@ -1,0 +1,15 @@
+<!DOCTYPE dataset SYSTEM "src/test/resources/dbunit/department.dtd">
+<dataset>
+
+
+	<department ID="1" NAME="SALES" 
+    VERSION ="1"
+    CREATE_USERNAME="matt.young@uspto.gov"
+  	CREATE_TS="2015-11-23 20:38:25.6" UPDATE_USERNAME="matt.young@uspto.gov" UPDATE_TS="2015-11-23 20:38:25.6"/>
+
+	<department ID="2" NAME="ADVERTISING" 
+    VERSION="0"
+    CREATE_USERNAME="matt.young@uspto.gov"
+  	CREATE_TS="2015-11-23 20:38:25.6" UPDATE_USERNAME="matt.young@uspto.gov" UPDATE_TS="2015-11-23 20:38:25.6"/>
+
+</dataset>
