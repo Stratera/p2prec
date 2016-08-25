@@ -1,15 +1,16 @@
 package com.strateratech.dhs.peerrate.web.service;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.strateratech.dhs.peerrate.entity.Department;
-import com.strateratech.dhs.peerrate.entity.UserProfile;
 import com.strateratech.dhs.peerrate.entity.repository.DepartmentRepository;
 /**
  * General Service for interacting with repositories and converting between web layer and data layer objects
@@ -42,6 +43,17 @@ public class DepartmentService {
             dept.setName(dbObj.getName());
         }
         return dept;
+    }
+
+
+    @Transactional
+    public List<com.strateratech.dhs.peerrate.rest.contract.Department> list() {
+        List<Department> dbList = departmentRepository.findAllOrderByName();
+        List<com.strateratech.dhs.peerrate.rest.contract.Department> webList = new ArrayList<>();
+        for (Department dep: dbList) {
+            webList.add(mapDbDepartmentToWebDepartment(dep));
+        }
+        return webList;
     }
 
 }

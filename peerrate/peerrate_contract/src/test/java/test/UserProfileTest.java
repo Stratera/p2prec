@@ -2,11 +2,13 @@ package test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.apache.poi.util.IOUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +25,16 @@ public class UserProfileTest {
 
     @Test
     public void test() throws JAXBException, JsonGenerationException, JsonMappingException, IOException {
+        InputStream is = null; 
+        try {
+            
+            is = Thread.currentThread().getContextClassLoader().getResourceAsStream("me.png");
+            
+            
         UserProfile user = new UserProfile();
+        user.setFullName("Matt Young");
+        user.setProfilePicBytes(IOUtils.toByteArray(is));
+        user.setProfilePicContentType("image/png");
         Recognition r = new Recognition();
         r.setName("recieved 1");
         user.getRecievedRecognitions().add(r);
@@ -47,6 +58,9 @@ public class UserProfileTest {
         baos = new ByteArrayOutputStream();
         mapper.writeValue(baos, user);
         LOGGER.debug("JSON = {}",baos.toString());
+        } finally {
+            IOUtils.closeQuietly(is);
+        }
     }
 
     private static JAXBContext initJAXBContext() {

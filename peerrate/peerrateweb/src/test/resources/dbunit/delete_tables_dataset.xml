@@ -3,4 +3,7 @@
 If Table A has a reference (foreign key) to Table B, then A must be listed after B -->
 <!--  <table_name/>
 -->	
+	<department/>
+	<user_profile/>
+	<recognition/>
 </dataset>

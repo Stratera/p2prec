@@ -74,9 +74,9 @@ public class ClassFinder {
         List<Class<?>> classes = new ArrayList<Class<?>>();
         String resource = scannedPackage + DOT + file.getName();
         if (file.isDirectory()) {
-            for (File child : file.listFiles()) {
-                classes.addAll(find(child, resource));
-            }
+//            for (File child : file.listFiles()) {
+//                classes.addAll(find(child, resource));
+//            }
         } else if (resource.endsWith(CLASS_SUFFIX)) {
             int endIndex = resource.length() - CLASS_SUFFIX.length();
             String className = resource.substring(0, endIndex);

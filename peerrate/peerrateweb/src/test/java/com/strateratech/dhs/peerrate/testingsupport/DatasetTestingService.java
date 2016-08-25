@@ -89,7 +89,9 @@ public class DatasetTestingService {
      * @throws Exception
      */
     public void loadAllDatasets(IDatabaseConnection conn) throws Exception {
-//        loadDataset(conn, "dbunit/samle_entity.xml");
+        loadDataset(conn, "dbunit/department.xml");
+        loadDataset(conn, "dbunit/user_profile.xml");
+
     }
 
     

@@ -2,6 +2,7 @@ package com.strateratech.dhs.peerrate.entity;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -184,6 +185,9 @@ public class Department {
      * @return the recognitions
      */
     public Set<Recognition> getRecognitions() {
+        if (recognitions == null) {
+            recognitions = new TreeSet<>();
+        }
         return recognitions;
     }
 
@@ -200,6 +204,9 @@ public class Department {
      * @return the userProfiles
      */
     public Set<UserProfile> getUserProfiles() {
+        if (userProfiles == null) {
+            userProfiles = new TreeSet<>();
+        }
         return userProfiles;
     }
 

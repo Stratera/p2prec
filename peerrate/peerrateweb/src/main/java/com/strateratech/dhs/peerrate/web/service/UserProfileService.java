@@ -108,6 +108,7 @@ public class UserProfileService {
      * @return
      * @since Aug 24, 2016
      */
+    @Transactional
     public com.strateratech.dhs.peerrate.rest.contract.UserProfile getUserProfile(Long id) {
         UserProfile dbUP = userProfileRepository.findOne(id);
         
@@ -165,6 +166,7 @@ public class UserProfileService {
     *  Map Web user to db user, save then return result mapped as web user
     *  
     */
+   @Transactional
    public com.strateratech.dhs.peerrate.rest.contract.UserProfile save(com.strateratech.dhs.peerrate.rest.contract.UserProfile user, 
            String username) {
        UserProfile dbUser = null;

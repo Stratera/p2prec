@@ -1,5 +1,7 @@
 package com.strateratech.dhs.peerrate.entity.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -26,5 +28,13 @@ public interface DepartmentRepository extends PagingAndSortingRepository<Departm
      */
 	@Query("from Department e where e.name = :name")
 	Department findByName(@Param("name") String name);
+
+	/**
+	 * 
+	 * @return
+	 * @since Aug 24, 2016
+	 */
+	@Query("from Department order by name asc")
+    List<Department> findAllOrderByName();
 
 }

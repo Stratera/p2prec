@@ -2,6 +2,7 @@ package com.strateratech.dhs.peerrate.entity;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -12,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -83,7 +83,7 @@ public class UserProfile {
     private String description;
     
     @Basic(fetch = FetchType.LAZY)
-    @Column(name="profile_pic")
+    @Column(name="profile_pic",length=Integer.MAX_VALUE)
     private byte[] profilePic;
     
 
@@ -450,6 +450,9 @@ public class UserProfile {
      * @return the mySentRecognitions
      */
     public Set<Recognition> getMySentRecognitions() {
+        if (mySentRecognitions == null) {
+            mySentRecognitions = new TreeSet<>();
+        }
         return mySentRecognitions;
     }
 
@@ -466,6 +469,9 @@ public class UserProfile {
      * @return the myRecievedRecognitions
      */
     public Set<Recognition> getMyRecievedRecognitions() {
+        if (myRecievedRecognitions == null) {
+            myRecievedRecognitions = new TreeSet<>();
+        }
         return myRecievedRecognitions;
     }
 
