@@ -1,9 +1,8 @@
-/* global malarkey:false, moment:false */
+/* global moment:false */
 (function() {
   'use strict';
 
   angular
     .module('dhsChallenge')
     .constant('moment', moment);
-
 })();
