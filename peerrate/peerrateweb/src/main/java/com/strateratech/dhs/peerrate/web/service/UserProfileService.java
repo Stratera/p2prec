@@ -182,7 +182,7 @@ public class UserProfileService {
 private UserProfile mapWebUserToDbUser(com.strateratech.dhs.peerrate.rest.contract.UserProfile user, String username) {
     UserProfile dbUser = null;
     Date now = new Date();
-    if (user == null) {
+    if (user != null) {
         if (user.getId() == null) {
             dbUser = new UserProfile();
         } else {
