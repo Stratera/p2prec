@@ -27,6 +27,32 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
+$font-stack:    Arial Regular, Arial;
+$primary-color: #333;
+$primary-darkest-blue: #112e51;
+$gray-lightest: #f1f1f1;
+$white: #fff;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+div>#u0 {
+  background-color: $primary-darkest-blue;
+  height: 20px;
+  padding-left: 10px;
+  padding-top: 2px;
+}
+
+#u0 p {
+  margin: -11px 0 0 35px;
+  color: $white;
+}
+
+
+
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
