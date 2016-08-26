@@ -2,7 +2,7 @@
  * @ngdoc module
  * @name services.component
  */
-angular.module("app.services.component", [
+angular.module("services.component", [
     "services.router"
 ])
 /**

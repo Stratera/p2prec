@@ -127,7 +127,7 @@ angular.module("services.router", [
     };
 
   })
-  .run(function ($rootScope, $location, $timeout, $state, $stateParams, route, security, routerEventNames, $sessionStorage) {
+  .run(function ($rootScope, $location, $timeout, $state, $stateParams, route, security, $sessionStorage) {
     var propagateTimer;
 
     function propagatePersistentState(params, state) {

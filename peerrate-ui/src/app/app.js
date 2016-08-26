@@ -18,7 +18,7 @@ angular
     'app.layout',
     'app.constants',
 
-    'models.users',
+    'models.user',
 
     'services.router',
     'services.security',

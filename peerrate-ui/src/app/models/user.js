@@ -1,4 +1,4 @@
-angular.module("app.models.user", [
+angular.module("models.user", [
     "restmod"
 ])
 
