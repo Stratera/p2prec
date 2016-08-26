@@ -1,28 +1,13 @@
-/**
- * @ngdoc module
- * @name common.services.router
- */
-angular.module("common.services.router", [
+
+angular.module("services.router", [
   "ui.router",
-  "common.services.security",
+  "services.security",
   "ngStorage"
 ])
 
-  .constant('routerEventNames', {
-    restoreState: "router.restore.state",
-    persistState: "router.persist.state"
-  })
 
-  /**
-   * @ngdoc provider
-   * @name routeProvider
-   */
   .provider("route", function ($stateProvider, $urlRouterProvider, $sessionStorageProvider) {
 
-    /**
-     * The name of the controller on the scope, so it can be accessed
-     * by the template.
-     */
     function getControllerScopeName(route) {
       if (route.controllerAs !== false) {
         return route.controllerAs || route.name;
@@ -72,20 +57,6 @@ angular.module("common.services.router", [
         return defaultRoute.url.replace(/\^/, "");
       });
     }
-
-    /**
-     * @ngdoc method
-     * @name routeProvider#registerResolver
-     * @description
-     * Register a resolver that can inject a value into a route's controller.
-     *
-     * @param {String} name The local variable name of the resolved value.
-     * @param {Function} resolverFn A function used to resolve a value.
-     * This function can have injectable dependenies and return a promise.
-     */
-    this.registerResolver = function (name, resolverFn) {
-      defaultResolvers[name] = resolverFn;
-    };
 
     /**
      * ngdoc method
@@ -166,7 +137,7 @@ angular.module("common.services.router", [
         $timeout.cancel(propagateTimer);
         propagateTimer = $timeout(function () {
           $rootScope.$broadcast(
-            routerEventNames.restoreState,
+            "state.restore.state",
             {
               state: state.data.route.name,
               data: data
@@ -180,7 +151,7 @@ angular.module("common.services.router", [
     $rootScope.$storage = $sessionStorage;
 
     // respond to a request to persist state.
-    $rootScope.$on(routerEventNames.persistState, function (event, attrs) {
+    $rootScope.$on("state.persist.state", function (event, attrs) {
       var name = $state.current.name;
       if (!$rootScope.$storage[name]) {
         $sessionStorage[name] = {};
@@ -229,4 +200,4 @@ angular.module("common.services.router", [
       console.error(error);
     });
 
-  });
+});

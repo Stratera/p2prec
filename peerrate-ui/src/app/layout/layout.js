@@ -1,18 +1,18 @@
-angular.module("app.layout", [
+var module = angular.module("app.layout", [
     "app.constants",
     "services.router",
     "services.component"
-])
+]);
 
-function LayoutController () {
-    var layout = this;
+function LayoutController ($scope, $location, $state, $stateParams, $timeout, component, currentUser) {
+    var vm = this;
 
-    this.user = currentUser;
+    vm.user = currentUser;
     
-    this.componentPages = component.get().map(function (c, i) {
+    vm.componentPages = component.get().map(function (c, i) {
       var active = i === 0;
       if (active) {
-          this.activeIndex = i;
+          vm.activeIndex = i;
       }
       return {
           title: c.title,
@@ -25,16 +25,16 @@ function LayoutController () {
       };
     }, this);
 
-    this.setPageSelected = function (page) {
-        if (tab.savedState) {
+    vm.setPageSelected = function (page) {
+        if (page.savedState) {
             $state.go(page.savedState.stateName, page.savedState.params);
         } else {
             $state.go(page.name);
         }
     };
 
-    $scope.$on('$stateChangeSuccess', function (event, to, toParams) {
-        layout.updateSelectedPageState();
+    $scope.$on('$stateChangeSuccess', function (event, to) {
+        vm.updateSelectedPageState();
     });
 
 }
@@ -49,4 +49,4 @@ module.config(function (routeProvider, componentProvider) {
     });
 
     componentProvider.registerParentRoute("layout", "content");
-})
+});

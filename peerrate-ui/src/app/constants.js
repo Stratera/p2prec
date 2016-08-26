@@ -1,8 +1,7 @@
-/* global moment:false */
-(function() {
-  'use strict';
 
-  angular
+'use strict';
+
+angular
     .module('app.constants', [])
     .constant('servicesConfig', {
         prefix: "@@svrPrefix@@",
@@ -16,4 +15,3 @@
     .constant('eventNames', {
         sampleEvent: "sampleEvent"
     });
-})();

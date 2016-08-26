@@ -13,7 +13,11 @@
       'ui.router',
       'ui.bootstrap',
       'ui.layout',
-      'ui.grid'
+      'ui.grid',
+
+      'app.layout',
+      'services.router',
+      'services.security'
       
       ]);
 
