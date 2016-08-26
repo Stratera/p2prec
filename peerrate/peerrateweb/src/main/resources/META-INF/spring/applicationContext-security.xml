@@ -156,7 +156,7 @@
 				</bean>
 			</property>
 			
-			<property name="entityBaseURL" value="${saml_entity_base_url:http://localhost:8080/peerrateweb}"/>
+			<property name="entityBaseURL" value="${saml_entity_base_url:http://54.186.179.171:8080/peerrateweb}"/>
 		</bean>
 	</constructor-arg>
 </bean>
