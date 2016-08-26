@@ -11,7 +11,6 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
       return {
           title: c.title,
           index: i,
-          iconClass: c.iconClass,
           name: c.name,
           hidden: !c.static,
           persistent: c.persistent,
@@ -26,6 +25,21 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
             $state.go(page.name);
         }
     };
+
+    vm.updateSelectedPageState = function() {
+        var page = this.componentPages.filter(function (tab) {
+            return $state.includes(page.name);
+        })[0];
+        if (page) {
+            page.savedState = {
+                stateName: $state.current.name,
+                params: angular.copy($stateParams)
+            };
+            this.activeIndex = page.index;
+            page.hidden = false;
+            this.selectedPage = page;
+        }
+    }
 
     $scope.$on('$stateChangeSuccess', function () {
         vm.updateSelectedPageState();

@@ -18,6 +18,10 @@ angular
     'app.layout',
     'app.constants',
 
+    'app.components.home',
+    'app.components.profile.edit',
+    'app.components.profile.view',
+
     'models.user',
 
     'services.router',
