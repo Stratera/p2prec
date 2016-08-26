@@ -311,7 +311,7 @@
 					</executions>
 					<configuration>
 						<serverId>nexus</serverId>
-						<nexusUrl>https://nexus.uspto.gov/nexus/</nexusUrl>
+						<nexusUrl>https://nexus.strateratech.com/nexus/</nexusUrl>
 						<skipStaging>true</skipStaging>
 					</configuration>
 				</plugin>

@@ -1,6 +1,5 @@
 package com.strateratech.dhs.peerrate.dbmigrations;
 
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,17 +13,12 @@ import java.util.Scanner;
 import javax.sql.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.PatternLayout;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory;
 import org.flywaydb.core.api.MigrationInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * US5097 - Data Model - FINAL Scheme Navigator
  * 
  * Standalone program used to perform Database Migration.
  * 
@@ -92,26 +86,7 @@ public class DbaConsole {
      * Method used to initialize logging mechanism
      */
     private static void initLogging() {
-        org.apache.log4j.Logger.getRootLogger().getLoggerRepository().resetConfiguration();
-        ConsoleAppender console = new ConsoleAppender(); // create appender
-        // configure the appender
-        String PATTERN = "%d [%p|%c|%C{1}] %m%n";
-        console.setLayout(new PatternLayout(PATTERN));
-        console.setThreshold(Level.FATAL);
-        console.activateOptions();
-        // add appender to any Logger (here is root)
-        org.apache.log4j.Logger.getRootLogger().addAppender(console);
-
-        FileAppender fa = new FileAppender();
-        fa.setName("FileLogger");
-        fa.setFile("dbmigration.log");
-        fa.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
-        fa.setThreshold(Level.DEBUG);
-        fa.setAppend(true);
-        fa.activateOptions();
-
-        // add appender to any Logger (here is root)
-        org.apache.log4j.Logger.getRootLogger().addAppender(fa);
+        // TODO reset logging to local dba console file
 
     }
 

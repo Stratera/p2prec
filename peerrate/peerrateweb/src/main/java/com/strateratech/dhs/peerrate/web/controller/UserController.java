@@ -45,7 +45,7 @@ public class UserController {
     /**
      * Method to Parse Saml Token
      * 
-     * @return UsptoAuthenticationToken
+     * @return ResponseEntity<RestAuthenticationToken>
      */
     @ApiOperation("Pulls the Saml Authentication Token from the spring authentication framework "
             + " and parses it out into a Model Object Specifically defined in our service Contract XSDs ")
@@ -53,7 +53,7 @@ public class UserController {
     @RequestMapping(value = "/authentication")
     @ResponseBody
     public ResponseEntity<RestAuthenticationToken> parseSamlToken() {
-        RestAuthenticationToken usptoToken = null;
+        RestAuthenticationToken restAuthToken = null;
         if (SecurityContextHolder.getContext() != null
                 && SecurityContextHolder.getContext().getAuthentication() != null) {
             Object authObj = SecurityContextHolder.getContext().getAuthentication();
@@ -65,10 +65,10 @@ public class UserController {
             log.debug("Saml authentication token: [principal={} credentials={} authorities={}]",
                     samlAuthenticationToken.getPrincipal(), samlAuthenticationToken.getCredentials(),
                     samlAuthenticationToken.getAuthorities());
-            usptoToken = securityService.mapSamlTokenToContractModel(samlAuthenticationToken);
+            restAuthToken = securityService.mapSamlTokenToContractModel(samlAuthenticationToken);
         }
 
-        return new ResponseEntity<RestAuthenticationToken>(usptoToken, RestUtils.buildRestHttpHeaders(),
+        return new ResponseEntity<RestAuthenticationToken>(restAuthToken, RestUtils.buildRestHttpHeaders(),
                 HttpStatus.OK);
 
     }

@@ -61,7 +61,7 @@ public class DepartmentController {
     /**
      * Method to update user profile
      * 
-     * @return UsptoAuthenticationToken
+     * @return ResponseEntity<List<Department>>
      */
     @ApiOperation("list all Departments ordered by name")
     @RequestMapping( method=RequestMethod.GET)

@@ -7,14 +7,9 @@
 # These properties should be moved to the environment.properties file which should live outside the war
 # on the container shared classpath
 #
-uspto_firewall_regex=^151\\.207\\.(24[0-9]|25[0-5])\\.\\d{1,3}$
-uspto_idp_url=https://opd-xmltest-a-706.etc.uspto.gov:9443/
-epo_firewall_regex=^10\\.244\\.208\\.181$
-epo_idp_url=www.yahoo.com
 public_idp_url=http://idp.ssocircle.com
 
 s3_base_url=https://s3.amazonaws.com/cpc-objects
 ui_base_url=https://dev.cpc-ce.org
 
-uspto_issuer_regex=^(http://idp\.ssocircle\.com)|()$
-epo_issuer_regex=^http://auth\.epo\.com$
+idp_issuer_regex=^(http://idp\.ssocircle\.com)|()$

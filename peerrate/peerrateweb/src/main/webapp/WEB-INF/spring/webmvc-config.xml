@@ -77,9 +77,6 @@
         	<property name="paramName" value="locale" />
     	</bean>
     	
-    	<!-- org.springframework.web.servlet.mvc.WebContentInterceptor
-    	gov.uspto.pe2e.cpc.ipc.rest.web.controller.interceptor.CacheControlInterceptor
-    	 -->  	
     	 <bean class="net.rossillo.spring.web.mvc.CacheControlHandlerInterceptor" />
   <!-- 
 		<bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">

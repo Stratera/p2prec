@@ -19,7 +19,7 @@ import com.strateratech.dhs.peerrate.web.service.saml.StrateratechSamlUserDetail
 
 /**
  * 
- * Security Service for USPTO and EPO Authentication Token
+ * Security Service for handling security concerns agnostic of impelemenation
  * 
  * @author 2020
  * @version 1.0
@@ -49,7 +49,7 @@ public class SecurityService {
      * Method to map SAML Token to Contract Model.
      * 
      * @param springAuthToken
-     * @return UsptoAuthenticationToken
+     * @return RestAuthenticationToken
      */
     public RestAuthenticationToken mapSamlTokenToContractModel(Authentication springAuthToken) {
         RestAuthenticationToken token = null;

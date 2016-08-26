@@ -7,7 +7,6 @@ import org.flywaydb.core.api.MigrationInfo;
 import org.flywaydb.core.api.MigrationInfoService;
 
 /**
- * US5097 - Data Model - FINAL Scheme Navigator
  * 
  * Migration Utils Class
  * 

@@ -21,15 +21,6 @@ import org.springframework.stereotype.Service;
 @Service("idpDiscoveryService")
 public class IdpDiscoveryService {
     private static final Logger log = LoggerFactory.getLogger(IdpDiscoveryService.class);
-    @Value("${uspto_firewall_regex}")
-    private String usptoFirewallRegex;
-    @Value("${uspto_idp_url}")
-    private String usptoIdpUrl;
-
-    @Value("${epo_firewall_regex}")
-    private String epoFirewallRegex;
-    @Value("${epo_idp_url}")
-    private String epoIdpUrl;
 
     @Value("${public_idp_url}")
     private String publicIdpUrl;
@@ -42,16 +33,7 @@ public class IdpDiscoveryService {
      */
     public String resolveIdpUrl(String ip) {
 
-        String idp = "";
-        log.info("Ip of client {} " + ip + " is uspto({})={}, is EPO={}", this.usptoFirewallRegex,
-                Pattern.matches(usptoFirewallRegex, ip), Pattern.matches(epoFirewallRegex, ip));
-        if (Pattern.matches(usptoFirewallRegex, ip)) {
-            idp = usptoIdpUrl;
-        } else if (Pattern.matches(epoFirewallRegex, ip)) {
-            idp = epoIdpUrl;
-        } else {
-            idp = publicIdpUrl;
-        }
+        String idp =  publicIdpUrl;
         log.info("Returning {} as the IDP", idp);
         return idp;
     }
