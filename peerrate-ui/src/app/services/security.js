@@ -2,8 +2,8 @@
  * @ngdoc module
  * @name common.services.security
  */
-angular.module("common.services.security", [
-    "app.models.user"
+angular.module("services.security", [
+    
 ])
 .factory("security", function ($rootScope, $q, servicesConfig, $http, $window, User) {
 
@@ -84,14 +84,7 @@ angular.module("common.services.security", [
             return ret;
         },
 
-        /**
-         * @name login
-         *
-         * @description
-         * Attempts to login via automatic SSO.
-         */
         login: function () {
-
         }
 
     };
