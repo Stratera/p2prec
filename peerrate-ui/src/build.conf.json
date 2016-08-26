@@ -1,0 +1,76 @@
+{
+    "configProperties": {
+        "applyTo": "src/app/constants.js",
+        "version": "1.1.0",
+        "build": 1,
+        "environments": {
+            "prod": {
+                "svrPrefix": "https://aws/dhscrestweb",
+                "useAuth": "true"
+            },
+            "dev": {
+                "svrPrefix": "https://dev/dhscrestweb",
+                "useAuth": "true",
+                "debug": "true"
+            },
+            "local": {
+                "svrPrefix": "/mock",
+                "useAuth": "",
+                "debug": "true"
+            }
+        }
+    },
+
+    "paths": {
+        "source": {
+            "root": "src",
+            "scripts": ["src/app/**/*.js", "!src/app/constants.js"],
+      	    "html": ["src/app/**/*.html"],
+      	    "styles": "src/styles/**/*.scss",
+      	    "assets": ["src/index.html", "src/assets/**/*.{gif,jpg,png,svg}", "src/styles/images/*.{gif,jpg,png,svg}"],
+            "deploymentAssets": "deploy-assets/**/*"
+        },
+        "lint": {
+            "htmlhintrc": ".htmlhintrc",
+            "jshintrc":  ".jshintrc",
+            "jscsrc": ".jscsrc"
+        },
+        "build": {
+            "root": "build",
+            "multiBuildSrc": "build/public",
+          	"scripts": "build/public",
+            "sourceMaps": "./",
+            "styles": "build/public/styles",
+      	     "assets": "build/public/",
+          	"vendor": "build/public/vendor",
+            "files": "build/**/*.*"
+      	},
+        "bower": {
+            "bowerDirectory": "src/vendor/bower_components",
+            "bowerJson": "bower.json",
+            "bowerrc": ".bowerrc"
+        },
+        "vendor": {
+            "styles": "src/vendor/dhs/css/**/*.css",
+            "assets": "src/vendor/dhs/**/{black,white}.svg",
+            "config": "src/vendor/cfg*/**/*"
+        },
+        "package": {
+            "name": "app.zip",
+            "dest": "dist",
+            "multiBuildTarget": "dist/public-min",
+            "config": "dist/config"
+        },
+        "server": {
+            "name": "server.js",
+            "docs": "deploy-assets/docserver.js",
+            "files": "deploy-assets/**/*.js"
+        },
+        "documentation": {
+            "source": "./docs-generator",
+            "readme": "./README.md",
+            "config": "jsdocs.conf.json",
+            "output": "./docs"
+        }
+    }
+}

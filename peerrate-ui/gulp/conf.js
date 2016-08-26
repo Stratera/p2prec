@@ -16,7 +16,30 @@ exports.paths = {
   dist: 'dist',
   tmp: '.tmp',
   vendor: 'vendor',
+  config: 'config',
   e2e: 'e2e'
+};
+
+exports.configProperties = {
+  applyTo: "src/app/constants.js",
+  version: "1.1.0",
+  build: 1,
+  environments: {
+    prod: {
+      svrPrefix: "https://urlhere",
+      useAuth: true
+    },
+    dev: {
+      svrPrefix: "https://urlhere",
+      useAuth: true,
+      debug: true
+    },
+    local: {
+      svrPrefix: "https://urlhere",
+      useAuth: "",
+      debug: true
+    }
+  }
 };
 
 /**
