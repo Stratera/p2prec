@@ -27,7 +27,7 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
         }
     };
 
-    $scope.$on('$stateChangeSuccess', function (event) {
+    $scope.$on('$stateChangeSuccess', function () {
         vm.updateSelectedPageState();
     });
 

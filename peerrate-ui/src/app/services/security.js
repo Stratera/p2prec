@@ -67,7 +67,7 @@ angular.module("services.security", [
                     prefix + "/users/authentication",
                     {},
                     { headers: { "Accepts": "application/json" } })
-                    .success(function (data, status, headers, config) {
+                    .success(function (data, status, headers) {
                         if (!data.username) {
                             ctx.login();
                         } else {

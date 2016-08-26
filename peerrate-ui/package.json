@@ -7,7 +7,6 @@
   },
   "license": "none",
   "dependencies": {
-    "angular-restmod": "^1.1.11",
     "uswds": "^0.11.1",
     "yargs": "^5.0.0"
   },
