@@ -19,8 +19,8 @@ angular
     'app.constants',
 
     'app.components.home',
-    'app.components.edit-profile',
-    'app.components.my-profile',
+    'app.components.profile.edit',
+    'app.components.profile.view',
 
     'models.user',
 
