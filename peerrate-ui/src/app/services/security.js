@@ -67,11 +67,7 @@ angular.module("services.security", [
                     prefix + "/users/authentication",
                     {},
                     { headers: { "Accepts": "application/json" } })
-<<<<<<< HEAD
-                    .success(function (data, status, headers) {
-=======
                     .success(function (data) {
->>>>>>> 760b6dac9b55d29a5cccae1df252c854af6fc8df
                         if (!data.username) {
                             ctx.login();
                         } else {
