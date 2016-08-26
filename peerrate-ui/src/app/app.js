@@ -15,9 +15,13 @@
       'ui.layout',
       'ui.grid',
 
+      'restmod',
+
       'app.layout',
       'services.router',
-      'services.security'
+      'services.security',
+      'services.restmod.BaseModel',
+      'services.restmod.Collection'
       
       ]);
 
