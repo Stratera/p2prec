@@ -1,6 +1,6 @@
 /**
  * @ngdoc module
- * @name common.restmod.PostCollection
+ * @name services.restmod.PostCollection
  */
 angular.module("services.restmod.PostCollection", [])
 
@@ -11,7 +11,7 @@ angular.module("services.restmod.PostCollection", [])
  * A collection who's fetch method acts as a post.  This is useful if implementing a complex search on a model
  * that requires more than a GET request.
  */
-.factory("PostCollection", ["restmod", "RMPackerCache", "inflector", function (restmod, packerCache, inflector) {
+.factory("PostCollection", ["restmod", function (restmod) {
 
     return restmod.mixin (function () {
 

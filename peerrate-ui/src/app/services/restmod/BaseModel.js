@@ -2,7 +2,7 @@
  * @ngdoc module
  * @name common.restmod.BaseModel
  */
-angular.module("services.restmod.BaseModel", [ ])
+angular.module("services.restmod.BaseModel", [])
 
 /**
  * @ngdoc type
@@ -14,7 +14,7 @@ angular.module("services.restmod.BaseModel", [ ])
     var servicePrefix = servicesConfig.prefix;
     return restmod.mixin ({
         $config: {
-            style: "CPC",
+            style: "DHS",
             urlPrefix: servicePrefix,
             primaryKey: "id"
         },
@@ -39,7 +39,7 @@ angular.module("services.restmod.BaseModel", [ ])
         $hooks: {
             'before-request': function (req) {
                 if ((new this.$type()).useMock) {
-                    req.url = req.url.replace(/https.*cpcipcrestweb/, "/mock");
+                    req.url = req.url.replace(/https.*dhsrestweb/, "/mock");
                 }
             }
         }

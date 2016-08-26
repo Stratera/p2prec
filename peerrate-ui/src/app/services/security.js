@@ -3,7 +3,7 @@
  * @name common.services.security
  */
 angular.module("services.security", [
-    
+    "app.models.user"
 ])
 .factory("security", function ($rootScope, $q, servicesConfig, $http, $window, User) {
 

@@ -18,10 +18,13 @@
       'restmod',
 
       'app.layout',
+      'app.constants',
+
       'services.router',
       'services.security',
+      'services.component',
       'services.restmod.BaseModel',
-      'services.restmod.Collection'
+      'services.restmod.PostCollection'
       
       ]);
 

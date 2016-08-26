@@ -1,9 +1,9 @@
 /**
  * @ngdoc module
- * @name common.services.component
+ * @name services.component
  */
 angular.module("app.services.component", [
-    "app.services.router"
+    "services.router"
 ])
 /**
  * @ngdoc provider
