@@ -2,6 +2,7 @@
 
 var path = require('path');
 var gulp = require('gulp');
+var replace = require('gulp-replace');
 var conf = require('./conf');
 var argv = require('yargs').argv;
 
@@ -10,6 +11,9 @@ var deployedEnv = argv.environment || "local";
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
+
+var paths = conf.paths;
+var props = conf.configProperties;
 
 var util = require('util');
 
@@ -65,3 +69,30 @@ gulp.task('serve:e2e', ['inject'], function () {
 gulp.task('serve:e2e-dist', ['build'], function () {
   browserSyncInit(conf.paths.dist, []);
 });
+
+var tasks = {
+  localConstants: function() {
+    return gulp.src(props.applyTo)
+      .pipe(replace('@@svrPrefix@@', props.environments[deployedEnv].svrPrefix))
+      .pipe(replace('@@useAuth@@', props.environments[deployedEnv].useAuth))
+      .pipe(replace('@@version@@', props.version))
+      .pipe(replace('@@build@@', props.build))
+      .pipe(replace('@@debug@@', props.environments[deployedEnv].debug))
+      .pipe(gulp.dest(conf.paths.dist));
+  },
+
+  compileConstants: function() {
+    var last;
+    for (var env in props.environments) {
+      last = gulp.src(props.applyTo)
+        .pipe(replace('@@svrPrefix@@', props.environments[env].svrPrefix))
+        .pipe(replace('@@useAuth@@', props.environments[env].useAuth))
+        .pipe(replace('@@debug@@', props.environments[env].debug))
+        .pipe(gulp.dest(conf.paths.config + "/" + env));
+    }
+    return last;
+  }
+};
+
+gulp.task('local-constants', tasks.localConstants);
+gulp.task('package-constants', tasks.compileConstants);

@@ -58,7 +58,7 @@ angular.module("services.component", [
      * @ngdoc service
      * @name component
      */
-    this.$get = function ($state) {
+    this.$get = function () {
 
         return {
 

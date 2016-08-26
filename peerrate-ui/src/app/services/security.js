@@ -60,14 +60,18 @@ angular.module("services.security", [
          */
         loadUser: function () {
             var ctx = this;
-            var loginPromise, ret = false;
+            var ret = false;
             var prefix = servicesConfig.useAuth ? servicesConfig.prefix : "/mock";
             if (!ctx.isLoginPending()) {
-                ret = loginPromise = $http.post(
+                ret = $http.post(
                     prefix + "/users/authentication",
                     {},
                     { headers: { "Accepts": "application/json" } })
+<<<<<<< HEAD
                     .success(function (data, status, headers) {
+=======
+                    .success(function (data) {
+>>>>>>> 760b6dac9b55d29a5cccae1df252c854af6fc8df
                         if (!data.username) {
                             ctx.login();
                         } else {
