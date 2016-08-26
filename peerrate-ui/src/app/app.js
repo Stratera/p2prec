@@ -1,31 +1,30 @@
-(function() {
-  'use strict';
 
-  angular
-    .module('dhsChallenge', [
-      
-      'ngAnimate',
-      'ngCookies',
-      'ngTouch',
-      'ngSanitize',
-      'ngMessages',
-      'ngAria',
-      'ui.router',
-      'ui.bootstrap',
-      'ui.layout',
-      'ui.grid',
+angular
+  .module('dhsChallenge', [
+    
+    'ngAnimate',
+    'ngCookies',
+    'ngTouch',
+    'ngSanitize',
+    'ngMessages',
+    'ngAria',
+    'ui.router',
+    'ui.bootstrap',
+    'ui.layout',
+    'ui.grid',
 
-      'restmod',
+    'restmod',
 
-      'app.layout',
-      'app.constants',
+    'app.layout',
+    'app.constants',
 
-      'services.router',
-      'services.security',
-      'services.component',
-      'services.restmod.BaseModel',
-      'services.restmod.PostCollection'
-      
-      ]);
+    'models.users',
 
-})();
+    'services.router',
+    'services.security',
+    'services.component',
+    'services.restmod.BaseModel',
+    'services.restmod.PostCollection'
+    
+    ]);
+

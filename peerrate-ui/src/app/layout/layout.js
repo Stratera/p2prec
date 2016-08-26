@@ -1,9 +1,3 @@
-var module = angular.module("app.layout", [
-    "app.constants",
-    "services.router",
-    "services.component"
-]);
-
 function LayoutController ($scope, $location, $state, $stateParams, $timeout, component, currentUser) {
     var vm = this;
 
@@ -33,19 +27,25 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
         }
     };
 
-    $scope.$on('$stateChangeSuccess', function (event, to) {
+    $scope.$on('$stateChangeSuccess', function (event) {
         vm.updateSelectedPageState();
     });
 
 }
+angular.module("app.layout", [
+    "app.constants",
+    "services.router",
+    "services.component"
+])
 
-module.controller('LayoutController', LayoutController);
+.controller('LayoutController', LayoutController)
 
-module.config(function (routeProvider, componentProvider) {
+.config(function (routeProvider, componentProvider) {
     routeProvider.register({
       name: "layout",
       templateUrl: "app/layout/layout.tpl.html",
       controller: "LayoutController",
+      access: "user"
     });
 
     componentProvider.registerParentRoute("layout", "content");

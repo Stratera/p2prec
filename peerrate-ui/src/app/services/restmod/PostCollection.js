@@ -11,7 +11,7 @@ angular.module("services.restmod.PostCollection", [])
  * A collection who's fetch method acts as a post.  This is useful if implementing a complex search on a model
  * that requires more than a GET request.
  */
-.factory("PostCollection", ["restmod", function (restmod) {
+.factory("PostCollection", function (restmod) {
 
     return restmod.mixin (function () {
 
@@ -36,4 +36,4 @@ angular.module("services.restmod.PostCollection", [])
 
     });
 
-}]);
+});
