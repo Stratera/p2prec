@@ -1,19 +1,19 @@
-(function() {
-  'use strict';
+// (function() {
+//   'use strict';
 
-  angular
-    .module('dhsChallenge')
-    .config(routerConfig);
+//   angular
+//     .module('dhsChallenge')
+//     .config(routerConfig);
 
-  /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      });
-    $urlRouterProvider.otherwise('/');
-  }
-})();
+//   /** @ngInject */
+//   function routerConfig($stateProvider, $urlRouterProvider) {
+//     $stateProvider
+//       .state('home', {
+//         url: '/',
+//         templateUrl: 'app/main/main.html',
+//         controller: 'MainController',
+//         controllerAs: 'main'
+//       });
+//     $urlRouterProvider.otherwise('/');
+//   }
+// })();

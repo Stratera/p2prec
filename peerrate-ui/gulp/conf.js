@@ -19,6 +19,25 @@ exports.paths = {
   e2e: 'e2e'
 };
 
+var environments = {};
+
+environments = {
+  "prod": {
+    "svrPrefix": "https://urlhere",
+    "useAuth": true
+  },
+  "dev": {
+    "svrPrefix": "https://urlhere",
+    "useAuth": true,
+    "debug": true
+  },
+  "local": {
+    "svrPrefix": "https://urlhere",
+    "useAuth": "",
+    "debug": "true"
+  }
+};
+
 /**
  *  Wiredep is the lib which inject bower dependencies in your project
  *  Mainly used to inject script tags in the index.html but also used

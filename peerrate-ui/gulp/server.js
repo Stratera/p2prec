@@ -3,6 +3,9 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var argv = require('yargs').argv;
+var deployedEnv = argv.environment || "local";
+
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
