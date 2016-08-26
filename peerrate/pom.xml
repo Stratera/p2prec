@@ -585,7 +585,7 @@
                                         <configuration>
                                             <url>http://${env.TOMCAT_HOST}:${env.TOMCAT_PORT}/manager/text</url>
                                             <server>TomcatStaging</server>
-                                            <path>/peerrate</path>
+                                            <path>/peerrateweb</path>
                                         </configuration>
                                 </plugin>
 				<plugin>
