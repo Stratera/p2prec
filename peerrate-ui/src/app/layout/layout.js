@@ -11,7 +11,6 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
       return {
           title: c.title,
           index: i,
-          iconClass: c.iconClass,
           name: c.name,
           hidden: !c.static,
           persistent: c.persistent,
