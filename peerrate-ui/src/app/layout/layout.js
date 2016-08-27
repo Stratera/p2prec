@@ -27,7 +27,7 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
     };
 
     vm.updateSelectedPageState = function() {
-        var page = this.componentPages.filter(function (tab) {
+        var page = this.componentPages.filter(function (page) {
             return $state.includes(page.name);
         })[0];
         if (page) {
@@ -39,7 +39,7 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
             page.hidden = false;
             this.selectedPage = page;
         }
-    }
+    };
 
     $scope.$on('$stateChangeSuccess', function () {
         vm.updateSelectedPageState();

@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var replace = require('gulp-replace');
 var conf = require('./conf');
 var argv = require('yargs').argv;
-
+var $ = require('gulp-load-plugins')();
 var deployedEnv = argv.environment || "local";
 
 
@@ -91,8 +91,18 @@ var tasks = {
         .pipe(gulp.dest(conf.paths.config + "/" + env));
     }
     return last;
+  },
+
+  compileVendorCSS: function() {
+    return gulp.src([
+      path.join(paths.src, '/vendor/dhs/css/uswds.css')
+    ])
+      .pipe($.sourcemaps.init())
+      .pipe($.sourcemaps.write())
+      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
   }
 };
 
 gulp.task('local-constants', tasks.localConstants);
 gulp.task('package-constants', tasks.compileConstants);
+gulp.task('compileVendorCss', tasks.compileVendorCSS);

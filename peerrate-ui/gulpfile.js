@@ -28,6 +28,7 @@ fs.readdirSync('./gulp').filter(function(file) {
 gulp.task('default', ['clean'], function () {
     gulp.start('local-constants');
     gulp.start('package-constants');
+    gulp.start('compileVendorCss');
     gulp.start('build');
     return gutil.log('Gulp is running!')
 });

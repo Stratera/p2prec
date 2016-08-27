@@ -10,7 +10,7 @@ angular.module("app.components.profile.edit", [
             frontpage: true,
             controller: 'EditProfileController',
             controllerAs: 'editProfileController',
-            templateUrl: 'app/components/profile/edit-profile.tpl.html',
+            templateUrl: 'app/components/profile/edit/edit-profile.tpl.html',
             access: "",
             scope: true,
             reloadOnSearch: true,
@@ -18,8 +18,8 @@ angular.module("app.components.profile.edit", [
         })
     })
 
-    .controller("EditProfileController", EditProfileController)
+    .controller("EditProfileController", EditProfileController);
 
 function EditProfileController($scope) {
-    
+
 }
