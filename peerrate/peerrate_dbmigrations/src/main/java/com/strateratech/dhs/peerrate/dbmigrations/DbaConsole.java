@@ -87,6 +87,17 @@ public class DbaConsole {
      */
     private static void initLogging() {
         // TODO reset logging to local dba console file
+//        LoggerContext context = (LoggerContext) org.slf4j.LoggerFactory.getILoggerFactory();
+//
+//        try {
+//            JoranConfigurator configurator = new JoranConfigurator();
+//            configurator.setContext(context);
+//            context.reset();
+//            configurator.doConfigure(getTargetDir() + configFileName);
+//        } catch (JoranException e) {
+//            // StatusPrinter will handle this
+//        }
+//        StatusPrinter.printInCaseOfErrorsOrWarnings(context);
 
     }
 
