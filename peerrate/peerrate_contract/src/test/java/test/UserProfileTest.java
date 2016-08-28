@@ -36,15 +36,12 @@ public class UserProfileTest {
         user.setProfilePicBytes(IOUtils.toByteArray(is));
         user.setProfilePicContentType("image/png");
         Recognition r = new Recognition();
-        r.setName("recieved 1");
         user.getRecievedRecognitions().add(r);
         
         r = new Recognition();
-        r.setName("recieved 2");
         user.getRecievedRecognitions().add(r);
         
         r = new Recognition();
-        r.setName("name 2");
         user.getSentRecognitions().add(r);
         
         

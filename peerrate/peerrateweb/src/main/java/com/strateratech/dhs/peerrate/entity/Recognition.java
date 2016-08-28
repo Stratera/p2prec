@@ -3,6 +3,7 @@ package com.strateratech.dhs.peerrate.entity;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,7 +52,24 @@ public class Recognition {
     @JoinColumn(name = "recipient_user_profile_id", referencedColumnName = "id")
     private UserProfile recipientUserProfile;
 
+    @Column(name="message", columnDefinition="TEXT")
+    private String message;
 
+
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name="attachment",length=Integer.MAX_VALUE)
+    private byte[] attachment;
+    
+
+    @Column(name="attachment_content_type")
+    private String attachmentContentType;
+
+    @NotNull
+    @Column(name = "submit_ts")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+    private Date submitTs;
+   
     @NotNull
     @Column(name = "create_username")
     private String createUsername; // VARCHAR(320)
@@ -141,6 +159,62 @@ public class Recognition {
      */
     public void setRecipientUserProfile(UserProfile recipientUserProfile) {
         this.recipientUserProfile = recipientUserProfile;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * @return the attachment
+     */
+    public byte[] getAttachment() {
+        return attachment;
+    }
+
+    /**
+     * @param attachment the attachment to set
+     */
+    public void setAttachment(byte[] attachment) {
+        this.attachment = attachment;
+    }
+
+    /**
+     * @return the attachmentContentType
+     */
+    public String getAttachmentContentType() {
+        return attachmentContentType;
+    }
+
+    /**
+     * @param attachmentContentType the attachmentContentType to set
+     */
+    public void setAttachmentContentType(String attachmentContentType) {
+        this.attachmentContentType = attachmentContentType;
+    }
+    
+    /**
+     * @return the submitTs
+     */
+    public Date getSubmitTs() {
+        return submitTs;
+    }
+
+    /**
+     * @param submitTs the submitTs to set
+     */
+    public void setSubmitTs(Date submitTs) {
+        this.submitTs = submitTs;
     }
 
     /**

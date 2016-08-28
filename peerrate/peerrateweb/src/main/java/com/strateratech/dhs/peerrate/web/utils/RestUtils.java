@@ -43,6 +43,7 @@ public final class RestUtils {
 
     
     private static final String LOAD_BALANCER_CLIENT_IP_HEADER_NAME = "X-Forwarded-For";
+    public static final String URL_PATH_SEPARATOR = "/";
     
 
     /**

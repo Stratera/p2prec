@@ -204,8 +204,8 @@
 						<!-- We need to up coverage as we write more code -->
 						<lineRate>0</lineRate>
 						<branchRate>0</branchRate>
-						<totalLineRate>5</totalLineRate> <!--  this should be 60 for both -->
-						<totalBranchRate>5</totalBranchRate>
+						<totalLineRate>60</totalLineRate> <!--  this should be 60 for both -->
+						<totalBranchRate>50</totalBranchRate>
 					</check>
 					<formats>
 						<format>html</format>

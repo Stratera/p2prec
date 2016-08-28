@@ -86,11 +86,9 @@ public class UserProfile {
     @Basic(fetch = FetchType.LAZY)
     @Column(name="profile_pic",length=Integer.MAX_VALUE)
     private byte[] profilePic;
-    
 
     @Column(name="profile_pic_content_type")
     private String profilePicContentType;
-
     
     @Column(name = "create_username")
     @CreatedBy

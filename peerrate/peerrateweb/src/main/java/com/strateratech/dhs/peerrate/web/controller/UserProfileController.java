@@ -2,6 +2,7 @@ package com.strateratech.dhs.peerrate.web.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -25,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.strateratech.dhs.peerrate.rest.contract.Recognition;
 import com.strateratech.dhs.peerrate.rest.contract.UserProfile;
 import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
+import com.strateratech.dhs.peerrate.web.service.RecognitionService;
 import com.strateratech.dhs.peerrate.web.service.SecurityService;
 import com.strateratech.dhs.peerrate.web.service.UserProfileService;
 import com.strateratech.dhs.peerrate.web.utils.RestUtils;
@@ -55,6 +58,9 @@ public class UserProfileController {
 
 
     @Inject
+    private RecognitionService recognitionService;
+    
+    @Inject
     private SecurityService securityService;
     /**
      * Method to update user profile
@@ -77,6 +83,7 @@ public class UserProfileController {
             user = userProfileService.save(user, authToken.getEmail());
             headers.add(HttpHeaders.LOCATION, 
                     RestUtils.getBaseUrl()+UserProfileController.class.getAnnotation(RequestMapping.class).value()[0]
+                           +RestUtils.URL_PATH_SEPARATOR
                             +user.getId());
 
         }
@@ -101,7 +108,8 @@ public class UserProfileController {
         user = userProfileService.save(user, authToken.getEmail());
         headers.add(HttpHeaders.LOCATION, 
                     RestUtils.getBaseUrl()+UserProfileController.class.getAnnotation(RequestMapping.class).value()[0]
-                            +user.getId());
+                    +RestUtils.URL_PATH_SEPARATOR
+                    +user.getId());
 
         return new ResponseEntity<UserProfile>(headers, status);
 
@@ -126,7 +134,8 @@ public class UserProfileController {
         } else {
             restHeaders.add(HttpHeaders.LOCATION, 
                             RestUtils.getBaseUrl()+UserProfileController.class.getAnnotation(RequestMapping.class).value()[0]
-                                    +profile.getId());
+                            +RestUtils.URL_PATH_SEPARATOR
+                            +profile.getId());
  
         }
         return new ResponseEntity<UserProfile>(profile, restHeaders,
@@ -174,4 +183,55 @@ public class UserProfileController {
           return;
       }
 
+    
+    /**
+     * Controller gets a list of recognitions recevied by a user
+     * 
+     * @param resourceName
+     * @param request
+     * @param response
+     */
+      @ApiOperation("get list of recognitions received by user id")
+      @RequestMapping(value="/{userId}/recognitions/received", method=RequestMethod.GET)
+      @ResponseBody
+      public ResponseEntity<List<Recognition>> listByRecipientUser(@PathVariable("userId") Long userId) {
+          HttpStatus status = HttpStatus.OK;
+          HttpHeaders restHeaders = RestUtils.buildRestHttpHeaders();
+          ResponseEntity<List<Recognition>> resp = null;
+                List<Recognition> recognitions = recognitionService.listByRecipientUserId(userId);
+                if (recognitions.size() == 0) {
+                    status = HttpStatus.NO_CONTENT;
+                    resp = new ResponseEntity<List<Recognition>>(restHeaders, status);
+                } else {
+                    resp = new ResponseEntity<List<Recognition>>(recognitions, restHeaders, status);
+                }
+                
+            return resp;
+        }
+
+        /**
+         * Controller gets a list of recognitions sent by a user
+         * @param userId
+         * @return
+         * @since Aug 27, 2016
+         */
+        @ApiOperation("get list of recognitions sent by user id")
+        @RequestMapping(value="/{userId}/recognitions/sent", method=RequestMethod.GET)
+        @ResponseBody
+        public ResponseEntity<List<Recognition>> listBySendingUser(@PathVariable("userId") Long userId) {
+            HttpStatus status = HttpStatus.OK;
+            HttpHeaders restHeaders = RestUtils.buildRestHttpHeaders();
+            ResponseEntity<List<Recognition>> resp = null;
+                  List<Recognition> recognitions = recognitionService.listBySendingUserId(userId);
+                  if (recognitions.size() == 0) {
+                      status = HttpStatus.NO_CONTENT;
+                      resp = new ResponseEntity<List<Recognition>>(restHeaders, status);
+                  } else {
+                      resp = new ResponseEntity<List<Recognition>>(recognitions, restHeaders, status);
+                  }
+                  
+              return resp;
+          }
+
+      
 }

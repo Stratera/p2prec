@@ -3,8 +3,10 @@ package com.strateratech.dhs.peerrate.web.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -19,6 +21,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -72,15 +75,12 @@ public class UserProfileControllerTest {
         user.setProfilePicBytes(IOUtils.toByteArray(is));
         user.setProfilePicContentType("image/png");
         Recognition r = new Recognition();
-        r.setName("recieved 1");
         user.getRecievedRecognitions().add(r);
         
         r = new Recognition();
-        r.setName("recieved 2");
         user.getRecievedRecognitions().add(r);
         
         r = new Recognition();
-        r.setName("name 2");
         user.getSentRecognitions().add(r);
         
         
@@ -92,7 +92,82 @@ public class UserProfileControllerTest {
         Assert.assertTrue(resp.getHeaders().containsKey(HttpHeaders.LOCATION));
     }
 
+    @Test
+    @Transactional
+    public void testUpdate() throws IOException {
+        InputStream is = null; 
+        UserProfile user = new UserProfile();
+        try {
+            
+            is = Thread.currentThread().getContextClassLoader().getResourceAsStream("data/images/me.png");
+            
+            
+            Department dep = new Department();
+            dep.setId(1L);
+            dep.setName("SALES");
+            user.setDepartment(dep);
+        user.setId(1L);    
+        user.setFullName("Matt Young");
+        user.setEmail("matt@youngdev.net");
+        user.setProfilePicBytes(IOUtils.toByteArray(is));
+        user.setProfilePicContentType("image/png");
+        Recognition r = new Recognition();
+        user.getRecievedRecognitions().add(r);
+        
+        r = new Recognition();
+        user.getRecievedRecognitions().add(r);
+        
+        r = new Recognition();
+        user.getSentRecognitions().add(r);
+        
+        
+        } finally {
+            IOUtils.closeQuietly(is);
+        }
+
+        ResponseEntity<UserProfile> resp = userProfileController.updateUserProfile(1L, user);
+        Assert.assertTrue(resp.getHeaders().containsKey(HttpHeaders.LOCATION));
+    }
+
+
+    @Transactional
+    @Test
+    public void testGetById() throws IOException {
+        InputStream is = null; 
+        byte[] myPicBytes = null;
+        try {
+            
+            is = Thread.currentThread().getContextClassLoader().getResourceAsStream("data/images/me.png");
+            myPicBytes = IOUtils.toByteArray(is);
+        
+        } finally {
+            IOUtils.closeQuietly(is);
+        }
+
+        ResponseEntity<UserProfile> resp = userProfileController.getByID(1L);
+        Assert.assertEquals((Long)1L,resp.getBody().getId());
+        Assert.assertEquals("Matt Young",resp.getBody().getFullName());
+        Assert.assertEquals(new String(Base64.encodeBase64(myPicBytes)), 
+                new String(Base64.encodeBase64(resp.getBody().getProfilePicBytes())));
+
+    }
+
+    @Transactional
+    @Test
+    public void testGetByIdNotFound() throws IOException {
+
+        ResponseEntity<UserProfile> resp = userProfileController.getByID(-99L);
+        Assert.assertNull(resp.getBody());
+        Assert.assertEquals(HttpStatus.NOT_FOUND,resp.getStatusCode());
+
+    }
     
+    @Transactional
+    @Test(expected=EntityNotFoundException.class)
+    public void testUpdateUserProfileDoesNotExist() {
+        userProfileController.updateUserProfile(-99L, new UserProfile());
+    }
+
 
     @Transactional
     @Test
@@ -119,7 +194,32 @@ public class UserProfileControllerTest {
                 new String(Base64.encodeBase64(imageBytesFromService)));
 
     }
+    
+    @Test
+    @Transactional
+    public void testListRecievedRecognitions() {
+        ResponseEntity<List<Recognition>> resp =   userProfileController.listByRecipientUser(1L);
+        Assert.assertEquals(2, resp.getBody().size());
+        LOGGER.debug("{}",resp.getBody());
+        
+        resp =   userProfileController.listByRecipientUser(2L);
+        Assert.assertNull(resp.getBody());
+        LOGGER.debug("{}",resp.getBody());
+        
+    }
 
+    @Test
+    @Transactional
+    public void testListSentRecognitions() {
+        ResponseEntity<List<Recognition>> resp =   userProfileController.listBySendingUser(1L);
+        Assert.assertNull(resp.getBody());
+        LOGGER.debug("{}",resp.getBody());
+        
+        resp =   userProfileController.listBySendingUser(2L);
+        Assert.assertEquals(3, resp.getBody().size());
+        LOGGER.debug("{}",resp.getBody());
+        
+    }
     
     @Before
     public void setUp() throws Exception {

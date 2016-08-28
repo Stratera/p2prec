@@ -27,9 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.strateratech.dhs.peerrate.rest.contract.Department;
+import com.strateratech.dhs.peerrate.rest.contract.Recognition;
 import com.strateratech.dhs.peerrate.rest.contract.UserProfile;
 import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
 import com.strateratech.dhs.peerrate.web.service.DepartmentService;
+import com.strateratech.dhs.peerrate.web.service.RecognitionService;
 import com.strateratech.dhs.peerrate.web.service.SecurityService;
 import com.strateratech.dhs.peerrate.web.utils.RestUtils;
 
@@ -55,9 +57,13 @@ public class DepartmentController {
     @Inject
     private DepartmentService departmentService;
 
+    @Inject 
+    private RecognitionService recognitionService;
 
     @Inject
     private SecurityService securityService;
+    
+    
     /**
      * Method to update user profile
      * 
@@ -82,5 +88,23 @@ public class DepartmentController {
 
     }
 
+
+    @ApiOperation("get list of recognitions sent to this department")
+    @RequestMapping(value="/{departmentId}/recognitions", method=RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<List<Recognition>> listRecognitions(@PathVariable("departmentId") Long departmentId) {
+        HttpStatus status = HttpStatus.OK;
+        HttpHeaders restHeaders = RestUtils.buildRestHttpHeaders();
+        ResponseEntity<List<Recognition>> resp = null;
+              List<Recognition> recognitions = recognitionService.listByDepartment(departmentId);
+              if (recognitions.size() == 0) {
+                  status = HttpStatus.NO_CONTENT;
+                  resp = new ResponseEntity<List<Recognition>>(restHeaders, status);
+              } else {
+                  resp = new ResponseEntity<List<Recognition>>(recognitions, restHeaders, status);
+              }
+              
+          return resp;
+      }
     
 }

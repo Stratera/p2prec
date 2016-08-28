@@ -22,7 +22,7 @@
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <FileNamePattern>${LOG_DIR}/msa.%i.log.zip
+            <FileNamePattern>${LOG_DIR}/peerrate.%i.log.zip
             </FileNamePattern>
             <MinIndex>1</MinIndex>
             <MaxIndex>10</MaxIndex>
