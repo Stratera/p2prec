@@ -10,7 +10,7 @@ angular.module("app.components.profile.view", [
       frontpage: true,
       controller: 'ViewProfileController',
       controllerAs: 'viewProfileController',
-      templateUrl: 'app/components/profile/view/view-profile.tpl.html',
+      templateUrl: 'app/components/profile/view/view.tpl.html',
       access: "",
       scope: true,
       reloadOnSearch: true,
