@@ -11,6 +11,7 @@ angular.module("app.components.profile.edit", [
             controllerAs: 'editProfileController',
             templateUrl: 'app/components/profile/edit/edit.tpl.html',
             access: "",
+            frontpage: true,
             scope: true,
             reloadOnSearch: true,
             queryParams: []

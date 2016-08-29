@@ -6,8 +6,9 @@ angular.module("app.components.home", [
         name: "home",
         title: "Home",
         persistent: true,
+        frontpage: true,
         static: true,
-        url: "/#/layout",
+        url: "^/",
         controller: "HomeController",
         templateUrl: "app/components/home/home.tpl.html",
         access: ""

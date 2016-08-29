@@ -25,9 +25,10 @@ gulp.task('styles', ['compileVendorFiles'], function() {
 
 gulp.task('compileVendorFiles', function () {
     return gulp.src([
-      path.join(paths.src, 'app/vendor/**/*'),
-      path.join('!' + paths.src, '/app/**/*.min.css')
+      path.join(paths.src, '/vendor/**/*')
     ])
+      .pipe($.sourcemaps.init())
+      .pipe($.sourcemaps.write())
       .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
 });
 

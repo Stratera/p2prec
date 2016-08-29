@@ -59,10 +59,9 @@ angular.module("app.layout", [
       name: "layout",
       templateUrl: "app/layout/layout.tpl.html",
       controller: "LayoutController",
+      controllerAs: "layoutController",
       access: "user",
-      scope: true,
-      title: 'Profile',
-      controllerAs: "layoutController"
+      scope: true
     });
 
     componentProvider.registerParentRoute("layout", "content");
