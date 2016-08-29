@@ -20,6 +20,10 @@ angular.module("app.components.profile.view", [
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope) {
+function ViewProfileController($scope, $state, component) {
+  var vm = this;
 
+  vm.viewProfilePage = function() {
+    $state.go("editProfile");
+  };
 }

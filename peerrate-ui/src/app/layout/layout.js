@@ -27,18 +27,18 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
     };
 
     vm.updateSelectedPageState = function() {
-        // var page = this.componentPages.filter(function (page) {
-        //     return $state.includes(page.name);
-        // })[0];
-        // if (page) {
-        //     page.savedState = {
-        //         stateName: $state.current.name,
-        //         params: angular.copy($stateParams)
-        //     };
-        //     this.activeIndex = page.index;
-        //     page.hidden = false;
-        //     this.selectedPage = page;
-        // }
+        var page = this.componentPages.filter(function (page) {
+            return $state.includes(page.name);
+        })[0];
+        if (page) {
+            page.savedState = {
+                stateName: $state.current.name,
+                params: angular.copy($stateParams)
+            };
+            this.activeIndex = page.index;
+            page.hidden = false;
+            this.selectedPage = page;
+        }
     };
 
     $scope.$on('$stateChangeSuccess', function () {

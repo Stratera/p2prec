@@ -1,17 +1,48 @@
-<div class="styleguide-content usa-content">
+<div class="styleguide-content usa-grid" ng-controller="ViewProfileController">
   <div class="usa-width-one-third">
     <img id="u50_img" class="img " src="vendor/dhs/img/profile/profile_picture_u50.png">
     <div style="top: 108px; transform-origin: 106px 0px 0px;" id="u51" class="text">
       <p><span></span></p>
     </div>
-    <div id="u30" class="ax_h1">
-      <img id="u30_img" class="img " src="vendor/dhs/img/profile/transparent.gif"/>
-      <div id="u31" class="text">
-        <p><span>John Doe</span></p>
-      </div>
+    <div>
+      <h2>John Doe</h2>
+      <span><a ng-click="viewProfileController.viewProfilePage()">Edit my profile</a></span>
     </div>
+
+    <div>
+      <h4>Job Title</h4>
+      <span>Manager</span>
+    </div>
+
+    <div>
+      <h4>Department</h4>
+      <span>Human Resources</span>
+    </div>
+
+    <div>
+      <h4>Location</h4>
+      <span>City, State</span>
+    </div>
+
+    <div>
+      <h4>Phone</h4>
+      <span>123 - 456 - 7890</span>
+    </div>
+
+    <div>
+      <h4>Email</h4>
+      <span>John.Doe@organization.gov</span>
+    </div>
+
   </div>
   <div class="usa-width-two-thirds">
+    <div class="usa-form float-right">
+      <select name="options" id="options">
+        <option value="value1">View all recognition</option>
+        <option value="value2">Recognition received</option>
+        <option value="value3">Recognition given</option>
+      </select>
+    </div>
 
   </div>
 

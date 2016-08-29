@@ -7,7 +7,7 @@ angular.module("app.components.home", [
         title: "Home",
         persistent: true,
         static: true,
-        url: "^/",
+        url: "/#/layout",
         controller: "HomeController",
         templateUrl: "app/components/home/home.tpl.html",
         access: ""
@@ -18,4 +18,4 @@ angular.module("app.components.home", [
     this.components = component.get().filter(function (c) {
         return c.frontpage;
     });
-})
+});

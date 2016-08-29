@@ -73,12 +73,26 @@ $green-lightest: #e7f4e4;
 
 .header-bg {
   background-color: $primary-dark;
+
+  a {
+    font-size: 12px;
+  }
 }
 
 body {
   font: $font-stack;
-  color: #fff;
+  color: $primary-color;
   font-size: 0.9rem !important;
+}
+
+a, a:focus {
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration:none;
+  cursor:pointer;
 }
 
 div>#u0 {
@@ -93,8 +107,9 @@ div>#u0 {
   color: #fff;
 }
 
-
-
+.float-right {
+  float: right;
+}
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject

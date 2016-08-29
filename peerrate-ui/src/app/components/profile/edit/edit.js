@@ -7,7 +7,6 @@ angular.module("app.components.profile.edit", [
         componentProvider.register({
             name: 'editProfile',
             title: 'Edit Profile',
-            frontpage: true,
             controller: 'EditProfileController',
             controllerAs: 'editProfileController',
             templateUrl: 'app/components/profile/edit/edit.tpl.html',

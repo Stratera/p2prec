@@ -28,7 +28,7 @@
             <div class="usa-width-one-whole header-navigation header-anchors" ng-controller="LayoutController">
               <ul>
                 <li ng-repeat="component in layoutController.componentPages track by $index">
-                  <span><a ng-link href='{{ component.url }}'>{{ component.title }}</a></span>
+                  <span><a ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></span>
                 </li>
               </ul>
             </div>
@@ -39,5 +39,5 @@
   </div>
 </div>
 <div class="flex-height main-content" id="main-layout">
-  <div ui-view="content" class="layout-content flex-height-content"></div>
+  <div ui-view="content" class="layout-content flex-height-content container"></div>
 </div>
