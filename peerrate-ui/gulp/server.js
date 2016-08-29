@@ -93,26 +93,7 @@ var tasks = {
     return last;
   },
 
-  compileVendorCSS: function() {
-    return gulp.src([
-      path.join(paths.src, '/vendor/dhs/css/uswds.css')
-    ])
-      .pipe($.sourcemaps.init())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
-  },
-
-  compileVendorFiles: function() {
-    return gulp.src([
-      path.join(paths.src, '/vendor/dhs/**/*')
-    ])
-      .pipe($.sourcemaps.init())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
-  }
 };
 
 gulp.task('local-constants', tasks.localConstants);
 gulp.task('package-constants', tasks.compileConstants);
-gulp.task('compileVendorCss', tasks.compileVendorCSS);
-gulp.task('compileVendorFiles', tasks.compileVendorFiles);

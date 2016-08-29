@@ -6,6 +6,9 @@ var conf = require('./conf');
 
 var browserSync = require('browser-sync');
 
+var paths = conf.paths;
+var props = conf.configProperties;
+
 var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
@@ -16,8 +19,26 @@ gulp.task('styles-reload', ['styles'], function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('styles', function() {
+gulp.task('styles', ['compileVendorCSS', 'compileVendorFonts'], function() {
   return buildStyles();
+});
+
+gulp.task('compileVendorCSS', function () {
+    return gulp.src([
+      path.join(paths.src, 'app/vendor/**/*.css'),
+      path.join('!' + paths.src, '/app/vendor/**/*.min.css')
+    ])
+      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
+});
+
+gulp.task('compileVendorFonts', function () {
+    return gulp.src([
+      path.join(paths.src, 'app/vendor/**/*.eot'),
+      path.join(paths.src, 'app/vendor/**/*.ttf'),
+      path.join(paths.src, 'app/vendor/**/*.woff'),
+      path.join(paths.src, 'app/vendor/**/*.woff2')
+    ])
+      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
 });
 
 var buildStyles = function() {
@@ -27,8 +48,8 @@ var buildStyles = function() {
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join('!' + conf.paths.src, '/app/index.scss')
+    path.join(paths.src, '/app/**/*.scss'),
+    path.join('!' + paths.src, '/app/index.scss')
   ], { read: false });
 
   var injectOptions = {
@@ -41,9 +62,8 @@ var buildStyles = function() {
     addRootSlash: false
   };
 
-
   return gulp.src([
-    path.join(conf.paths.src, '/app/index.scss')
+    path.join(paths.src, '/app/index.scss')
   ])
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
@@ -53,3 +73,5 @@ var buildStyles = function() {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
 };
+
+
