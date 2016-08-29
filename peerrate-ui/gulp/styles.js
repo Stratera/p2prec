@@ -19,21 +19,14 @@ gulp.task('styles-reload', ['styles'], function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('styles', ['compileVendorCSS', 'compileVendorFonts'], function() {
+gulp.task('styles', ['compileVendorFiles'], function() {
   return buildStyles();
 });
 
-gulp.task('compileVendorCSS', function () {
+gulp.task('compileVendorFiles', function () {
     return gulp.src([
-      path.join(paths.src, 'app/**/*.css'),
+      path.join(paths.src, 'app/vendor/**/*'),
       path.join('!' + paths.src, '/app/**/*.min.css')
-    ])
-      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
-});
-
-gulp.task('compileVendorFonts', function () {
-    return gulp.src([
-      path.join(paths.src, 'app/vendor/dhs/fonts/*')
     ])
       .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
 });
