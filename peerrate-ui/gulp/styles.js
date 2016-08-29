@@ -14,7 +14,7 @@ var $ = require('gulp-load-plugins')();
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
 
-gulp.task('styles-reload', ['styles'], function() {
+gulp.task('styles-reload', ['styles', 'compileVendorCSS'], function() {
   return buildStyles()
     .pipe(browserSync.stream());
 });
@@ -39,8 +39,8 @@ var buildStyles = function() {
   };
 
   var injectFiles = gulp.src([
-    path.join(paths.src, '/app/**/*.scss'),
-    path.join('!' + paths.src, '/app/index.scss')
+    path.join(conf.paths.src, '/app/**/*.scss'),
+    path.join('!' + conf.paths.src, '/app/index.scss')
   ], { read: false });
 
   var injectOptions = {
@@ -53,8 +53,8 @@ var buildStyles = function() {
     addRootSlash: false
   };
 
-  return gulp.src([
-    path.join(paths.src, '/app/index.scss')
+    return gulp.src([
+    path.join(conf.paths.src, '/app/index.scss')
   ])
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
