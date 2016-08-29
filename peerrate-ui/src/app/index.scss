@@ -27,11 +27,11 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
-$font-stack:    Arial Regular, Arial;
+$font-stack: Arial Regular, Arial;
 $primary-color: #333;
 
-$mark-yellow :#ff0;
-$mark-text-color :#000;
+$mark-yellow: #ff0;
+$mark-text-color: #000;
 $fieldset-border: 1px solid #c0c0c0;
 $body-bgcolor-white: #ffffff;
 $button-primary-bg-color-blue: #0071bc;
@@ -51,7 +51,6 @@ $alert-error-pink: #f9dede;
 $primary-darkest-blue: #112e51;
 $primary-alt-blue: #02bfe7;
 $primary-alt-darkest-blue: #046b99;
-
 
 $gray: #5b616b;
 $gray-light: #aeb0b5;
@@ -85,26 +84,24 @@ body {
   font-size: 0.9rem !important;
 }
 
-a, a:focus {
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 
-a:hover
-{
-  text-decoration:none;
-  cursor:pointer;
-}
-
-div>#u0 {
+.brandBannerBg {
   background-color: $primary-darkest-blue;
   height: 20px;
   padding-left: 10px;
   padding-top: 2px;
-}
-
-#u0 p {
-  margin: -11px 0 0 35px;
-  color: #fff;
+  p {
+    margin: -11px 0 0 35px;
+    color: #fff;
+  }
 }
 
 .float-right {
