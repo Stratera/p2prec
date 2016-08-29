@@ -25,18 +25,15 @@ gulp.task('styles', ['compileVendorCSS', 'compileVendorFonts'], function() {
 
 gulp.task('compileVendorCSS', function () {
     return gulp.src([
-      path.join(paths.src, 'app/vendor/**/*.css'),
-      path.join('!' + paths.src, '/app/vendor/**/*.min.css')
+      path.join(paths.src, 'app/**/*.css'),
+      path.join('!' + paths.src, '/app/**/*.min.css')
     ])
       .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
 });
 
 gulp.task('compileVendorFonts', function () {
     return gulp.src([
-      path.join(paths.src, 'app/vendor/**/*.eot'),
-      path.join(paths.src, 'app/vendor/**/*.ttf'),
-      path.join(paths.src, 'app/vendor/**/*.woff'),
-      path.join(paths.src, 'app/vendor/**/*.woff2')
+      path.join(paths.src, 'app/vendor/dhs/fonts/*')
     ])
       .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
 });
