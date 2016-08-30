@@ -15,7 +15,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss.SSS</maven.build.timestamp.format>
 		<buildDate>${maven.build.timestamp}</buildDate>
-		<buildNumber>${bamboo.buildNumber}</buildNumber>
+		<buildNumber>SNAPSHOT</buildNumber>
 		<pmd.plugin.version>3.0.1</pmd.plugin.version>
 
 		<version.hibernate-validator>4.3.0.Final</version.hibernate-validator>
@@ -426,7 +426,7 @@
 				<artifactId>log4j</artifactId>
 				</exclusion>
 			</exclusions>
-			
+
 		</dependency>
 		<dependency>
 			<groupId>simple-jndi</groupId>
