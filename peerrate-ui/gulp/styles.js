@@ -6,18 +6,30 @@ var conf = require('./conf');
 
 var browserSync = require('browser-sync');
 
+var paths = conf.paths;
+var props = conf.configProperties;
+
 var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
 
-gulp.task('styles-reload', ['styles'], function() {
+gulp.task('styles-reload', ['styles', 'compileVendorCSS'], function() {
   return buildStyles()
     .pipe(browserSync.stream());
 });
 
-gulp.task('styles', function() {
+gulp.task('styles', ['compileVendorFiles'], function() {
   return buildStyles();
+});
+
+gulp.task('compileVendorFiles', function () {
+    return gulp.src([
+      path.join(paths.src, '/vendor/**/*')
+    ])
+      .pipe($.sourcemaps.init())
+      .pipe($.sourcemaps.write())
+      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
 });
 
 var buildStyles = function() {
@@ -41,8 +53,7 @@ var buildStyles = function() {
     addRootSlash: false
   };
 
-
-  return gulp.src([
+    return gulp.src([
     path.join(conf.paths.src, '/app/index.scss')
   ])
     .pipe($.inject(injectFiles, injectOptions))
@@ -53,3 +64,5 @@ var buildStyles = function() {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
 };
+
+

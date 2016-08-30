@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var replace = require('gulp-replace');
 var conf = require('./conf');
 var argv = require('yargs').argv;
-
+var $ = require('gulp-load-plugins')();
 var deployedEnv = argv.environment || "local";
 
 
@@ -91,7 +91,8 @@ var tasks = {
         .pipe(gulp.dest(conf.paths.config + "/" + env));
     }
     return last;
-  }
+  },
+
 };
 
 gulp.task('local-constants', tasks.localConstants);

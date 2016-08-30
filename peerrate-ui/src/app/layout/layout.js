@@ -1,7 +1,7 @@
-function LayoutController ($scope, $location, $state, $stateParams, $timeout, component, currentUser) {
+function LayoutController ($scope, $location, $state, $stateParams, $timeout, component) {
     var vm = this;
 
-    vm.user = currentUser;
+    // vm.user = currentUser;
 
     vm.componentPages = component.get().map(function (c, i) {
       var active = i === 0;
@@ -11,7 +11,6 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
       return {
           title: c.title,
           index: i,
-          iconClass: c.iconClass,
           name: c.name,
           hidden: !c.static,
           persistent: c.persistent,
@@ -24,6 +23,21 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
             $state.go(page.savedState.stateName, page.savedState.params);
         } else {
             $state.go(page.name);
+        }
+    };
+
+    vm.updateSelectedPageState = function() {
+        var page = this.componentPages.filter(function (page) {
+            return $state.includes(page.name);
+        })[0];
+        if (page) {
+            page.savedState = {
+                stateName: $state.current.name,
+                params: angular.copy($stateParams)
+            };
+            this.activeIndex = page.index;
+            page.hidden = false;
+            this.selectedPage = page;
         }
     };
 
@@ -45,7 +59,9 @@ angular.module("app.layout", [
       name: "layout",
       templateUrl: "app/layout/layout.tpl.html",
       controller: "LayoutController",
-      access: "user"
+      controllerAs: "layoutController",
+      access: "user",
+      scope: true
     });
 
     componentProvider.registerParentRoute("layout", "content");

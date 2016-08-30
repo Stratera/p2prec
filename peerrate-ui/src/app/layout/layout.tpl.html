@@ -1,21 +1,47 @@
-<div id="u0" class="brandBannerBg">
-  <img id="u10_img" class="img " src="vendor/dhs/img/profile/brand_bar_flag_u10.png"/>
-  <p><span>Official Website of the Department of Homeland Security</span></p>
-</div>
-<div class="container-fluid header-bg">
-  <div class="row">
-    <div class="container">
-      <div class="row">
-        <div class="usa-grid">
-          <div class="usa-width-one-fourth">1/4</div>
-          <div class="usa-width-one-half">1/4</div>
-          <div class="usa-width-one-fourth">1/4</div>
-        </div>
+<div class="brandBannerBg">
+  <div class="container">
+    <div class="usa-grid ">
+      <div class="usa-width-one-whole">
+        <img id="u10_img" class="img " src="vendor/dhs/img/profile/brand_bar_flag_u10.png"/>
+        <p><span>Official Website of the Department of Homeland Security</span></p>
+        <ul class="pull-right header-anchors">
+          <li><a>Help</a></li>
+          <li>|</li>
+          <li><a>Login</a></li>
+        </ul>
       </div>
-      <img src="assets/bootstrap.png" alt="">
     </div>
   </div>
 </div>
-<div class="flex-height" id="main-layout">
-  <div ui-view="content" class="layout-content flex-height-content"></div>
+
+
+<div id="header" class="container-fluid header-bg">
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="usa-content">
+          <div class="usa-grid logo-header">
+            <div class="usa-width-one-fourth logo">
+              <img src="vendor/dhs/img/profile/header_logo_u12.png" alt="logo">
+            </div>
+            <div class="usa-width-one-fourth site-header">
+              <h2>SITE NAME</h2>
+            </div>
+          </div>
+          <div class="usa-grid navigationBar">
+            <div class="usa-width-one-whole header-navigation header-anchors" ng-controller="LayoutController">
+              <ul>
+                <li ng-repeat="component in layoutController.componentPages track by $index">
+                  <span><a ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex-height main-content" id="main-layout">
+  <div ui-view="content" class="layout-content flex-height-content container"></div>
 </div>

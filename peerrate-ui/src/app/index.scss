@@ -27,31 +27,86 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
-$font-stack:    Arial Regular, Arial;
+$font-stack: Arial Regular, Arial;
 $primary-color: #333;
-$primary-darkest-blue: #112e51;
-$gray-lightest: #f1f1f1;
-$white: #fff;
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
+$mark-yellow: #ff0;
+$mark-text-color: #000;
+$fieldset-border: 1px solid #c0c0c0;
+$body-bgcolor-white: #ffffff;
+$button-primary-bg-color-blue: #0071bc;
+$button-primary-color-white: #ffffff;
+
+$primary-dark: #003366;
+$primary-darker: #205493;
+$button-secondary-bg-color-red: #e31c3d;
+$button-secondary-active-bg-color-dark-red: #981b1e;
+$gray-dark: #323a45;
+$dark-gray: #212121;
+$light-gray: #d6d7d9;
+$semi-dark-gray: #5b616b;
+
+$alert-error-pink: #f9dede;
+
+$primary-darkest-blue: #112e51;
+$primary-alt-blue: #02bfe7;
+$primary-alt-darkest-blue: #046b99;
+
+$gray: #5b616b;
+$gray-light: #aeb0b5;
+$gray-lighter: #d6d7d9;
+$gray-lightest: #f1f1f1;
+$gray-warm-dark: #494440;
+$gray-warm-light: #e4e2e0;
+
+$gray-cool-light: #dce4ef;
+$gold: #fdb81e;
+$gold-light: #f9c642;
+$gold-lighter: #fad980;
+$gold-lightest: #fff1d2;
+
+$green: #2e8540;
+$green-light: #4aa564;
+$green-lighter: #94bfa2;
+$green-lightest: #e7f4e4;
+
+.header-bg {
+  background-color: $primary-dark;
+
+  a {
+    font-size: 12px;
+  }
 }
 
-div>#u0 {
+body {
+  font: $font-stack;
+  color: $primary-color;
+  font-size: 0.9rem !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brandBannerBg {
   background-color: $primary-darkest-blue;
   height: 20px;
   padding-left: 10px;
   padding-top: 2px;
+  p {
+    margin: -11px 0 0 35px;
+    color: #fff;
+  }
 }
 
-#u0 p {
-  margin: -11px 0 0 35px;
-  color: $white;
+.float-right {
+  float: right;
 }
-
-
-
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject

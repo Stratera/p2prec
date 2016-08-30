@@ -17,6 +17,11 @@ angular
 
     'app.layout',
     'app.constants',
+    'app.unauthorized',
+
+    'app.components.home',
+    'app.components.profile.edit',
+    'app.components.profile.view',
 
     'models.user',
 
