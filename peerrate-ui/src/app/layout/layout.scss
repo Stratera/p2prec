@@ -58,9 +58,31 @@
 }
 
 .usa-grid {
-  padding-right:0px !important;
-  padding-left:0px !important;
-  margin-right:0px !important;
-  margin-left:0px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
 }
+.editGrid {
+  margin-top: -63px !important;
+
+  .editForm {
+    width: 300px !important;
+  }
+
+  .editCity {
+    padding-right: 30px;
+    width: 220px;
+  }
+
+  .editSelect {
+    width: 137px
+  }
+
+  .stateSpan {
+    padding-left: 26px;
+  }
+}
+
+
 
