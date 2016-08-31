@@ -18,9 +18,9 @@ angular.module("app.components.profile.edit", [
         })
     })
 
-    .controller("EditProfileController", EditProfileController)
+    .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, component, user) {
+function EditProfileController($scope, component) {
     var ctx = this;
     // this.editProfileForm;
     ctx.userData = {
@@ -44,12 +44,13 @@ function EditProfileController($scope, component, user) {
         }
     };
 
-    $scope.$watch("this.user.firstName", function (newVal, oldVal) {
-        var isValid = newVal >= 1 ? true : false;
-        ctx.user.firstName.$setValidity("firstName", isValid);
-    });
+    // $scope.$watch("this.userData.firstName", function (newVal, oldVal) {
+    //     var isValid = newVal >= 1 ? true : false;
+    //     ctx.userData.firstName.$setValidity("firstName", isValid);
+    // });
 
-    // $scope.watch("this.user.firstName", function () {
+    // $scope.$watch('editProfileForm', function () {
+    //
     //     this.user.firstName.length >= 1 ? this.editProfileForm : true;
     // });
 
@@ -62,7 +63,7 @@ EditProfileController.prototype = {
         var newUser = {};
         newUser = this.userData;
 
-        user.$create(newUser).$then(function (response) {
+        userData.$create(newUser).$then(function (response) {
             console.log(response);
         });
     },
