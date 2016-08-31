@@ -20,23 +20,10 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController)
 
-    // .controller("EditFormController" , function ($rootScope, $scope) {
-    //     var vm = this;
-
-
-    //     $scope.$watch("vm.editProfileForm.firstName", function (newVal, oldVal) {
-    //         if (newVal >= 1) {
-    //             vm.firstName.$setValidity("firstName entered", true);
-    //         } else {
-    //             vm.firstName.$setValidity("firstName entered", false);
-    //         }
-    //     });
-    // })
-
-function EditProfileController($scope) {
+function EditProfileController($scope, component, user) {
     var ctx = this;
     // this.editProfileForm;
-    this.user = {
+    ctx.userData = {
         firstName:              "",
         lastName:               "",
         middleName:             "",
@@ -72,7 +59,17 @@ function EditProfileController($scope) {
 EditProfileController.prototype = {
     submitForm: function () {
         // REST endpoint edit? user
+        var newUser = {};
+        newUser = this.userData;
+
+        user.$create(newUser).$then(function (response) {
+            console.log(response);
+        });
     },
+
+    loadUser: function () {
+        // replace default data with actual user
+    }
 
 
 };
