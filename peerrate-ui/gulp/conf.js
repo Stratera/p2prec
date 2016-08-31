@@ -26,16 +26,16 @@ exports.configProperties = {
   build: 1,
   environments: {
     prod: {
-      svrPrefix: "https://urlhere",
+      svrPrefix: "ec2-54-244-188-70.us-west-2.compute.amazonaws.com",
       useAuth: true
     },
-    dev: {
-      svrPrefix: "https://urlhere",
+    stag: {
+      svrPrefix: "ec2-54-201-199-140.us-west-2.compute.amazonaws.com",
       useAuth: true,
       debug: true
     },
     local: {
-      svrPrefix: "https://urlhere",
+      svrPrefix: "http://localhost:3000",
       useAuth: "",
       debug: true
     }

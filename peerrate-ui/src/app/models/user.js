@@ -11,21 +11,21 @@ angular.module("models.user", [
     
     return model("/users").mix({
         
-        $hooks: {
+        // $hooks: {
             
-            "after-extend": function () {
-                this.$authoritySet = createAuthoritySet(this.authorities || []);
-            }
+        //     "after-extend": function () {
+        //         this.$authoritySet = createAuthoritySet(this.authorities || []);
+        //     }
             
-        },
+        // },
         
-        $extend: {
-            Record: {
-                isAuthorized: function (authorization) {
-                    return !authorization || !!this.$authoritySet[authorization];
-                }
-            }
-        }
+        // $extend: {
+        //     Record: {
+        //         isAuthorized: function (authorization) {
+        //             return !authorization || !!this.$authoritySet[authorization];
+        //         }
+        //     }
+        // }
         
     });
 
