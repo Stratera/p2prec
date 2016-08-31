@@ -35,13 +35,6 @@ angular.module("services.restmod.BaseModel", [])
                 }
             }
 
-        },
-        $hooks: {
-            'before-request': function (req) {
-                if ((new this.$type()).useMock) {
-                    req.url = req.url.replace(/https.*dhsrestweb/, "/mock");
-                }
-            }
         }
     });
 });
