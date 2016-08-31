@@ -583,8 +583,8 @@
                                         <artifactId>tomcat7-maven-plugin</artifactId>
                                         <version>2.2</version>
                                         <configuration>
-                                            <url>http://${env.TOMCAT_HOST}:${env.TOMCAT_PORT}/manager/text</url>
-                                            <server>TomcatStaging</server>
+                                            <url>http://${tomcat.host}:${tomcat.port}/manager/text</url>
+                                            <server>TomcatDeploy</server>
                                             <path>/peerrateweb</path>
                                         </configuration>
                                 </plugin>
