@@ -5,6 +5,35 @@
   <div class="usa-width-two-thirds editGrid">
     <h1>Edit My Profile</h1>
     <div class="usa-width-one-half">
+      <form ng-model="editProfileController.editProfileForm" ng-submit="editProfileController.submitForm" class="usa-form" name="editProfileForm">
+        <fieldset>
+          <legend>Edit My Profile</legend>
+          <div ng-class="{'usa-input-error' : editProfileForm.firstName.$error}">
+            <label for="firstName" ng-class="pull-left">
+              First Name
+            </label>
+            <span ng-show="editProfileForm.firstName.$error"
+                  class="usa-input-error-message" role="alert"
+                  id="firstNameErrMsg">
+              Enter your first name
+            </span>
+            <span class="usa-additional_text">
+              Required
+            </span>
+            <input type="text"
+                   id="firstName"
+                   ng-model="editProfileController.user.firstName"
+                   aria-required="true"
+                   aria-describedby="firstName"
+                   name="firstName"
+                   required />
+          </div>
+        </fieldset>
+      </form>
+
+
+
+
       <span>First name</span><span class="float-right">Required</span>
       <div>
         <input value="" type="text">
