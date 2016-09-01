@@ -5,29 +5,29 @@
   <div class="usa-width-two-thirds editGrid">
     <h1>Edit My Profile</h1>
     <div class="usa-width-one-half">
-      <form ng-model="editProfileController.editProfileForm" ng-controller="EditProfileController" ng-submit="editProfileController.submitForm" class="usa-form" name="editProfileForm">
+      <form ng-model="editProfileController.editProfileForm" ng-controller="EditProfileController"
+            ng-submit="editProfileController.submitForm" class="usa-form" name="editProfileForm">
 
         <div>
-            <label for="firstName" ng-class="pull-left">
-              First Name
-            </label>
-
-            <span ng-show="editProfileForm.firstName.$touched"
-                  class="usa-input-error-message" role="alert"
-                  id="firstNameErrMsg">
+          <label for="firstName" ng-class="pull-left">
+            First Name
+          </label>
+          <span ng-show="editProfileForm.firstName.$touched"
+                class="usa-input-error-message" role="alert"
+                id="firstNameErrMsg">
               <span ng-show="editProfileForm.firstName.$error.required">Enter your first name</span>
             </span>
-            <span class="usa-additional_text">
+          <span class="usa-additional_text">
               Required
             </span>
-            <input type="text"
-                   id="firstName"
-                   ng-model="editProfileController.userData.firstName"
-                   aria-required="true" ng-minlength="1"
-                   aria-describedby="firstName"
-                   name="firstName"
-                   required />
-          </div>
+          <input type="text"
+                 id="firstName"
+                 ng-model="editProfileController.userData.firstName"
+                 aria-required="true" ng-minlength="1"
+                 aria-describedby="firstName"
+                 name="firstName"
+                 required/>
+        </div>
 
         <div>
           <label for="middleName" ng-class="pull-left">
@@ -37,7 +37,7 @@
                  id="middleName"
                  ng-model="editProfileController.userData.middleName"
                  aria-describedby="middleName"
-                 name="middleName" />
+                 name="middleName"/>
         </div>
 
         <div>
@@ -59,7 +59,7 @@
                  aria-required="true" ng-minlength="1"
                  aria-describedby="lastName"
                  name="lastName"
-                 required />
+                 required/>
         </div>
 
         <div>
@@ -75,12 +75,12 @@
         <div>
           <div class="usa-input-grid usa-input-grid-medium">
             <label for="city">City</label>
-            <input id="city" name="city" type="text">
+            <input id="city" name="city" type="text" ng-model="editProfileController.userData.city">
           </div>
 
           <div class="usa-input-grid usa-input-grid-small">
             <label for="state">State</label>
-            <select id="state" name="state">
+            <select id="state" name="state" ng-model="editProfileController.userData.state">
               <option value></option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
@@ -138,62 +138,136 @@
         </div>
 
         <label for="zip">ZIP</label>
-        <input class="usa-input-medium" id="zip" name="zip" type="text" pattern="[\d]{5}(-[\d]{4})?" data-grouplength="5,4" data-delimiter="-" data-politespace>
+        <input class="usa-input-medium" id="zip" name="zip" type="text" pattern="[\d]{5}(-[\d]{4})?"
+               data-grouplength="5,4" data-delimiter="-" data-politespace ng-model="editProfileController.userData.zip">
 
+        <div>
+          <label for="phone" ng-class="pull-left">
+            Phone
+          </label>
+          <span class="usa-form-hint" id="phHint">For example: 123-456-7890</span>
+          <input type="text"
+                 id="phone"
+                 ng-model="editProfileController.userData.phone"
+                 aria-describedby="phone"
+                 name="phone"/>
+        </div>
+
+        <div>
+          <label for="email" ng-class="pull-left">
+            Email
+          </label>
+          <input type="text"
+                 id="email"
+                 ng-model="editProfileController.userData.email"
+                 aria-describedby="email"
+                 name="email"/>
+        </div>
+
+        <div>
+          <label>Work Anniversary Date</label>
+          <span class="usa-form-hint" id="waHint">For example: 04 28 1986</span>
+
+          <div class="usa-date-of-birth">
+            <div class="usa-input-grid usa-input-grid-small">
+              <label for="workAnniversaryMonth">Month</label>
+              <select id="workAnniversaryMonth" name="workAnniversaryMonth"
+                      ng-model="editProfileController.userData.workAnniversaryDate.month">
+                <option value></option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+            <div class="usa-form-group usa-form-group-day">
+              <label for="workAnniversaryDay">Day</label>
+              <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control"
+                     ng-model="editProfileController.userData.workAnniversaryDate.day"
+                     id="workAnniversaryDay" name="workAnniversaryDay" pattern="0?[1-9]|1[0-9]|2[0-9]|3[01]"
+                     type="number" min="1" max="31" value="">
+            </div>
+            <div class="usa-form-group usa-form-group-year">
+              <label for="workAnniversaryYear">Year</label>
+              <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control"
+                     ng-model="editProfileController.userData.workAnniversaryDate.year"
+                     id="workAnniversaryYear" name="workAnniversaryYear" pattern="[0-9]{4}" type="number" min="1900"
+                     max="2000" value="">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label>Date of birth</label>
+          <span class="usa-form-hint" id="dobHint">For example: 04 28 1986</span>
+
+          <div class="usa-date-of-birth">
+            <div class="usa-input-grid usa-input-grid-small">
+              <label for="dobMonth">Month</label>
+              <select id="dobMonth" name="dobMonth"
+                      ng-model="editProfileController.userData.birthday.month">
+                <option value></option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+            <div class="usa-form-group usa-form-group-day">
+              <label for="dobDay">Day</label>
+              <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="dobDay"
+                     name="dobDay" ng-model="editProfileController.userData.birthday.day"
+                     pattern="0?[1-9]|1[0-9]|2[0-9]|3[01]" type="number" min="1" max="31"
+                     value="">
+            </div>
+            <div class="usa-form-group usa-form-group-year">
+              <label for="dobYear">Year</label>
+              <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="dobYear"
+                     name="dobYear" ng-model="editProfileController.userData.birthday.year" pattern="[0-9]{4}"
+                     type="number" min="1900" max="2000" value="">
+            </div>
+          </div>
+        </div>
+
+        <ul class="usa-unstyled-list header-anchors">
+          <li>
+            <input id="stanton" type="radio" ng-model="editProfileController.userData.birthday.private" checked
+                   name="dobPrivate" value="private">
+            <label for="stanton">Private</label>
+          </li>
+          <li>
+            <input id="anthony" type="radio" ng-model="editProfileController.userData.birthday.public" name="dobPublic"
+                   value="public">
+            <label for="anthony">Public</label>
+          </li>
+        </ul>
+
+        <label for="input-type-textarea">Additional Information</label>
+        <textarea id="input-type-textarea" ng-model="editProfileController.userData.additionalInfo"
+                  name="input-type-textarea"></textarea>
+
+        <div class="button_wrapper">
+          <button class="usa-button-outline" type="button">Cancel</button>
+          <button>Save</button>
+        </div>
         </fieldset>
       </form>
-
-      <span>Phone</span>
-      <span>For example 123-456-7890</span>
-      <div>
-        <input value="" type="text">
-      </div>
-
-      <span>Email</span>
-      <div>
-        <input value="" type="text">
-      </div>
-
-      <legend>Work Anniversary Date</legend>
-      <span class="usa-form-hint" id="waHint">For example: 04 28 1986</span>
-
-      <div class="usa-date-of-birth">
-        <div class="usa-form-group usa-form-group-month">
-          <label for="workAnniversaryMonth">Month</label>
-
-          <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="workAnniversaryMonth" name="workAnniversaryMonth" pattern="0?[1-9]|1[012]" type="number" min="1" max="12" value="">
-        </div>
-        <div class="usa-form-group usa-form-group-day">
-          <label for="workAnniversaryDay">Day</label>
-          <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="workAnniversaryDay" name="workAnniversaryDay" pattern="0?[1-9]|1[0-9]|2[0-9]|3[01]" type="number" min="1" max="31" value="">
-        </div>
-        <div class="usa-form-group usa-form-group-year">
-          <label for="workAnniversaryYear">Year</label>
-          <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="workAnniversaryYear" name="workAnniversaryYear" pattern="[0-9]{4}" type="number" min="1900" max="2000" value="">
-        </div>
-      </div>
-
-      <legend>Date of birth</legend>
-      <span class="usa-form-hint" id="dobHint">For example: 04 28 1986</span>
-
-      <div class="usa-date-of-birth">
-        <div class="usa-form-group usa-form-group-month">
-          <label for="date_of_birth_1">Month</label>
-          <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="date_of_birth_1" name="date_of_birth_1" pattern="0?[1-9]|1[012]" type="number" min="1" max="12" value="">
-        </div>
-        <div class="usa-form-group usa-form-group-day">
-          <label for="date_of_birth_2">Day</label>
-          <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="date_of_birth_2" name="date_of_birth_2" pattern="0?[1-9]|1[0-9]|2[0-9]|3[01]" type="number" min="1" max="31" value="">
-        </div>
-        <div class="usa-form-group usa-form-group-year">
-          <label for="date_of_birth_3">Year</label>
-          <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="date_of_birth_3" name="date_of_birth_3" pattern="[0-9]{4}" type="number" min="1900" max="2000" value="">
-        </div>
-      </div>
-
-      <input type="radio"/> Private
-      <input type="radio"/> Public
     </div>
   </div>
-</div>
 </div>

@@ -24,24 +24,27 @@ function EditProfileController($scope, component) {
     var ctx = this;
     // this.editProfileForm;
     ctx.userData = {
-        firstName:              "",
-        lastName:               "",
-        middleName:             "",
-        department:             "",
-        city:                   "",
-        state:                  "",
-        phone:                  "",
-        email:                  "",
+        firstName:              "Indira",
+        lastName:               "Vaddiparti",
+        middleName:             "P",
+        department:             "IT",
+        city:                   "Alexandria",
+        state:                  "VA",
+        zip:                     "20841",
+        phone:                  "123-456-7890",
+        email:                  "ivaddiparti@strateratech.com",
         workAnniversaryDate:    {
-            month:  "",
-            day:    "",
-            year:   ""
+            month:  "08",
+            day:    "28",
+            year:   "2005"
         },
         birthday:    {
-            month:  "",
-            day:    "",
-            year:   ""
-        }
+            month:  "04",
+            day:    "19",
+            year:   "1978",
+            public: "N"
+        },
+        additionalInfo: "I love javascript!!!!"
     };
 
     // $scope.$watch("this.userData.firstName", function (newVal, oldVal) {
