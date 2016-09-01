@@ -42,7 +42,7 @@ function EditProfileController($scope, component) {
             month:  "04",
             day:    "19",
             year:   "1978",
-            public: "N"
+            public: false
         },
         additionalInfo: "I love javascript!!!!"
     };
