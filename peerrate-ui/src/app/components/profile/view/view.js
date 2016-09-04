@@ -20,7 +20,7 @@ angular.module("app.components.profile.view", [
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope, $state, component, $http) {
+function ViewProfileController($scope, $state, component, ProfileService) {
   var vm = this;
 
   vm.viewProfilePage = function() {
@@ -28,18 +28,33 @@ function ViewProfileController($scope, $state, component, $http) {
   };
 
   vm.date = new Date();
+  var id  = "1";
+  ProfileService.getProfile(id).then(function(response){
+    vm.userData = response.data;
+  });
 
-  // $http.get('/auth.py').then(function(response) {
-  //   $scope.user = response.data;
-  // });
-  //
-  // $scope.saveMessage = function(message) {
-  //   $scope.status = 'Saving...';
-  //
-  //   $http.post('/add-msg.py', message ).then(function(response) {
-  //     $scope.status = '';
-  //   }).catch(function() {
-  //     $scope.status = 'Failed...';
-  //   });
-  // };
+  vm.userData = {
+    firstName:              "Indira",
+    lastName:               "Vaddiparti",
+    middleName:             "P",
+    department:             "IT",
+    city:                   "Alexandria",
+    state:                  "VA",
+    zip:                     "20841",
+    phone:                  "123-456-7890",
+    email:                  "ivaddiparti@strateratech.com",
+    workAnniversaryDate:    {
+      month:  "08",
+      day:    "28",
+      year:   "2005"
+    },
+    birthday:    {
+      month:  "04",
+      day:    "19",
+      year:   "1978",
+      public: false
+    },
+    additionalInfo: "I love javascript!!!!"
+  };
+
 }

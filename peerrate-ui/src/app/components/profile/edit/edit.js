@@ -1,6 +1,7 @@
 angular.module("app.components.profile.edit", [
     "services.component",
-    "models.user"
+    "models.user",
+  "app.profile"
 ])
 
     .config(function (componentProvider) {
@@ -20,7 +21,7 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, component) {
+function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, ProfileService) {
     var ctx = this;
     // this.editProfileForm;
     ctx.userData = {
@@ -36,35 +37,29 @@ function EditProfileController($scope, component) {
         workAnniversaryDate:    {
             month:  "08",
             day:    "28",
-            year:   "2005"
+            year:   2005
         },
         birthday:    {
             month:  "04",
             day:    "19",
-            year:   "1978",
+            year:   1978,
             public: false
         },
         additionalInfo: "I love javascript!!!!"
     };
+    ctx.openUploadDialog = function() {
 
-    // $scope.$watch("this.userData.firstName", function (newVal, oldVal) {
-    //     var isValid = newVal >= 1 ? true : false;
-    //     ctx.userData.firstName.$setValidity("firstName", isValid);
-    // });
-
-    // $scope.$watch('editProfileForm', function () {
-    //
-    //     this.user.firstName.length >= 1 ? this.editProfileForm : true;
-    // });
-
-
+  };
 }
 
 EditProfileController.prototype = {
     submitForm: function () {
+      ProfileService.updateProfile(ctx.userData).then(function(){
+        console.log("successfully updated");
+      });
         // REST endpoint edit? user
         var newUser = {};
-        newUser = this.userData;
+      newUser = this.userData;
 
         userData.$create(newUser).$then(function (response) {
             console.log(response);

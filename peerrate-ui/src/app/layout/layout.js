@@ -61,7 +61,8 @@ angular.module("app.layout", [
       controller: "LayoutController",
       controllerAs: "layoutController",
       access: "user",
-      scope: true
+      scope: true,
+      title: 'DHS Challenge'
     });
 
     componentProvider.registerParentRoute("layout", "content");
