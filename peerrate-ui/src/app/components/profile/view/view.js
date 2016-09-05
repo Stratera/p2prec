@@ -20,7 +20,7 @@ angular.module("app.components.profile.view", [
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope, $state, component, ProfileService) {
+function ViewProfileController($scope, $state, component) {
   var vm = this;
 
   vm.viewProfilePage = function() {
@@ -29,9 +29,9 @@ function ViewProfileController($scope, $state, component, ProfileService) {
 
   vm.date = new Date();
   var id  = "1";
-  ProfileService.getProfile(id).then(function(response){
-    vm.userData = response.data;
-  });
+  // ProfileService.getProfile(id).then(function(response){
+  //   vm.userData = response.data;
+  // });
 
   vm.userData = {
     firstName:              "Indira",

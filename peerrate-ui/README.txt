@@ -15,16 +15,12 @@ Tasks are defined in gulpfile.js. The default task is invoked simply by running 
 
 To run a specific task, just enter the task name as the first argument to gulp. For example,
 
-    grunt lint # runs just the linter task
-    grunt test # run test cases
+    gulp lint # rue linter taskns just th
+    gulp test # run test cases
 
 ### Executing tests
 
-Run `grunt test`
-
-You can also generate an HTML reporter which has nicer formatting.
-
-Run `grunt jasmine:mcc:build` then open up the generated `_SpecRunner.html` file
+Run `gulp test`
 
 ### Formatting
 

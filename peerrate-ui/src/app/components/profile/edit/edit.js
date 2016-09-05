@@ -1,7 +1,6 @@
 angular.module("app.components.profile.edit", [
     "services.component",
-    "models.user",
-  "app.profile"
+    "models.user"
 ])
 
     .config(function (componentProvider) {
@@ -21,7 +20,7 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, ProfileService) {
+function EditProfileController($scope, $location, $state, $stateParams, $timeout, component) {
     var ctx = this;
     // this.editProfileForm;
     ctx.userData = {
@@ -54,9 +53,6 @@ function EditProfileController($scope, $location, $state, $stateParams, $timeout
 
 EditProfileController.prototype = {
     submitForm: function () {
-      ProfileService.updateProfile(ctx.userData).then(function(){
-        console.log("successfully updated");
-      });
         // REST endpoint edit? user
         var newUser = {};
       newUser = this.userData;
