@@ -1,6 +1,7 @@
 angular.module("app.components.profile.view", [
   "services.component",
-  "models.user"
+  "models.user",
+  "app.directives.profilePic"
 ])
 
   .config(function (componentProvider) {
@@ -20,7 +21,7 @@ angular.module("app.components.profile.view", [
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope, $state, component) {
+function ViewProfileController($scope, $state) {
   var vm = this;
 
   vm.viewProfilePage = function() {
@@ -28,7 +29,6 @@ function ViewProfileController($scope, $state, component) {
   };
 
   vm.date = new Date();
-  var id  = "1";
   // ProfileService.getProfile(id).then(function(response){
   //   vm.userData = response.data;
   // });

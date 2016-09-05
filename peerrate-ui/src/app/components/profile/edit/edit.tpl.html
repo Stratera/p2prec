@@ -1,6 +1,6 @@
 <div class="usa-grid" ng-controller="EditProfileController">
   <div class="usa-width-one-third profilePic">
-    <img class="img" src="vendor/dhs/img/profile/profile_picture_u50.png">
+    <profile></profile>
     <div>
       <a ng-click="editProfileController.setPageSelected(component)">Upload profile Picture</a>
     </div>
@@ -310,7 +310,7 @@
           </div>
         </div>
        </div>
-          <ul class="usa-unstyled-list header-anchors">
+          <ul class="usa-unstyled-list header-anchors editRadio">
             <li>
               <input id="private" type="radio" ng-model="editProfileController.userData.birthday.public"
                      ng-checked="(editProfileController.userData.birthday.public == false)"

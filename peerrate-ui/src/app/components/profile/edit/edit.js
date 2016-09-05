@@ -1,6 +1,7 @@
 angular.module("app.components.profile.edit", [
     "services.component",
-    "models.user"
+    "models.user",
+  "app.directives.profilePic"
 ])
 
     .config(function (componentProvider) {
