@@ -235,10 +235,11 @@
               <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control"
                      ng-model="editProfileController.userData.workAnniversaryDate.year"
                      id="workAnniversaryYear" name="workAnniversaryYear" pattern="[0-9]{4}" type="number" min="1900"
-                     max="2000">
+                     max="3000">
             </div>
           </div>
 
+       <div class="usa-date-of-birth" style="margin:0px;">
         <label>Date of birth</label>
         <span class="usa-form-hint" id="dobHint">For example: 04 28 1986</span>
 
@@ -305,10 +306,10 @@
             <label for="dobYear">Year</label>
             <input class="usa-input-inline" aria-describedby="dobHint" class="usa-form-control" id="dobYear"
                    name="dobYear" ng-model="editProfileController.userData.birthday.year" pattern="[0-9]{4}"
-                   type="number" min="1900" max="2000" value=""/>
+                   type="number" min="1900" max="3000" value=""/>
           </div>
         </div>
-
+       </div>
           <ul class="usa-unstyled-list header-anchors">
             <li>
               <input id="private" type="radio" ng-model="editProfileController.userData.birthday.public"
