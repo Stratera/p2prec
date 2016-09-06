@@ -4,10 +4,17 @@
     color: #fff;
 
     a {
-      color: #fff;
+      color: #fff !important;
+      font-size: 13px;
     }
   }
-  margin-top: -12px;
+  margin-top: -24px;
+}
+
+h6 {
+  color: #fff;
+  margin-top: -13px !important;
+  padding-left: 32px !important;
 }
 
 #header img {
@@ -42,6 +49,7 @@
     display: inline;
     padding-right: 20px;
     color: #fff;
+    padding-top: 30px;
   }
 }
 

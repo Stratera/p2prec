@@ -74,7 +74,7 @@ $green-lightest: #e7f4e4;
   background-color: $primary-dark;
 
   a {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -82,6 +82,14 @@ body {
   font: $font-stack;
   color: $primary-color;
   font-size: 0.9rem !important;
+}
+
+ul {
+  li {
+    label {
+      color: #000;
+    }
+  }
 }
 
 a {

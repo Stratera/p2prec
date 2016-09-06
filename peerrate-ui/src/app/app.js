@@ -1,7 +1,7 @@
 
 angular
   .module('dhsChallenge', [
-    
+
     'ngAnimate',
     'ngCookies',
     'ngTouch',
@@ -23,6 +23,9 @@ angular
     'app.components.profile.edit',
     'app.components.profile.view',
 
+    'app.directives.footer',
+    'app.directives.profilePic',
+
     'models.user',
 
     'services.router',
@@ -30,6 +33,6 @@ angular
     'services.component',
     'services.restmod.BaseModel',
     'services.restmod.PostCollection'
-    
+
     ]);
 
