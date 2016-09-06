@@ -22,9 +22,9 @@ angular.module("app.components.profile.edit", [
     .controller("EditProfileController", EditProfileController);
 
 function EditProfileController($scope, $location, $state, $stateParams, $timeout, component) {
-    var ctx = this;
+    var vm = this;
     // this.editProfileForm;
-    ctx.userData = {
+    vm.userData = {
         firstName:              "Indira",
         lastName:               "Vaddiparti",
         middleName:             "P",
@@ -47,7 +47,7 @@ function EditProfileController($scope, $location, $state, $stateParams, $timeout
         },
         additionalInfo: "I love javascript!!!!"
     };
-    ctx.openUploadDialog = function() {
+    vm.openUploadDialog = function() {
 
   };
 }

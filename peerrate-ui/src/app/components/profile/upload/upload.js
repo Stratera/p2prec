@@ -25,10 +25,10 @@ angular.module("app.components.profile.upload", [
 
 
 
-function UploadPictureController($scope, $location, $state, $stateParams, $timeout, component) {
-  var ctx = this;
+function UploadPictureController($scope, $location, $state, $stateParam) {
+  var vm = this;
 
-  ctx.directive('fileModel', ['$parse', function ($parse) {
+  vm.directive('fileModel', ['$parse', function ($parse) {
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
