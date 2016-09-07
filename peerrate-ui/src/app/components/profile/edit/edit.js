@@ -21,7 +21,7 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, $location, $state, $stateParams, $timeout, component) {
+function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, user) {
     var vm = this;
     // this.editProfileForm;
     vm.userData = {
@@ -54,11 +54,12 @@ function EditProfileController($scope, $location, $state, $stateParams, $timeout
 
 EditProfileController.prototype = {
     submitForm: function () {
+        var vm = this;
         // REST endpoint edit? user
         var newUser = {};
-        newUser = this.userData;
+        newUser = vm.userData;
 
-        userData.$create(newUser).$then(function (response) {
+        user.$create(newUser).$then(function (response) {
             console.log(response);
         });
     },
