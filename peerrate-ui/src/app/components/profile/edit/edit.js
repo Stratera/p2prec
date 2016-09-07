@@ -21,8 +21,9 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, user) {
+function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, User) {
     var vm = this;
+    vm.userModel = User;
     // this.editProfileForm;
     vm.userData = {
         firstName:              "Indira",
@@ -59,7 +60,7 @@ EditProfileController.prototype = {
         var newUser = {};
         newUser = vm.userData;
 
-        user.$create(newUser).$then(function (response) {
+        vm.userModel.$create(newUser).$then(function (response) {
             console.log(response);
         });
     },
