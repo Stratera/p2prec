@@ -19,18 +19,18 @@ gulp.task('styles-reload', ['styles'], function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('styles', ['compileVendorFiles'], function() {
+gulp.task('styles', function() {
   return buildStyles();
 });
 
-gulp.task('compileVendorFiles', function () {
-    return gulp.src([
-      path.join(paths.src, '/vendor/**/*')
-    ])
-      .pipe($.sourcemaps.init())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
-});
+// gulp.task('compileVendorFiles', function () {
+//     return gulp.src([
+//       path.join(paths.src, '/vendor/**/*')
+//     ])
+//       .pipe($.sourcemaps.init())
+//       .pipe($.sourcemaps.write())
+//       .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
+// });
 
 var buildStyles = function() {
   var sassOptions = {
@@ -39,13 +39,14 @@ var buildStyles = function() {
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join('!' + conf.paths.src, '/app/index.scss')
+    path.join(paths.src, '/app/vendor/**/*.css'),
+    path.join(paths.src, '/app/**/*.scss'),
+    path.join('!' + paths.src, '/app/index.scss')
   ], { read: false });
 
   var injectOptions = {
     transform: function(filePath) {
-      filePath = filePath.replace(conf.paths.src + '/app/', '');
+      filePath = filePath.replace(paths.src + '/app/', '');
       return '@import "' + filePath + '";';
     },
     starttag: '// injector',

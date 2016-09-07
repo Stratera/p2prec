@@ -1,7 +1,7 @@
 angular.module("app.components.profile.edit", [
     "services.component",
     "models.user",
-  "app.directives.profilePic"
+    "app.directives.profilePic"
 ])
 
     .config(function (componentProvider) {
@@ -56,7 +56,7 @@ EditProfileController.prototype = {
     submitForm: function () {
         // REST endpoint edit? user
         var newUser = {};
-      newUser = this.userData;
+        newUser = this.userData;
 
         userData.$create(newUser).$then(function (response) {
             console.log(response);

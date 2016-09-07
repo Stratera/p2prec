@@ -12,6 +12,15 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
 // bower:scss
 // endbower
 
+
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -27,6 +36,7 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
+// custom variables
 $font-stack: Arial Regular, Arial;
 $primary-color: #333;
 
@@ -70,6 +80,51 @@ $green-light: #4aa564;
 $green-lighter: #94bfa2;
 $green-lightest: #e7f4e4;
 
+// layout
+.main-content {
+  position: absolute;
+  top: 4rem;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  margin-top: 4rem;
+  position: relative;
+  width: 100%;
+  top: 6.3rem; 
+  @media screen and (min-width: 951px) {
+    .main-content {
+      width: calc(100% - 250px);
+      top: 0; } 
+  }
+  @media screen and (min-width: 951px) {
+    .main-content.is-scrolled {
+      position: absolute;
+      top: 15.3rem; } 
+  }
+  .lt-ie9 .main-content {
+    width: 75%; 
+  }
+}
+
+.usa-skipnav {
+  background: transparent;
+  color: #212121;
+  left: 0;
+  padding: 1rem 1.5rem;
+  position: absolute;
+  top: -4.2rem;
+  transition: all 0.2s ease-in-out;
+  z-index: 100;
+  &:focus {
+    background: #ffffff;
+    left: 0;
+    outline: 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
 .header-bg {
   background-color: $primary-dark;
 
@@ -100,7 +155,12 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
 }
-
+.topbar {
+  background-color: $primary-darkest-blue;
+  height: 20px;
+  padding-left: 10px;
+  padding-top: 2px;
+}
 .brandBannerBg {
   background-color: $primary-darkest-blue;
   height: 20px;
@@ -115,10 +175,3 @@ a:hover {
 .float-right {
   float: right;
 }
-
-/**
- *  Do not remove the comments below. It's the markers used by gulp-inject to inject
- *  all your sass files automatically
- */
-// injector
-// endinjector
