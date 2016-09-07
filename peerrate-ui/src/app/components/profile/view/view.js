@@ -56,5 +56,5 @@ function ViewProfileController($scope, $state) {
     },
     additionalInfo: "I love javascript!!!!"
   };
-
+  vm.recognition= "viewAll"
 }
