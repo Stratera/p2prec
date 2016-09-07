@@ -90,19 +90,19 @@ $green-lightest: #e7f4e4;
   margin-top: 4rem;
   position: relative;
   width: 100%;
-  top: 6.3rem; 
+  top: 6.3rem;
   @media screen and (min-width: 951px) {
     .main-content {
       width: calc(100% - 250px);
-      top: 0; } 
+      top: 0; }
   }
   @media screen and (min-width: 951px) {
     .main-content.is-scrolled {
       position: absolute;
-      top: 15.3rem; } 
+      top: 15.3rem; }
   }
   .lt-ie9 .main-content {
-    width: 75%; 
+    width: 75%;
   }
 }
 
@@ -177,7 +177,6 @@ a:hover {
 }
 .brandBannerBg {
   background-color: $primary-darkest-blue;
-  height: 20px;
   padding-left: 10px;
   padding-top: 2px;
   p {
@@ -189,3 +188,14 @@ a:hover {
 .float-right {
   float: right;
 }
+
+.navbar-default {
+  background-color: transparent;
+  border: 0px;
+  .navbar-nav > li > a {
+    color: #ffffff;
+    font-size: 13px;
+  }
+}
+
+
