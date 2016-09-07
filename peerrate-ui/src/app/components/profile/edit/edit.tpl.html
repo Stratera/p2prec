@@ -10,7 +10,7 @@
     <h1>Edit My Profile</h1>
     <div class="usa-width-one-half">
       <form ng-model="editProfileController.editProfileForm"
-            ng-submit="editProfileController.submitForm" class="usa-form" name="editProfileForm">
+            ng-submit="editProfileController.submitForm()" class="usa-form" name="editProfileForm">
 
         <div>
           <label for="firstName">First name <span class="usa-additional_text">Required</span></label>
@@ -315,7 +315,7 @@
 
         <div class="button_wrapper">
           <button class="usa-button-outline" type="button">Cancel</button>
-          <button ng-click="editProfileController.submitForm">Save</button>
+          <button ng-click="editProfileController.submitForm()">Save</button>
         </div>
         </fieldset>
       </form>
