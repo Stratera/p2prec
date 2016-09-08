@@ -39,7 +39,8 @@ var buildStyles = function() {
   };
 
   var injectFiles = gulp.src([
-    path.join(paths.src, '/app/vendor/**/*.css'),
+    path.join(paths.src, '/vendor/**/*.css'),
+    path.join('!' + paths.src, '/vendor/**/*.min.css'),
     path.join(paths.src, '/app/**/*.scss'),
     path.join('!' + paths.src, '/app/index.scss')
   ], { read: false });
