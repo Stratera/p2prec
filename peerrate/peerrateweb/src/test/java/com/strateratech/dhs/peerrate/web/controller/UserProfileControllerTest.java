@@ -3,6 +3,7 @@ package com.strateratech.dhs.peerrate.web.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -92,7 +93,17 @@ public class UserProfileControllerTest {
         Assert.assertTrue(resp.getHeaders().containsKey(HttpHeaders.LOCATION));
     }
 
-    
+
+
+    @Test
+    @Transactional
+    public void testList() throws IOException {
+       
+
+        ResponseEntity<List<UserProfile>> resp = userProfileController.listUserProfiles();
+        Assert.assertEquals(2,resp.getBody().size());
+    }
+
 
     @Transactional
     @Test
