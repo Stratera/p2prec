@@ -3129,7 +3129,17 @@ a:hover {
   cursor: pointer;
 }
 
-
 .float-right {
   float: right;
 }
+
+.navbar-default {
+  background-color: transparent;
+  border: 0px;
+  .navbar-nav > li > a {
+    color: #ffffff;
+    font-size: 13px;
+  }
+}
+
+
