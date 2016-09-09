@@ -2,6 +2,7 @@ package com.strateratech.dhs.peerrate.entity;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,6 +49,23 @@ public class Recognition {
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = UserProfile.class)
 	@JoinColumn(name = "recipient_user_profile_id", referencedColumnName = "id")
 	private UserProfile recipientUserProfile;
+
+
+    @NotNull
+    @Column(name = "submit_ts")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+    private Date submitTs;
+
+    @Column(name="message", columnDefinition="text")
+    private String message;
+    
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "attachment", length = Integer.MAX_VALUE)
+    private byte[] attachment;
+
+    @Column(name = "attachment_content_type")
+    private String attachmentContentType;
 
 	@NotNull
 	@Column(name = "create_username")
@@ -203,5 +221,40 @@ public class Recognition {
 	public void setUpdateTs(Date updateTs) {
 		this.updateTs = updateTs;
 	}
+
+    public Date getSubmitTs() {
+        return submitTs;
+    }
+
+    public void setSubmitTs(Date submitTs) {
+        this.submitTs = submitTs;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String messageText) {
+        this.message = messageText;
+    }
+
+    public byte[] getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(byte[] attachment) {
+        this.attachment = attachment;
+    }
+
+    public String getAttachmentContentType() {
+        return attachmentContentType;
+    }
+
+    public void setAttachmentContentType(String attachmentContentType) {
+        this.attachmentContentType = attachmentContentType;
+    }
+
+	
+	
 
 }
