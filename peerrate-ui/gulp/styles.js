@@ -6,6 +6,9 @@ var conf = require('./conf');
 
 var browserSync = require('browser-sync');
 
+var paths = conf.paths;
+var props = conf.configProperties;
+
 var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
@@ -27,13 +30,13 @@ var buildStyles = function() {
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join('!' + conf.paths.src, '/app/index.scss')
+    path.join(paths.src, '/app/**/*.scss'),
+    path.join('!' + paths.src, '/app/index.scss')
   ], { read: false });
 
   var injectOptions = {
     transform: function(filePath) {
-      filePath = filePath.replace(conf.paths.src + '/app/', '');
+      filePath = filePath.replace(paths.src + '/app/', '');
       return '@import "' + filePath + '";';
     },
     starttag: '// injector',
@@ -41,8 +44,7 @@ var buildStyles = function() {
     addRootSlash: false
   };
 
-
-  return gulp.src([
+    return gulp.src([
     path.join(conf.paths.src, '/app/index.scss')
   ])
     .pipe($.inject(injectFiles, injectOptions))
@@ -53,3 +55,5 @@ var buildStyles = function() {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
 };
+
+

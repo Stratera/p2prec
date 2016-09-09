@@ -9,7 +9,7 @@ angular.module("models.user", [
  */
 .factory("User", function (model) {
     
-    return model("/users").mix({
+    return model("/users/authentication").mix({
         
         $hooks: {
             

@@ -26,16 +26,16 @@ exports.configProperties = {
   build: 1,
   environments: {
     prod: {
-      svrPrefix: "https://urlhere",
+      svrPrefix: "",
       useAuth: true
     },
-    dev: {
-      svrPrefix: "https://urlhere",
+    stag: {
+      svrPrefix: "",
       useAuth: true,
       debug: true
     },
     local: {
-      svrPrefix: "https://urlhere",
+      svrPrefix: "http://localhost:3000",
       useAuth: "",
       debug: true
     }

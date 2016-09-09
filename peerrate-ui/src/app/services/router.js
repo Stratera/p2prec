@@ -6,7 +6,7 @@ angular.module("services.router", [
 ])
 
 
-  .provider("route", function ($stateProvider, $urlRouterProvider) {
+  .provider("route", function ($stateProvider, $urlRouterProvider, $sessionStorageProvider) {
 
     function getControllerScopeName(route) {
       if (route.controllerAs !== false) {
@@ -42,9 +42,9 @@ angular.module("services.router", [
     // Default resolvers injected into views.
     // @ngInject
     var defaultResolvers = {
-      currentUser: function (security) {
+      currentUser: ["security", function (security) {
         return security.user;
-      }
+      }]
     };
 
     var routes = [];
@@ -59,8 +59,22 @@ angular.module("services.router", [
     }
 
     /**
-     * ngdoc method
+     * @ngdoc method
      * @name routeProvider#registerResolver
+     * @description
+     * Register a resolver that can inject a value into a route's controller.
+     *
+     * @param {String} name The local variable name of the resolved value.
+     * @param {Function} resolverFn A function used to resolve a value
+     * This function can have injectable dependencies and return a promise.
+     */
+    this.registerResolver = function (name, resolverFn) {
+        defaultResolvers[name] = resolverFn
+    };
+
+    /**
+     * ngdoc method
+     * @name routeProvider#register
      * @description
      * Register a new route within the app, based on ui-router.
      *
@@ -152,10 +166,10 @@ angular.module("services.router", [
 
     // respond to a request to persist state.
     $rootScope.$on("state.persist.state", function (event, attrs) {
-    //   var name = $state.current.name;
-    //   if (!$rootScope.$storage[name]) {
-    //     $sessionStorage[name] = {};
-    //   }
+      var name = $state.current.name;
+      if (!$rootScope.$storage[name]) {
+        $sessionStorage[name] = {};
+      }
 
       Object.keys(attrs).forEach(function (k) {
         event.targetScope.$watch(attrs[k], function (newVal, oldVal) {
@@ -170,25 +184,25 @@ angular.module("services.router", [
     $rootScope.$on('$stateChangeStart', function (event, to, toParams, from, fromParams) {
 
       // Verify user can access the route, else, re-route them to unauthorized.
-      // if (!security.isAuthorized(to.data.route.access)) {
-      //   event.preventDefault();
-      //   if (!security.isLoggedIn()) {
-      //     if (!security.isLoginPending()) {
-      //       security.loadUser().then(function () {
-      //         $state.transitionTo(to, toParams);
-      //       });
-      //     } else {
-      //       $state.transitionTo("loading");
-      //     }
-      //     event.preventDefault();
-      //   } else {
-      //     route.goToUnauthorized();
-      //   }
-      // } else {
-      //   if (angular.equals(fromParams, toParams)) {
-      //     $rootScope.$broadcast("router.queryParamsChanged", $stateParams);
-      //   }
-      // }
+      if (!security.isAuthorized(to.data.route.access)) {
+        event.preventDefault();
+        if (!security.isLoggedIn()) {
+          if (!security.isLoginPending()) {
+            security.loadUser().then(function () {
+              $state.transitionTo(to, toParams);
+            });
+          } else {
+            $state.transitionTo("loading");
+          }
+          event.preventDefault();
+        } else {
+          route.goToUnauthorized();
+        }
+      } else {
+        if (angular.equals(fromParams, toParams)) {
+          $rootScope.$broadcast("router.queryParamsChanged", $stateParams);
+        }
+      }
 
     });
 

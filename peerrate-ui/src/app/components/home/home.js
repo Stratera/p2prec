@@ -6,6 +6,7 @@ angular.module("app.components.home", [
         name: "home",
         title: "Home",
         persistent: true,
+        frontpage: true,
         static: true,
         url: "^/",
         controller: "HomeController",
@@ -14,8 +15,9 @@ angular.module("app.components.home", [
     });
 })
 .controller('HomeController', function ($rootScope, $scope, $state, component) {
-    this.$state = $state;
-    this.components = component.get().filter(function (c) {
+    var vm = this;
+    vm.$state = $state;
+    vm.components = component.get().filter(function (c) {
         return c.frontpage;
     });
-})
+});

@@ -21,6 +21,11 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * 
+ * @author myoung Entity for department table
+ *
+ */
 @Entity
 @Table(name = "department")
 public class Department {
@@ -36,8 +41,8 @@ public class Department {
     private String name; // VARCHAR(20)
 
     @Column(name = "version")
-    private Integer version; 
-    
+    private Integer version;
+
     @NotNull
     @Column(name = "create_username")
     private String createUsername; // VARCHAR(320)
@@ -58,16 +63,13 @@ public class Department {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private Date updateTs;
 
-
     @OrderBy("id")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department", targetEntity = Recognition.class)
     private Set<Recognition> recognitions;
-    
 
     @OrderBy("id")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "department", targetEntity = UserProfile.class)
     private Set<UserProfile> userProfiles;
-
 
     /**
      * @return the id
@@ -76,14 +78,13 @@ public class Department {
         return id;
     }
 
-
     /**
-     * @param id the id to set
+     * @param id
+     *            the id to set
      */
     public void setId(Long id) {
         this.id = id;
     }
-
 
     /**
      * @return the name
@@ -92,14 +93,13 @@ public class Department {
         return name;
     }
 
-
     /**
-     * @param name the name to set
+     * @param name
+     *            the name to set
      */
     public void setName(String name) {
         this.name = name;
     }
-
 
     /**
      * @return the version
@@ -108,14 +108,13 @@ public class Department {
         return version;
     }
 
-
     /**
-     * @param version the version to set
+     * @param version
+     *            the version to set
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
-
 
     /**
      * @return the createUsername
@@ -124,14 +123,13 @@ public class Department {
         return createUsername;
     }
 
-
     /**
-     * @param createUsername the createUsername to set
+     * @param createUsername
+     *            the createUsername to set
      */
     public void setCreateUsername(String createUsername) {
         this.createUsername = createUsername;
     }
-
 
     /**
      * @return the createTs
@@ -140,14 +138,13 @@ public class Department {
         return createTs;
     }
 
-
     /**
-     * @param createTs the createTs to set
+     * @param createTs
+     *            the createTs to set
      */
     public void setCreateTs(Date createTs) {
         this.createTs = createTs;
     }
-
 
     /**
      * @return the updateUsername
@@ -156,14 +153,13 @@ public class Department {
         return updateUsername;
     }
 
-
     /**
-     * @param updateUsername the updateUsername to set
+     * @param updateUsername
+     *            the updateUsername to set
      */
     public void setUpdateUsername(String updateUsername) {
         this.updateUsername = updateUsername;
     }
-
 
     /**
      * @return the updateTs
@@ -172,14 +168,13 @@ public class Department {
         return updateTs;
     }
 
-
     /**
-     * @param updateTs the updateTs to set
+     * @param updateTs
+     *            the updateTs to set
      */
     public void setUpdateTs(Date updateTs) {
         this.updateTs = updateTs;
     }
-
 
     /**
      * @return the recognitions
@@ -191,14 +186,13 @@ public class Department {
         return recognitions;
     }
 
-
     /**
-     * @param recognitions the recognitions to set
+     * @param recognitions
+     *            the recognitions to set
      */
     public void setRecognitions(Set<Recognition> recognitions) {
         this.recognitions = recognitions;
     }
-
 
     /**
      * @return the userProfiles
@@ -210,14 +204,12 @@ public class Department {
         return userProfiles;
     }
 
-
     /**
-     * @param userProfiles the userProfiles to set
+     * @param userProfiles
+     *            the userProfiles to set
      */
     public void setUserProfiles(Set<UserProfile> userProfiles) {
         this.userProfiles = userProfiles;
     }
-    
-    
-    
+
 }
