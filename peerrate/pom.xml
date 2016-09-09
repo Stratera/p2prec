@@ -33,7 +33,11 @@
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<spring-security.version>4.0.2.RELEASE</spring-security.version>
 
+<<<<<<< HEAD
 		<!-- <checkstyle.config.location>config/strateratech-checkstyle.xml</checkstyle.config.location> -->
+=======
+		<!--<checkstyle.config.location>config/strateratecho_checkstyle.xml</checkstyle.config.location> -->
+>>>>>>> f88d973c7a5b9bf58cfde9c9b9c5169960858db5
 		<quartz.version>2.2.1</quartz.version>
 		<version.jackson>2.5.3</version.jackson>
 

@@ -2,6 +2,7 @@ package com.strateratech.dhs.peerrate.web.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
@@ -48,6 +49,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping(value = "/userprofiles")
 public class UserProfileController {
     private static final Logger log = LoggerFactory.getLogger(UserProfileController.class);
+    
     private static int BUFFER_SIZE = 1024;
 
     @Inject
@@ -107,6 +109,28 @@ public class UserProfileController {
 
     }
 
+    /**
+     * List User Profiles (non-paged)
+     * 
+     * @return ResponseEntity<List<UserProfile>>
+     */
+    @ApiOperation("List User profiles")
+    @RequestMapping( method=RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<List<UserProfile>> listUserProfiles() {
+        HttpStatus status = HttpStatus.OK;
+        HttpHeaders headers =RestUtils.buildRestHttpHeaders();
+        List<UserProfile> list = userProfileService.listUserProfiles();
+        ResponseEntity<List<UserProfile>> resp = new ResponseEntity<>(headers,HttpStatus.NO_CONTENT);
+      
+        if (list.size() > 0 ) {
+        	resp = new ResponseEntity<>(list,headers,HttpStatus.NO_CONTENT);
+        		      
+        }
+
+        return resp;
+
+    }
     
     /**
      * Method to Parse Saml Token
