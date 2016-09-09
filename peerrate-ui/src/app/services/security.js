@@ -63,26 +63,31 @@ angular.module("services.security", [
             var ret = false;
             var prefix = servicesConfig.prefix;
             if (!ctx.isLoginPending()) {
-                ret = User.$fetch().$then(function (response) {
-                    // return response.$response.data;
-                    if (!response.$response.data.username) {
+                ret = $http.get(
+                    prefix + "/users/authentication",
+                    {},
+                    { headers: { "Accepts": "application/json" } })
+                    .$then(function (data) {
+
+                        if (!data.username) {
+                            ctx.login();
+                        } else {
+                            ctx.user = User.$build(data);
+                            ctx.loggingIn = false;
+                        }
+                    }, 
+                    function () {
                         ctx.login();
-                    } else {
-                        ctx.user = response.$response.data;
-                        ctx.loggingIn = false;
-                    }
-                },
-                function (err) {
-                    ctx.login();
-                    throw "Failed Authentication";
-                });
+                        throw "Failed Authentication";
+                    });
+                ctx.loggingIn = true;
             }
             return ret;
 
         },
 
         login: function () {
-            $window.location.replace(servicesConfig.prefix + "/");
+            $window.location.replace(servicesConfig.prefix + "/#/");
         }
 
     };
