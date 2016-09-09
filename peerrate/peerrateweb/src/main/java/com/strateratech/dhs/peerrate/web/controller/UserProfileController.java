@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -123,7 +124,7 @@ public class UserProfileController {
         List<UserProfile> list = userProfileService.listUserProfiles();
         ResponseEntity<List<UserProfile>> resp = new ResponseEntity<>(headers,HttpStatus.NO_CONTENT);
       
-        if (list.size() == 0 ) {
+        if (CollectionUtils.isEmpty(list) ) {
         	resp = new ResponseEntity<>(list,headers,HttpStatus.NO_CONTENT);
         		      
         }
