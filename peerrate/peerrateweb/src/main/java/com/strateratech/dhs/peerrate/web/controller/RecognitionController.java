@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.strateratech.dhs.peerrate.rest.contract.Recognition;
+import com.strateratech.dhs.peerrate.rest.contract.saml.RestAuthenticationToken;
 import com.strateratech.dhs.peerrate.web.service.RecognitionService;
 import com.strateratech.dhs.peerrate.web.service.SecurityService;
 import com.strateratech.dhs.peerrate.web.utils.RestUtils;
@@ -56,7 +58,19 @@ public class RecognitionController {
     @RequestMapping( method=RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Recognition> save(@Valid @RequestBody Recognition recognition) {
-        return null;
+    	HttpStatus status = HttpStatus.BAD_REQUEST;
+        RestAuthenticationToken authToken = securityService.mapSamlTokenToContractModel(SecurityContextHolder.getContext().getAuthentication());
+        
+    	Long id = recognitionService.save(recognition, authToken.getEmail());
+    	  HttpHeaders restHeaders = RestUtils.buildRestHttpHeaders();
+          if (id != null) {
+                            restHeaders.add(HttpHeaders.LOCATION, 
+                              RestUtils.getBaseUrl()+RecognitionController.class.getAnnotation(RequestMapping.class).value()[0]
+                                      +id);
+                            status=HttpStatus.CREATED;
+   
+          }
+    	return new ResponseEntity<>(restHeaders,status);
 
     }
 
