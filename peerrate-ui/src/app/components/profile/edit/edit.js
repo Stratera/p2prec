@@ -1,6 +1,6 @@
 angular.module("app.components.profile.edit", [
     "services.component",
-    "models.user",
+    "services.security",
     "app.directives.profilePic"
 ])
 
@@ -21,36 +21,20 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, User) {
+function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, security) {
     var vm = this;
-    vm.userModel = User;
+    vm.profileData = Profile.$find(security.user.id).$then(function (response) {
+        return response;
+    },
+    function (err) {
+        return require('edit.mock');
+    });
     // this.editProfileForm;
-    vm.userData = {
-        firstName:              "Indira",
-        lastName:               "Vaddiparti",
-        middleName:             "P",
-        department:             "IT",
-        city:                   "Alexandria",
-        state:                  "VA",
-        zip:                     "20841",
-        phone:                  "123-456-7890",
-        email:                  "ivaddiparti@strateratech.com",
-        workAnniversaryDate:    {
-            month:  "08",
-            day:    "28",
-            year:   2005
-        },
-        birthday:    {
-            month:  "04",
-            day:    "19",
-            year:   1978,
-            public: false
-        },
-        additionalInfo: "I love javascript!!!!"
-    };
     vm.openUploadDialog = function() {
 
   };
+
+
 }
 
 EditProfileController.prototype = {
@@ -60,9 +44,9 @@ EditProfileController.prototype = {
         var newUser = {};
         newUser = vm.userData;
 
-        // vm.userModel.$create(newUser).$then(function (response) {
-        //     console.log(response);
-        // });
+        vm.userModel.$create(newUser).$then(function (response) {
+            console.log(response);
+        });
     },
 
     loadUser: function () {

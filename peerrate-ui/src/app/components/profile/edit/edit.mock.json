@@ -1,0 +1,53 @@
+{
+    "dateOfBirth": "2016-09-09T05:34:32.303Z",
+    "department": {
+        "id": 0,
+        "name": ""
+    },
+    "description": "",
+    "email": "",
+    "fullName": "",
+    "id": 0,
+    "jobTitle": "",
+    "officeCity": "",
+    "officeCountry": "",
+    "officePhone": "",
+    "officePostalCode": "",
+    "officeStateOrProv": "",
+    "officeStreetAddress": "",
+    "personalPhone": "",
+    "profilePicBytes": [
+        ""
+    ],
+    "profilePicContentType": "",
+    "recievedRecognitions": [
+        {
+        "attachment": [
+            ""
+        ],
+        "attachmentContentType": "",
+        "id": 0,
+        "messageText": "",
+        "name": "",
+        "recipientDepartmentId": 0,
+        "recipientUserProfileId": 0,
+        "sendingUserProfileId": 0,
+        "submitTs": "2016-09-09T05:34:32.303Z"
+        }
+    ],
+    "sentRecognitions": [
+        {
+        "attachment": [
+            ""
+        ],
+        "attachmentContentType": "",
+        "id": 0,
+        "messageText": "",
+        "name": "",
+        "recipientDepartmentId": 0,
+        "recipientUserProfileId": 0,
+        "sendingUserProfileId": 0,
+        "submitTs": "2016-09-09T05:34:32.303Z"
+        }
+    ]
+}
