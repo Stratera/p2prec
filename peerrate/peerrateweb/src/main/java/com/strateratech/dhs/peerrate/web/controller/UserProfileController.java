@@ -123,7 +123,7 @@ public class UserProfileController {
         List<UserProfile> list = userProfileService.listUserProfiles();
         ResponseEntity<List<UserProfile>> resp = new ResponseEntity<>(headers,HttpStatus.NO_CONTENT);
       
-        if (list.size() > 0 ) {
+        if (list.size() == 0 ) {
         	resp = new ResponseEntity<>(list,headers,HttpStatus.NO_CONTENT);
         		      
         }
