@@ -67,7 +67,7 @@ angular.module("services.security", [
                     prefix + "/users/authentication",
                     {},
                     { headers: { "Accepts": "application/json" } })
-                    .$then(function (data) {
+                    .success(function (data) {
 
                         if (!data.username) {
                             ctx.login();
@@ -75,8 +75,8 @@ angular.module("services.security", [
                             ctx.user = User.$build(data);
                             ctx.loggingIn = false;
                         }
-                    }, 
-                    function () {
+                    })
+                    .catch(function () {
                         ctx.login();
                         throw "Failed Authentication";
                     });
