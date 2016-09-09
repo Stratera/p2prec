@@ -140,7 +140,7 @@ public class StrateratechSamlUserDetailsService implements org.springframework.s
         String username = credential.getNameID().getValue();
         Assertion mya = credential.getAuthenticationAssertion();
 
-        String tenant = mya.getIssuer().toString();
+        String tenant = getTenant(mya);
         Collection<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
         List<AttributeStatement> statements = mya.getAttributeStatements();
         if (statements != null && statements.size() > 0) {
@@ -153,15 +153,11 @@ public class StrateratechSamlUserDetailsService implements org.springframework.s
                             if (xmlAttrValues != null) {
                                 for (XMLObject obj : xmlAttrValues) {
                                     if (XSString.class.isAssignableFrom(obj.getClass())) {
-                                        log.debug("attr {}: {}", attr.getName(), ((XSStringImpl) obj).getValue());
-                                        log.debug("issuer: {}", mya.getIssuer().getValue());
                                         if (ApplicationRole.byRoleName(((XSString) obj).getValue()) != null) {
                                             addPermissions(grantedAuthorities, tenant,
                                                     ApplicationRole.byRoleName(((XSString) obj).getValue()));
                                         }
                                     } else if (XSAny.class.isAssignableFrom(obj.getClass())) {
-                                        log.debug("attr {}: {}", attr.getName(), ((XSAny) obj).getTextContent());
-                                        log.debug("issuer: {}", mya.getIssuer().getValue());
                                         if (ApplicationRole.byRoleName(((XSAny) obj).getTextContent()) != null) {
                                             addPermissions(grantedAuthorities, tenant,
                                                     ApplicationRole.byRoleName(((XSAny) obj).getTextContent()));
