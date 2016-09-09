@@ -84,20 +84,10 @@ angular.module("services.security", [
             }
             return ret;
 
-            // var deferred = $q.defer();
-
-            // deferred.resolve({
-            //     username: 'johndoe@gmail.com',
-            //     name: 'John Doe',
-            //     authorization: 'regularUser'
-            // });
-            // deferred.reject('Failed Authentication');
-
-            // return deferred.promise;
         },
 
         login: function () {
-            // $window.location.replace(servicesConfig.prefix + "/");
+            $window.location.replace(servicesConfig.prefix + "/");
             
         }
 

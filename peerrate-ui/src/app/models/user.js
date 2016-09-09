@@ -9,23 +9,23 @@ angular.module("models.user", [
  */
 .factory("User", function (model) {
     
-    return model("/users").mix({
+    return model("/users/authentication").mix({
         
-        // $hooks: {
+        $hooks: {
             
-        //     "after-extend": function () {
-        //         this.$authoritySet = createAuthoritySet(this.authorities || []);
-        //     }
+            "after-extend": function () {
+                this.$authoritySet = createAuthoritySet(this.authorities || []);
+            }
             
-        // },
+        },
         
-        // $extend: {
-        //     Record: {
-        //         isAuthorized: function (authorization) {
-        //             return !authorization || !!this.$authoritySet[authorization];
-        //         }
-        //     }
-        // }
+        $extend: {
+            Record: {
+                isAuthorized: function (authorization) {
+                    return !authorization || !!this.$authoritySet[authorization];
+                }
+            }
+        }
         
     });
 

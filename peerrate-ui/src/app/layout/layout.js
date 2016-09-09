@@ -1,7 +1,9 @@
-function LayoutController ($scope, $location, $state, $stateParams, $timeout, component) {
+function LayoutController ($scope, $location, $state, $stateParams, $timeout, component, currentUser) {
     var vm = this;
+    
+    vm.user = currentUser;
 
-    // vm.user = currentUser;
+
 
     vm.componentPages = component.get().map(function (c, i) {
       var active = i === 0;
@@ -47,6 +49,7 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
 
 }
 angular.module("app.layout", [
+    "models.user",
     "app.constants",
     "services.router",
     "services.component",

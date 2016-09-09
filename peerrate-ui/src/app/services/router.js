@@ -184,25 +184,25 @@ angular.module("services.router", [
     $rootScope.$on('$stateChangeStart', function (event, to, toParams, from, fromParams) {
 
       // Verify user can access the route, else, re-route them to unauthorized.
-      // if (!security.isAuthorized(to.data.route.access)) {
-      //   event.preventDefault();
-      //   if (!security.isLoggedIn()) {
-      //     if (!security.isLoginPending()) {
-      //       security.loadUser().resolve().then(function () {
-      //         $state.transitionTo(to, toParams);
-      //       });
-      //     } else {
-      //       $state.transitionTo("loading");
-      //     }
-      //     event.preventDefault();
-      //   } else {
-      //     route.goToUnauthorized();
-      //   }
-      // } else {
-      //   if (angular.equals(fromParams, toParams)) {
-      //     $rootScope.$broadcast("router.queryParamsChanged", $stateParams);
-      //   }
-      // }
+      if (!security.isAuthorized(to.data.route.access)) {
+        event.preventDefault();
+        if (!security.isLoggedIn()) {
+          if (!security.isLoginPending()) {
+            security.loadUser().resolve().then(function () {
+              $state.transitionTo(to, toParams);
+            });
+          } else {
+            $state.transitionTo("loading");
+          }
+          event.preventDefault();
+        } else {
+          route.goToUnauthorized();
+        }
+      } else {
+        if (angular.equals(fromParams, toParams)) {
+          $rootScope.$broadcast("router.queryParamsChanged", $stateParams);
+        }
+      }
 
     });
 
