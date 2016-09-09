@@ -57,7 +57,7 @@ public class RecognitionController {
     @ApiOperation("Save Recognition web object")
     @RequestMapping( method=RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Recognition> save(@Valid @RequestBody Recognition recognition) {
+    public ResponseEntity<Recognition> save(@RequestBody Recognition recognition) {
     	HttpStatus status = HttpStatus.BAD_REQUEST;
         RestAuthenticationToken authToken = securityService.mapSamlTokenToContractModel(SecurityContextHolder.getContext().getAuthentication());
         
