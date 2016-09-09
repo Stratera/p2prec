@@ -23,15 +23,6 @@ gulp.task('styles', function() {
   return buildStyles();
 });
 
-// gulp.task('compileVendorFiles', function () {
-//     return gulp.src([
-//       path.join(paths.src, '/vendor/**/*')
-//     ])
-//       .pipe($.sourcemaps.init())
-//       .pipe($.sourcemaps.write())
-//       .pipe(gulp.dest(path.join(paths.tmp, '/serve/app/')));
-// });
-
 var buildStyles = function() {
   var sassOptions = {
     outputStyle: 'expanded',
@@ -39,8 +30,6 @@ var buildStyles = function() {
   };
 
   var injectFiles = gulp.src([
-    path.join(paths.src, '/vendor/**/*.css'),
-    path.join('!' + paths.src, '/vendor/**/*.min.css'),
     path.join(paths.src, '/app/**/*.scss'),
     path.join('!' + paths.src, '/app/index.scss')
   ], { read: false });

@@ -26,6 +26,7 @@ fs.readdirSync('./gulp').filter(function(file) {
  *  main optimization build task
  */
 gulp.task('default', ['clean'], function () {
+
     gulp.start('build');
     return gutil.log('Gulp is running!')
 });
