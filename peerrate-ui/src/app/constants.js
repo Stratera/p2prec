@@ -1,6 +1,6 @@
 angular
     .module('app.constants', [])
     .constant('servicesConfig', {
-        prefix: "",
+        prefix: "peerrateweb/",
         useAuth: true
     });

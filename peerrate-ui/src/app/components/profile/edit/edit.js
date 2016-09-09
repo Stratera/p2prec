@@ -60,9 +60,9 @@ EditProfileController.prototype = {
         var newUser = {};
         newUser = vm.userData;
 
-        vm.userModel.$create(newUser).$then(function (response) {
-            console.log(response);
-        });
+        // vm.userModel.$create(newUser).$then(function (response) {
+        //     console.log(response);
+        // });
     },
 
     loadUser: function () {
