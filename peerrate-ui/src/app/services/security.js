@@ -63,11 +63,11 @@ angular.module("services.security", [
             var ret = false;
             var prefix = servicesConfig.prefix;
             if (!ctx.isLoginPending()) {
-                ret = $http.post(
+                ret = $http.get(
                     prefix + "/users/authentication",
                     {},
                     { headers: { "Accepts": "application/json" } })
-                    .success(function (data) {
+                    .$then(function (data) {
 
                         if (!data.username) {
                             ctx.login();
@@ -75,8 +75,8 @@ angular.module("services.security", [
                             ctx.user = User.$build(data);
                             ctx.loggingIn = false;
                         }
-                    })
-                    .catch(function () {
+                    }, 
+                    function () {
                         ctx.login();
                         throw "Failed Authentication";
                     });
@@ -87,7 +87,7 @@ angular.module("services.security", [
         },
 
         login: function () {
-            $window.location.replace(servicesConfig.prefix + "/");
+            $window.location.replace(servicesConfig.prefix + "/#/");
         }
 
     };
