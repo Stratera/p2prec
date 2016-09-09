@@ -28,7 +28,7 @@ angular.module("services.security", [
          * @name isLoggedIn
          *
          * @description
-         * Specifies if the app assume the user is logged in.
+         * Specifies if the app assumes the user is logged in.
          */
         isLoggedIn: function () {
             return !!this.user;
@@ -61,7 +61,7 @@ angular.module("services.security", [
         loadUser: function () {
             var ctx = this;
             var ret = false;
-            var prefix = servicesConfig.useAuth ? servicesConfig.prefix : "/mock";
+            var prefix = servicesConfig.prefix;
             if (!ctx.isLoginPending()) {
                 ret = $http.post(
                     prefix + "/users/authentication",
@@ -88,7 +88,6 @@ angular.module("services.security", [
 
         login: function () {
             $window.location.replace(servicesConfig.prefix + "/");
-            
         }
 
     };
