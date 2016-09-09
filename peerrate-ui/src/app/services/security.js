@@ -28,7 +28,7 @@ angular.module("services.security", [
          * @name isLoggedIn
          *
          * @description
-         * Specifies if the app assume the user is logged in.
+         * Specifies if the app assumes the user is logged in.
          */
         isLoggedIn: function () {
             return !!this.user;
@@ -61,9 +61,9 @@ angular.module("services.security", [
         loadUser: function () {
             var ctx = this;
             var ret = false;
-            var prefix = servicesConfig.useAuth ? servicesConfig.prefix : "/mock";
+            var prefix = servicesConfig.prefix;
             if (!ctx.isLoginPending()) {
-                ret = $http.post(
+                ret = $http.get(
                     prefix + "/users/authentication",
                     {},
                     { headers: { "Accepts": "application/json" } })
@@ -84,21 +84,10 @@ angular.module("services.security", [
             }
             return ret;
 
-            // var deferred = $q.defer();
-
-            // deferred.resolve({
-            //     username: 'johndoe@gmail.com',
-            //     name: 'John Doe',
-            //     authorization: 'regularUser'
-            // });
-            // deferred.reject('Failed Authentication');
-
-            // return deferred.promise;
         },
 
         login: function () {
-            // $window.location.replace(servicesConfig.prefix + "/");
-            
+            $window.location.replace(servicesConfig.prefix + "/#/");
         }
 
     };

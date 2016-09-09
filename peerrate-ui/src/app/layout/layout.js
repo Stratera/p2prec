@@ -1,7 +1,9 @@
-function LayoutController ($scope, $location, $state, $stateParams, $timeout, component) {
+function LayoutController ($scope, $location, $state, $stateParams, $timeout, component, currentUser) {
     var vm = this;
+    
+    vm.user = currentUser;
 
-    // vm.user = currentUser;
+
 
     vm.componentPages = component.get().map(function (c, i) {
       var active = i === 0;
@@ -16,7 +18,7 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
           persistent: c.persistent,
           savedState: null
       };
-    }, this);
+    }, vm);
 
     vm.setPageSelected = function (page) {
         if (page.savedState) {
@@ -47,9 +49,11 @@ function LayoutController ($scope, $location, $state, $stateParams, $timeout, co
 
 }
 angular.module("app.layout", [
+    "models.user",
     "app.constants",
     "services.router",
-    "services.component"
+    "services.component",
+    "app.directives.footer"
 ])
 
 .controller('LayoutController', LayoutController)
@@ -61,7 +65,8 @@ angular.module("app.layout", [
       controller: "LayoutController",
       controllerAs: "layoutController",
       access: "user",
-      scope: true
+      scope: true,
+      title: 'DHS Challenge'
     });
 
     componentProvider.registerParentRoute("layout", "content");

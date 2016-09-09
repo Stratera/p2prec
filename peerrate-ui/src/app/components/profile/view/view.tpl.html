@@ -1,46 +1,40 @@
 <div class="styleguide-content usa-grid" ng-controller="ViewProfileController">
   <div class="usa-width-one-third profilePic">
-    <img class="img" src="vendor/dhs/img/profile/profile_picture_u50.png">
+    <profile></profile>
 
     <div>
-      <h2>John Doe</h2>
+      <h2>{{viewProfileController.userData.firstName}} {{viewProfileController.userData.lastName}}</h2>
       <span><a ng-click="viewProfileController.viewProfilePage()">Edit my profile</a></span>
     </div>
 
     <div>
-      <h4>Job Title</h4>
-      <span>Manager</span>
-    </div>
-
-    <div>
       <h4>Department</h4>
-      <span>Human Resources</span>
+      <span>{{viewProfileController.userData.department}}</span>
     </div>
 
     <div>
       <h4>Location</h4>
-      <span>City, State</span>
+      <span>{{viewProfileController.userData.city}}, {{viewProfileController.userData.state}}</span>
     </div>
 
     <div>
       <h4>Phone</h4>
-      <span>123 - 456 - 7890</span>
+      <span>{{viewProfileController.userData.phone}}</span>
     </div>
 
     <div>
       <h4>Email</h4>
-      <span>John.Doe@organization.gov</span>
+      <span>{{viewProfileController.userData.email}}</span>
     </div>
-
   </div>
   <div class="usa-width-two-thirds">
     <div class="usa-grid">
       <div class="usa-width-one-whole">
         <div class="usa-form float-right viewSelect">
-          <select name="options" id="options">
-            <option value="value1">View all recognition</option>
-            <option value="value2">Recognition received</option>
-            <option value="value3">Recognition given</option>
+          <select id="recognition" name="recognition" ng-model="viewProfileController.recognition">
+            <option value="viewAll">View all recognition</option>
+            <option value="viewMine">Recognition received</option>
+            <option value="viewTheirs">Recognition given</option>
           </select>
         </div>
       </div>

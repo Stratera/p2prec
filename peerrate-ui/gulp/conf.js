@@ -26,11 +26,11 @@ exports.configProperties = {
   build: 1,
   environments: {
     prod: {
-      svrPrefix: "ec2-54-244-188-70.us-west-2.compute.amazonaws.com",
+      svrPrefix: "",
       useAuth: true
     },
     stag: {
-      svrPrefix: "ec2-54-201-199-140.us-west-2.compute.amazonaws.com",
+      svrPrefix: "",
       useAuth: true,
       debug: true
     },

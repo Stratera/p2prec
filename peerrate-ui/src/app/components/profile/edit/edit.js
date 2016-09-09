@@ -1,6 +1,7 @@
 angular.module("app.components.profile.edit", [
     "services.component",
-    "models.user"
+    "services.security",
+    "app.directives.profilePic"
 ])
 
     .config(function (componentProvider) {
@@ -20,50 +21,30 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, component) {
-    var ctx = this;
+function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, security) {
+    var vm = this;
+    vm.profileData = Profile.$find(security.user.id).$then(function (response) {
+        return response;
+    },
+    function (err) {
+        return require('edit.mock');
+    });
     // this.editProfileForm;
-    ctx.userData = {
-        firstName:              "",
-        lastName:               "",
-        middleName:             "",
-        department:             "",
-        city:                   "",
-        state:                  "",
-        phone:                  "",
-        email:                  "",
-        workAnniversaryDate:    {
-            month:  "",
-            day:    "",
-            year:   ""
-        },
-        birthday:    {
-            month:  "",
-            day:    "",
-            year:   ""
-        }
-    };
+    vm.openUploadDialog = function() {
 
-    // $scope.$watch("this.userData.firstName", function (newVal, oldVal) {
-    //     var isValid = newVal >= 1 ? true : false;
-    //     ctx.userData.firstName.$setValidity("firstName", isValid);
-    // });
-
-    // $scope.$watch('editProfileForm', function () {
-    //
-    //     this.user.firstName.length >= 1 ? this.editProfileForm : true;
-    // });
+  };
 
 
 }
 
 EditProfileController.prototype = {
     submitForm: function () {
+        var vm = this;
         // REST endpoint edit? user
         var newUser = {};
-        newUser = this.userData;
+        newUser = vm.userData;
 
-        userData.$create(newUser).$then(function (response) {
+        vm.userModel.$create(newUser).$then(function (response) {
             console.log(response);
         });
     },
