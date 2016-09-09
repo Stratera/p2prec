@@ -6,7 +6,7 @@
 	<artifactId>peerrate</artifactId>
 
 	<packaging>pom</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>peerrate</name>
 	<url>http://maven.apache.org</url>
 
