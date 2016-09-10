@@ -188,7 +188,7 @@ angular.module("services.router", [
         event.preventDefault();
         if (!security.isLoggedIn()) {
           if (!security.isLoginPending()) {
-            security.loadUser().resolve().then(function () {
+            security.loadUser().then(function () {
               $state.transitionTo(to, toParams);
             });
           } else {

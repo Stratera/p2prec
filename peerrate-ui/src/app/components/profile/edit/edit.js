@@ -1,5 +1,7 @@
 angular.module("app.components.profile.edit", [
     "services.component",
+    "services.security",
+    "app.directives.profilePic"
     "models.user",
     "app.directives.profilePic",
     "jkuri.datepicker"
@@ -22,31 +24,20 @@ angular.module("app.components.profile.edit", [
 
     .controller("EditProfileController", EditProfileController);
 
-function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, User) {
+function EditProfileController($scope, $location, $state, $stateParams, $timeout, component, security) {
     var vm = this;
-    vm.userModel = User;
+    vm.profileData = Profile.$find(security.user.id).$then(function (response) {
+        return response;
+    },
+    function (err) {
+        return require('edit.mock');
+    });
     // this.editProfileForm;
-    vm.userData = {
-        firstName:              "Indira",
-        lastName:               "Vaddiparti",
-        middleName:             "P",
-        department:             "IT",
-        city:                   "Alexandria",
-        state:                  "VA",
-        zip:                     "20841",
-        phone:                  "123-456-7890",
-        email:                  "ivaddiparti@strateratech.com",
-        workAnniversaryDate:    {
-            month:  "08",
-            day:    "28",
-            year:   2005
-        },
-        dateOfBirth: "2016-09-09T05:36:27.239Z",
-        additionalInfo: "I love javascript!!!!"
-    };
     vm.openUploadDialog = function() {
 
   };
+
+
 }
 
 EditProfileController.prototype = {

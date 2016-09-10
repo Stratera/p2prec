@@ -3,6 +3,7 @@ package com.strateratech.dhs.peerrate.web.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -92,7 +94,28 @@ public class UserProfileControllerTest {
         Assert.assertTrue(resp.getHeaders().containsKey(HttpHeaders.LOCATION));
     }
 
-    
+
+
+    @Test
+    @Transactional
+    public void testList() throws IOException {
+       
+
+        ResponseEntity<List<UserProfile>> resp = userProfileController.listUserProfiles();
+        Assert.assertEquals(2,resp.getBody().size());
+    }
+
+    @Test
+    @Transactional
+    public void testGet() throws IOException {
+       
+
+        ResponseEntity<UserProfile> resp = userProfileController.getByID(2L);
+        Assert.assertEquals("jpierce@strateratech.com",resp.getBody().getEmail());
+        resp = userProfileController.getByID(-1L);
+        Assert.assertNull(resp.getBody());
+        Assert.assertEquals(HttpStatus.NOT_FOUND, resp.getStatusCode());
+    }
 
     @Transactional
     @Test
