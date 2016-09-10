@@ -67,7 +67,7 @@ angular.module("services.security", [
                     prefix + "/users/authentication",
                     {},
                     { headers: { "Accepts": "application/json" } })
-                    .success(function (data) {
+                    .then(function (data) {
 
                         if (!data.username) {
                             ctx.login();
@@ -75,10 +75,23 @@ angular.module("services.security", [
                             ctx.user = User.$build(data);
                             ctx.loggingIn = false;
                         }
-                    })
-                    .catch(function () {
+                    },
+                    function () {
+                        if ($window.location.hostname === 'localhost') {
+                            var userAccount = {
+                                "username" : "jdoe@strateratech.com",
+                                "email" : "jdoe@strateratech.com",
+                                "firstName" : "John",
+                                "lastName" : "Doe",
+                                "tenant" : "https://idp.ssocircle.com",
+                                "authorities" : [ "PEER_DISCOVER", "PEER_RATE" ]
+                            };
+                            ctx.user = userAccount;
+                            ctx.loggingIn = false;
+                        } else {
                         ctx.login();
-                        throw "Failed Authentication";
+                        console.log("Failed Authentication");
+                        }
                     });
                 ctx.loggingIn = true;
             }
@@ -87,7 +100,9 @@ angular.module("services.security", [
         },
 
         login: function () {
-            $window.location.replace(servicesConfig.prefix + "/#/");
+            if ($window.location.hostname !== 'localhost') {
+                $window.location.replace(servicesConfig.prefix + "/#/");
+            }
         }
 
     };

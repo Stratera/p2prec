@@ -15,31 +15,7 @@ exports.paths = {
   src: 'src',
   dist: 'dist',
   tmp: '.tmp',
-  vendor: 'vendor',
-  config: 'config',
   e2e: 'e2e'
-};
-
-exports.configProperties = {
-  applyTo: "src/app/constants.js",
-  version: "1.1.0",
-  build: 1,
-  environments: {
-    prod: {
-      svrPrefix: "",
-      useAuth: true
-    },
-    stag: {
-      svrPrefix: "",
-      useAuth: true,
-      debug: true
-    },
-    local: {
-      svrPrefix: "http://localhost:3000",
-      useAuth: "",
-      debug: true
-    }
-  }
 };
 
 /**
@@ -48,7 +24,6 @@ exports.configProperties = {
  *  to inject css preprocessor deps and js files in karma
  */
 exports.wiredep = {
-  exclude: [/\/bootstrap\.js$/, /\/bootstrap-sass\/.*\.js/, /\/bootstrap\.css/],
   directory: 'bower_components'
 };
 

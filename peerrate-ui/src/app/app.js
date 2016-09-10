@@ -11,7 +11,6 @@ angular
     'ngDialog',
     'jkuri.datepicker',
     'ui.router',
-    'ui.bootstrap',
     'ui.layout',
     'ui.grid',
 
