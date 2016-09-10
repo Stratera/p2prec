@@ -41,6 +41,7 @@ public final class RestUtils {
     public static final int CACHE_DURATION_IN_SECONDS = 60 * 60; // 1 hour
     public static final String CACHE_CONTROL_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss 'UTC'";
 
+    public static final String URL_SEPARATOR = "/";
     
     private static final String LOAD_BALANCER_CLIENT_IP_HEADER_NAME = "X-Forwarded-For";
     

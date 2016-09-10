@@ -80,7 +80,7 @@ public class UserProfileController {
             user = userProfileService.save(user, authToken.getEmail());
             headers.add(HttpHeaders.LOCATION, 
                     RestUtils.getBaseUrl()+UserProfileController.class.getAnnotation(RequestMapping.class).value()[0]
-                            +user.getId());
+                            +RestUtils.URL_SEPARATOR+user.getId());
 
         }
         return new ResponseEntity<UserProfile>(headers, status);
@@ -104,7 +104,7 @@ public class UserProfileController {
         user = userProfileService.save(user, authToken.getEmail());
         headers.add(HttpHeaders.LOCATION, 
                     RestUtils.getBaseUrl()+UserProfileController.class.getAnnotation(RequestMapping.class).value()[0]
-                            +user.getId());
+                            +RestUtils.URL_SEPARATOR+user.getId());
 
         return new ResponseEntity<UserProfile>(headers, status);
 
@@ -151,7 +151,7 @@ public class UserProfileController {
         } else {
             restHeaders.add(HttpHeaders.LOCATION, 
                             RestUtils.getBaseUrl()+UserProfileController.class.getAnnotation(RequestMapping.class).value()[0]
-                                    +profile.getId());
+                                    +RestUtils.URL_SEPARATOR+profile.getId());
  
         }
         return new ResponseEntity<UserProfile>(profile, restHeaders,
