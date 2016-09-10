@@ -3,7 +3,6 @@
  */
 
 angular.module("app.components.recognition.recognition", [
-  'ngDialog',
   "services.component",
   "models.user"
 ]).controller('RecognitionController',RecognitionController);

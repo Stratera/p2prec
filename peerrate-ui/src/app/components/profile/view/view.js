@@ -1,5 +1,4 @@
 angular.module("app.components.profile.view", [
-  "ngDialog",
   "services.component",
   "models.user",
   "app.directives.profilePic"
@@ -30,9 +29,6 @@ function ViewProfileController($scope, $state, ngDialog) {
   };
 
   vm.date = new Date();
-  // ProfileService.getProfile(id).then(function(response){
-  //   vm.userData = response.data;
-  // });
 
   vm.userData = {
     firstName:              "Indira",

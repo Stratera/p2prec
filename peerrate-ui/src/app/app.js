@@ -9,7 +9,6 @@ angular
     'ngMessages',
     'ngAria',
     'ngDialog',
-    'jkuri.datepicker',
     'ui.router',
     'ui.layout',
     'ui.grid',
