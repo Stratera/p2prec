@@ -1,7 +1,6 @@
 angular.module("app.components.profile.edit", [
     "services.component",
     "services.security",
-    "app.directives.profilePic"
     "models.user",
     "app.directives.profilePic",
     "jkuri.datepicker"
