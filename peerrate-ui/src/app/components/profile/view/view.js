@@ -22,7 +22,7 @@ angular.module("app.components.profile.view", [
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope, $state, ngDialog) {
+function ViewProfileController($scope, $state) {
   var vm = this;
 
   vm.viewProfilePage = function() {
