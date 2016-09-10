@@ -9,7 +9,6 @@ angular
     'ngMessages',
     'ngAria',
     'ui.router',
-    'ui.bootstrap',
     'ui.layout',
     'ui.grid',
 

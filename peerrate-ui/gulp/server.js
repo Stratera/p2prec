@@ -13,9 +13,6 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
 
-var paths = conf.paths;
-var props = conf.configProperties;
-
 var util = require('util');
 
 var proxyMiddleware = require('http-proxy-middleware');
@@ -45,7 +42,7 @@ function browserSyncInit(baseDir, browser) {
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', changeOrigin: true});
 
   browserSync.instance = browserSync.init({
-    startPath: '/#/',
+    startPath: '/',
     server: server,
     browser: browser
   });
