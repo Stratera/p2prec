@@ -1,4 +1,5 @@
 angular.module("app.components.profile.view", [
+  "ngDialog",
   "services.component",
   "models.user",
   "app.directives.profilePic"
@@ -21,7 +22,7 @@ angular.module("app.components.profile.view", [
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope, $state) {
+function ViewProfileController($scope, $state, ngDialog) {
   var vm = this;
 
   vm.viewProfilePage = function() {
@@ -58,3 +59,10 @@ function ViewProfileController($scope, $state) {
   };
   vm.recognition= "viewAll"
 }
+
+ViewProfileController.prototype = {
+  provideRecognition: function(userId) {
+    ngDialog.open({ template: 'recognition.tpl.html.html', className: 'ngdialog-theme-default' });
+  }
+
+};

@@ -1,7 +1,9 @@
 (function () {
   'use strict';
 
-  describe('controllers', function () {
-
+  describe("profile", function () {
+    describe("Controller : EditProfileController", function () {
+      var scope, $rootScope, $controller, $httpBackend;
+    });
   });
 })();

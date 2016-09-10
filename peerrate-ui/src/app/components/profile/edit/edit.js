@@ -1,7 +1,8 @@
 angular.module("app.components.profile.edit", [
     "services.component",
     "models.user",
-    "app.directives.profilePic"
+    "app.directives.profilePic",
+    "jkuri.datepicker"
 ])
 
     .config(function (componentProvider) {
@@ -40,12 +41,7 @@ function EditProfileController($scope, $location, $state, $stateParams, $timeout
             day:    "28",
             year:   2005
         },
-        birthday:    {
-            month:  "04",
-            day:    "19",
-            year:   1978,
-            public: false
-        },
+        dateOfBirth: "2016-09-09T05:36:27.239Z",
         additionalInfo: "I love javascript!!!!"
     };
     vm.openUploadDialog = function() {
@@ -60,9 +56,9 @@ EditProfileController.prototype = {
         var newUser = {};
         newUser = vm.userData;
 
-        // vm.userModel.$create(newUser).$then(function (response) {
-        //     console.log(response);
-        // });
+        vm.userModel.$create(newUser).$then(function (response) {
+            console.log(response);
+        });
     },
 
     loadUser: function () {
