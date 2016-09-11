@@ -29,36 +29,23 @@ function ViewProfileController($scope, $state) {
   };
 
   vm.date = new Date();
-
-  vm.userData = {
-    firstName:              "Indira",
-    lastName:               "Vaddiparti",
-    middleName:             "P",
-    department:             "IT",
-    city:                   "Alexandria",
-    state:                  "VA",
-    zip:                     "20841",
-    phone:                  "123-456-7890",
-    email:                  "ivaddiparti@strateratech.com",
-    workAnniversaryDate:    {
-      month:  "08",
-      day:    "28",
-      year:   "2005"
-    },
-    birthday:    {
-      month:  "04",
-      day:    "19",
-      year:   "1978",
-      public: false
-    },
-    additionalInfo: "I love javascript!!!!"
-  };
-  vm.recognition= "viewAll"
 }
 
 ViewProfileController.prototype = {
   provideRecognition: function(userId) {
     ngDialog.open({ template: 'recognition.tpl.html.html', className: 'ngdialog-theme-default' });
+  },
+
+  loadUser: function($http) {
+    $http({
+      method: 'GET',
+      url: '/userprofiles/100000'
+    }).then(function successCallback(response) {
+      vm.userData = response;
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
   }
 
 };

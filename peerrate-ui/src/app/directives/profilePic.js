@@ -6,7 +6,6 @@ angular.module("app.directives.profilePic",[])
     replace: true,
     templateUrl: 'app/directives/profilepic.html',
     link: function(scope, element, attrs) {
-      console.log(scope.value);
     }
   }
 }]);
