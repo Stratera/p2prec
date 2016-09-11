@@ -1,4 +1,4 @@
-<div xmlns:spring="http://www.springframework.org/tags" 
+<jsp:root xmlns:spring="http://www.springframework.org/tags" 
 xmlns:jsp="http://java.sun.com/JSP/Page" 
 xmlns:c="http://java.sun.com/jsp/jstl/core" 
 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
@@ -53,19 +53,12 @@ version="2.0">
 	<sec:authorize access="isAuthenticated()">
 	<div>
 	<div>Username: ${sessionScope.SPRING_SECURITY_CONTEXT.authentication.name} (This means you are logged in)</div>
-	<table>
-		<tbody>
-		<sec:authentication property="authorities" var="roles" scope="page" />
-
-    <c:forEach var="role" items="${roles}">
-    <tr><td>${role}</td></tr>
-    </c:forEach>
-
-		</tbody>
-	</table>
+		<div> Permissions:
+			<sec:authentication property="authorities"/>
+		</div>
 	</div>
 
 	</sec:authorize>
 	
 	
-</div>
+</jsp:root>
