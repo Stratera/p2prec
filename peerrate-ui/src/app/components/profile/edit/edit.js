@@ -1,7 +1,9 @@
 angular.module("app.components.profile.edit", [
     "services.component",
     "services.security",
-    "app.directives.profilePic"
+    "models.user",
+    "app.directives.profilePic",
+    "720kb.datepicker"
 ])
 
     .config(function (componentProvider) {

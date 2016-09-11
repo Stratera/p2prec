@@ -8,10 +8,11 @@ angular
     'ngSanitize',
     'ngMessages',
     'ngAria',
+    'ngDialog',
     'ui.router',
-    'ui.bootstrap',
     'ui.layout',
     'ui.grid',
+    '720kb.datepicker',
 
     'restmod',
 

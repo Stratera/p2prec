@@ -151,7 +151,7 @@ angular.module("services.router", [
         $timeout.cancel(propagateTimer);
         propagateTimer = $timeout(function () {
           $rootScope.$broadcast(
-            "state.restore.state",
+            "router.restore.state",
             {
               state: state.data.route.name,
               data: data
@@ -165,7 +165,7 @@ angular.module("services.router", [
     $rootScope.$storage = $sessionStorage;
 
     // respond to a request to persist state.
-    $rootScope.$on("state.persist.state", function (event, attrs) {
+    $rootScope.$on("router.persist.state", function (event, attrs) {
       var name = $state.current.name;
       if (!$rootScope.$storage[name]) {
         $sessionStorage[name] = {};
@@ -188,9 +188,9 @@ angular.module("services.router", [
         event.preventDefault();
         if (!security.isLoggedIn()) {
           if (!security.isLoginPending()) {
-            security.loadUser().then(function () {
-              $state.transitionTo(to, toParams);
-            });
+              security.loadUser().then(function () {
+                $state.transitionTo(to, toParams);
+              });
           } else {
             $state.transitionTo("loading");
           }

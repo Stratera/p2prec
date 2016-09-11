@@ -6,7 +6,6 @@ angular.module("app.directives.footer",[])
     replace: true,
     templateUrl: 'app/directives/footer.html',
     link: function(scope, element, attrs) {
-      console.log(scope.value);
     }
   }
 }]);

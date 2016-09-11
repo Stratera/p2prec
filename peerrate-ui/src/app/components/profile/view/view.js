@@ -1,6 +1,8 @@
 angular.module("app.components.profile.view", [
   "services.component",
+  "services.security",
   "models.user",
+  "models.profile",
   "app.directives.profilePic"
 ])
 
@@ -15,46 +17,58 @@ angular.module("app.components.profile.view", [
       access: "",
       scope: true,
       reloadOnSearch: true,
-      queryParams: []
+      queryParams: [
+        'p',
+      ]
     })
   })
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope, $state) {
+function ViewProfileController($scope, $state, security, Profile) {
   var vm = this;
+  vm.user = security.user;
+  vm.profileModel = Profile;
+  vm.allProfiles = [];
+  vm.profilesInUserDept = []; 
+  vm.profilePageData = {};
 
   vm.viewProfilePage = function() {
     $state.go("editProfile");
   };
 
   vm.date = new Date();
-  // ProfileService.getProfile(id).then(function(response){
-  //   vm.userData = response.data;
-  // });
+  vm.recognition= "viewAll";
 
-  vm.userData = {
-    firstName:              "Indira",
-    lastName:               "Vaddiparti",
-    middleName:             "P",
-    department:             "IT",
-    city:                   "Alexandria",
-    state:                  "VA",
-    zip:                     "20841",
-    phone:                  "123-456-7890",
-    email:                  "ivaddiparti@strateratech.com",
-    workAnniversaryDate:    {
-      month:  "08",
-      day:    "28",
-      year:   "2005"
-    },
-    birthday:    {
-      month:  "04",
-      day:    "19",
-      year:   "1978",
-      public: false
-    },
-    additionalInfo: "I love javascript!!!!"
-  };
-  vm.recognition= "viewAll"
+  $scope.$on('router.restore.state', function (event, to) {
+    var output = to.data.p;
+
+    vm.allProfiles = vm.getAllProfiles();
+    console.log(vm.allProfiles);
+
+    vm.userData = vm.user;
+    
+  });
+
+
 }
+
+ViewProfileController.prototype = {
+
+  provideRecognition: function(userId) {
+    ngDialog.open({ template: 'recognition.tpl.html.html', className: 'ngdialog-theme-default' });
+  },
+
+  getAllProfiles: function() {
+    this.profileModel.$collection().$fetch().$then(function (response) {
+      return response.$response.data;
+    })
+  },
+
+  loadProfileById: function(id) {
+    this.state.go('viewProfile', {
+      p: id
+    });
+  }
+
+};
