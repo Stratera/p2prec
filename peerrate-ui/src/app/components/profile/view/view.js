@@ -1,6 +1,8 @@
 angular.module("app.components.profile.view", [
   "services.component",
+  "services.security",
   "models.user",
+  "models.profile",
   "app.directives.profilePic"
 ])
 
@@ -15,36 +17,57 @@ angular.module("app.components.profile.view", [
       access: "",
       scope: true,
       reloadOnSearch: true,
-      queryParams: []
+      queryParams: [
+        'p',
+      ]
     })
   })
 
   .controller("ViewProfileController", ViewProfileController);
 
-function ViewProfileController($scope, $state) {
+function ViewProfileController($scope, $state, security, Profile) {
   var vm = this;
+  vm.user = security.user;
+  vm.profileModel = Profile;
+  vm.allProfiles = [];
+  vm.profilesInUserDept = []; 
+  vm.profilePageData = {};
 
   vm.viewProfilePage = function() {
     $state.go("editProfile");
   };
 
   vm.date = new Date();
+  vm.recognition= "viewAll";
+
+  $scope.$on('router.restore.state', function (event, to) {
+    var output = to.data.p;
+
+    vm.allProfiles = vm.getAllProfiles();
+    console.log(vm.allProfiles);
+
+    vm.userData = vm.user;
+    
+  });
+
+
 }
 
 ViewProfileController.prototype = {
+
   provideRecognition: function(userId) {
     ngDialog.open({ template: 'recognition.tpl.html.html', className: 'ngdialog-theme-default' });
   },
 
-  loadUser: function($http) {
-    $http({
-      method: 'GET',
-      url: '/userprofiles/100000'
-    }).then(function successCallback(response) {
-      vm.userData = response;
-    }, function errorCallback(response) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
+  getAllProfiles: function() {
+    this.profileModel.$collection().$fetch().$then(function (response) {
+      return response.$response.data;
+    })
+  },
+
+  loadProfileById: function(id) {
+    this.state.go('viewProfile', {
+      p: id
     });
   }
 
