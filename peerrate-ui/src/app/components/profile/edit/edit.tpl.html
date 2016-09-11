@@ -7,7 +7,7 @@
   </div>
 
   <div class="usa-width-two-thirds editGrid">
-    <h1>Edit My Profile</h1>
+    <h2>Edit My Profile</h2>
     <div class="usa-width-one-half">
       <form ng-model="editProfileController.editProfileForm"
             ng-submit="editProfileController.submitForm()" class="usa-form" name="editProfileForm">
@@ -163,25 +163,10 @@
         <div class="usa-date-of-birth" style="margin:0px;">
           <label>Date of birth</label>
           <span class="usa-form-hint" id="dobHint">For example: 04 28 1986</span>
-          <datepicker>
+          <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>">
             <input ng-model="editProfileController.userData.dateOfBirth" type="text"/>
           </datepicker>
-
         </div>
-        <ul class="usa-unstyled-list header-anchors editRadio">
-          <li>
-            <input id="private" type="radio" ng-model="editProfileController.userData.birthday.public"
-                   ng-checked="(editProfileController.userData.birthday.public == false)"
-                   name="dobPublic" ng-value="private">
-            <label for="private">Private</label>
-          </li>
-          <li>
-            <input id="public" type="radio" ng-model="editProfileController.userData.birthday.public"
-                   ng-checked="editProfileController.userData.birthday.public == true" name="dobPublic"
-                   ng-value="public">
-            <label for="public">Public</label>
-          </li>
-        </ul>
         <label for="input-type-textarea">Additional Information</label>
         <textarea id="input-type-textarea" ng-model="editProfileController.userData.additionalInfo"
                   name="input-type-textarea"></textarea>
