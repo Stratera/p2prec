@@ -28,8 +28,19 @@
           </div>
         </div>
       </div>
+      <div class="usa-grid navigationBar">
+        <div class="collapse navbar-collapse usa-width-one-whole header-navigation header-anchors"
+             ng-controller="LayoutController">
+          <ul class="nav navbar-nav">
+            <li ng-repeat="component in layoutController.componentPages track by $index">
+              <p class="navbar-text"><a class="navbar-link" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+
 
             <!--<div class="usa-grid navigationBar">
               <nav class="navbar navbar-default" role="navigation">
@@ -57,16 +68,7 @@
 
 
 
-            <!--<div class="usa-grid navigationBar">
-              <div class="collapse navbar-collapse usa-width-one-whole header-navigation header-anchors"
-                   ng-controller="LayoutController">
-                <ul class="nav navbar-nav">
-                  <li ng-repeat="component in layoutController.componentPages track by $index">
-                    <p class="navbar-text"><a class="navbar-link" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>
-                  </li>
-                </ul>
-              </div>
-            </div>-->
+
 
   <div class="main-content" id="main-content">
     <div ui-view="content" class="layout-content flex-height-content container"></div>
