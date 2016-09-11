@@ -41,7 +41,7 @@
   margin-top: 4rem;
   position: relative;
   width: 100%;
-  top: 6.3rem; 
+  top: 6.3rem;
   @media screen and (min-width: 951px) {
     .main-content {
       width: calc(100% - 250px);
@@ -50,7 +50,7 @@
   }
   @media screen and (min-width: 951px) {
     .lt-ie9 .main-content {
-      width: 75%; 
+      width: 75%;
     }
   }
 }
@@ -70,14 +70,43 @@
 }
 
 
-// .header-navigation {
-//   li {
-//     display: inline;
-//     padding-right: 20px;
-//     color: #fff;
-//     padding-top: 30px;
-//   }
-// }
+ .header-navigation {
+   height: 100px;
+   ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+     background-color: #205493;
+   }
+
+   li {
+     float: left;
+     margin: 0px;
+   }
+
+   li a {
+     display: block;
+     color: white;
+     text-align: center;
+     padding: 16px;
+     text-decoration: none;
+   }
+
+   li a:hover {
+     background-color: #111111;
+   }
+
+   p {
+     margin: 0px;
+   }
+ }
+
+ .right-content {
+   margin: 0px;
+   top: 4rem;
+   width: 773px;
+ }
 
 .viewSelect {
   width: 200px;

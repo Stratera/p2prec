@@ -22,18 +22,21 @@
     </div>
   </div>
 </div>
-<div class="usa-grid navigationBar">
-  <div class="collapse navbar-collapse usa-width-one-whole header-navigation header-anchors"
-       ng-controller="LayoutController">
-    <ul class="nav navbar-nav">
+<div class="usa-grid-full navigationBar">
+  <aside class="usa-width-one-fourth">
+    <ul class="nav navbar-nav usa-sidenav-list">
       <li ng-repeat="component in layoutController.componentPages track by $index">
-        <p class="navbar-text"><a class="navbar-link" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>
+        <p class="navbar-text"><a class="navbar-link" ng-attr-class="{{$index == 0 && 'usa-current'}}" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>
       </li>
     </ul>
+  </aside>
+  <div class="usa-width-one-forth">
+    <div class="main-content right-content" id="main-content">
+      <div ui-view="content" class="layout-content flex-height-content container"></div>
+    </div>
   </div>
 </div>
-</div>
-            <!--<div class="usa-grid navigationBar">
+   <!--<div class="usa-grid navigationBar">
               <nav class="navbar navbar-default" role="navigation">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="nav-links" aria-expanded="false">
                   <span class="sr-only">Toggle navigation</span>
@@ -70,7 +73,5 @@
               </div>
             </div>-->
 
-  <div class="main-content" id="main-content">
-    <div ui-view="content" class="layout-content flex-height-content container"></div>
-  </div>
+
   <footer-template></footer-template>

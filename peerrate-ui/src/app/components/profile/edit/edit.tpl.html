@@ -156,18 +156,17 @@
 
         <label>Work Anniversary Date</label>
         <span class="usa-form-hint" id="waHint">For example: 04 28 1986</span>
-
-        <div class="usa-date-of-birth">
-          <!--<ng-datepicker ng-model="editProfileController.userData.dateOfBirth">
-          </ng-datepicker>-->
-        </div>
+        <datepicker>
+          <input ng-model="editProfileController.userData.dateOfBirth" type="text"/>
+        </datepicker>
 
         <div class="usa-date-of-birth" style="margin:0px;">
           <label>Date of birth</label>
+          <span class="usa-form-hint" id="dobHint">For example: 04 28 1986</span>
           <datepicker>
             <input ng-model="editProfileController.userData.dateOfBirth" type="text"/>
           </datepicker>
-          <span class="usa-form-hint" id="dobHint">For example: 04 28 1986</span>
+
         </div>
         <ul class="usa-unstyled-list header-anchors editRadio">
           <li>

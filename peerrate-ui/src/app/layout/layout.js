@@ -1,7 +1,6 @@
-function LayoutController ($scope, $location, $state, $stateParams, $timeout, component, currentUser) {
+function LayoutController ($scope, $location, $state, $stateParams, $timeout, component) {
     var vm = this;
-
-    vm.user = currentUser;
+    // vm.user = currentUser;
     vm.componentPages = component.get().map(function (c, i) {
       var active = i === 0;
       if (active) {
