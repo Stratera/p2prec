@@ -12,6 +12,7 @@ angular
     'ui.router',
     'ui.layout',
     'ui.grid',
+    '720kb.datepicker',
 
     'restmod',
 
