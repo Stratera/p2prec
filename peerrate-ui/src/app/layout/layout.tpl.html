@@ -1,47 +1,39 @@
 <a class="usa-skipnav" href="#main-content">Skip to main content</a>
-  <div class="topbar">
-    <div class="page-content"><!-- acts as bootstrap 'container' -->
-      <div class="usa-content">
-        <div class="usa-grid-full">
-          <div class="usa-width-one-whole">
-            <img id="u10_img" class="img" src="img/us_flag_small.png"/>
-            <h6>Official Website of the Department of Homeland Security</h6>
-            <ul class="pull-right header-anchors">
-              <li><a>Help</a></li>
-              <li> | </li>
-              <li><a>Login</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<div class="topbar">
+  <div class="usa-grid">
+    <div class="usa-width-one-whole">
+      <img class="img" src="img/us_flag_small.png"/>
+      <h6>Official Website of the Department of Homeland Security</h6>
+      <ul class="float-right header-anchors">
+        <li><a>Help</a></li>
+        <li> | </li>
+        <li><a>Login</a></li>
+      </ul>
     </div>
   </div>
-  <div class="header">
-    <div class="page-content">
-      <div class="usa-content">
-        <div class="usa-grid">
-          <div class="usa-width-one-fourth">
-            <img src="img/logo-img.png" alt="logo">
-          </div>
-          <div class="usa-width-one-fourth">
-            <h2>SITE NAME</h2>
-          </div>
-        </div>
-      </div>
-      <div class="usa-grid navigationBar">
-        <div class="collapse navbar-collapse usa-width-one-whole header-navigation header-anchors"
-             ng-controller="LayoutController">
-          <ul class="nav navbar-nav">
-            <li ng-repeat="component in layoutController.componentPages track by $index">
-              <p class="navbar-text"><a class="navbar-link" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>
-            </li>
-          </ul>
-        </div>
-      </div>
+</div>
+<div class="header">
+  <div class="usa-grid">
+    <div class="usa-width-one-sixth">
+      <img src="img/logo-img.png" alt="logo">
+    </div>
+    <div class="usa-width-five-sixths">
+      <h2>SITE NAME</h2>
     </div>
   </div>
-
-
+</div>
+<div class="usa-grid navigationBar">
+  <div class="collapse navbar-collapse usa-width-one-whole header-navigation header-anchors"
+       ng-controller="LayoutController">
+    <ul class="nav navbar-nav">
+      <li ng-repeat="component in layoutController.componentPages track by $index">
+        <p class="navbar-text"><a class="navbar-link" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
             <!--<div class="usa-grid navigationBar">
               <nav class="navbar navbar-default" role="navigation">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="nav-links" aria-expanded="false">
@@ -68,7 +60,16 @@
 
 
 
-
+            <!--<div class="usa-grid navigationBar">
+              <div class="collapse navbar-collapse usa-width-one-whole header-navigation header-anchors"
+                   ng-controller="LayoutController">
+                <ul class="nav navbar-nav">
+                  <li ng-repeat="component in layoutController.componentPages track by $index">
+                    <p class="navbar-text"><a class="navbar-link" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>
+                  </li>
+                </ul>
+              </div>
+            </div>-->
 
   <div class="main-content" id="main-content">
     <div ui-view="content" class="layout-content flex-height-content container"></div>
