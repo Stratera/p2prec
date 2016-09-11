@@ -69,10 +69,10 @@ angular.module("services.security", [
                     { headers: { "Accepts": "application/json" } })
                     .then(function (data) {
 
-                        if (!data.$response.data.username) {
+                        if (!data.data.username) {
                             ctx.login();
                         } else {
-                            ctx.user = User.$build(data.$response.data.username);
+                            ctx.user = User.$build(data.data);
                             ctx.loggingIn = false;
                         }
                     },
