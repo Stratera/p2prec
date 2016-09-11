@@ -125,7 +125,7 @@ public class UserProfileController {
         ResponseEntity<List<UserProfile>> resp = new ResponseEntity<>(headers,HttpStatus.NO_CONTENT);
       
         if (!CollectionUtils.isEmpty(list) ) {
-        	resp = new ResponseEntity<>(list,headers,HttpStatus.NO_CONTENT);
+        	resp = new ResponseEntity<>(list,headers,HttpStatus.OK);
         		      
         }
 
