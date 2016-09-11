@@ -69,14 +69,14 @@ angular.module("services.security", [
                     { headers: { "Accepts": "application/json" } })
                     .then(function (data) {
 
-                        if (!data.username) {
+                        if (!data.$response.data.username) {
                             ctx.login();
                         } else {
-                            ctx.user = User.$build(data);
+                            ctx.user = User.$build(data.$response.data.username);
                             ctx.loggingIn = false;
                         }
                     },
-                    function () {
+                    function (msg) {
                         if ($window.location.hostname === 'localhost') {
                             var userAccount = {
                                 "username" : "jdoe@strateratech.com",
