@@ -31,6 +31,7 @@ function ViewProfileController($scope, $state, security, Profile) {
   vm.user = security.user;
   vm.profileModel = Profile;
   vm.allProfiles = [];
+  vm.myProfile = {};
   vm.profilesInUserDept = [];
   vm.profilePageData = {};
 
@@ -42,15 +43,26 @@ function ViewProfileController($scope, $state, security, Profile) {
   vm.recognition= "viewAll";
 
   $scope.$on('router.restore.state', function (event, to) {
-    var output = to.data.p;
 
-    vm.allProfiles = vm.getAllProfiles();
-    console.log(vm.allProfiles);
+    // get all profiles
+    vm.profileModel.$collection().$fetch().$then(function (response) {
+      var ctx = vm;
+      ctx.allProfiles = response.$response.data;
+      response.$response.data.forEach(function (val, idx) {
+        // find my profile
+        if (val.email === ctx.user.email) {
+          ctx.myProfile = angular.copy(val);
+        }
+      });
+    });
 
-    vm.userData = vm.user;
-
+    // if a user profile id is provided, view that user's profile
+    if (!!to.data.p) {
+      vm.userData = vm.profileModel.$find(to.data.p).$then(function (response) {
+        return response.$response.data;
+      });
+    }
   });
-
 
 }
 
@@ -63,7 +75,7 @@ ViewProfileController.prototype = {
   getAllProfiles: function() {
     this.profileModel.$collection().$fetch().$then(function (response) {
       return response.$response.data;
-    })
+    });
   },
 
   loadProfileById: function(id) {
