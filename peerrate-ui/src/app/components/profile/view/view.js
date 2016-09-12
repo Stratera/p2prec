@@ -44,7 +44,7 @@ function ViewProfileController($scope, $state, security, Profile) {
   $scope.$on('router.restore.state', function (event, to) {
 
     // get all profiles
-    vm.getAllProfiles().$then(function (response) {
+    vm.profileModel.$collection().$fetch().$then(function (response) {
       var ctx = vm;
       ctx.allProfiles = response.$response.data;
       response.$response.data.forEach(function (val, idx) {
@@ -73,8 +73,8 @@ ViewProfileController.prototype = {
 
   getAllProfiles: function() {
     this.profileModel.$collection().$fetch().$then(function (response) {
-      return response;
-    })
+      return response.$response.data;
+    });
   },
 
   loadProfileById: function(id) {
