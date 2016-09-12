@@ -1,1 +1,103 @@
-<p>Home</p>
+<div class="usa-grid view-profile">
+  <div class="usa-width-one-third profile-pic">
+    <profile></profile>
+
+    <div>
+      <h2>{{viewProfileController.userData.firstName}} {{viewProfileController.userData.lastName}}</h2>
+      <span><a ng-click="viewProfileController.viewProfilePage()">Edit my profile</a></span>
+    </div>
+
+    <div>
+      <h4>Department</h4>
+      <span>{{viewProfileController.userData.department}}</span>
+    </div>
+
+    <div>
+      <h4>Location</h4>
+      <span>{{viewProfileController.userData.city}}, {{viewProfileController.userData.state}}</span>
+    </div>
+
+    <div>
+      <h4>Phone</h4>
+      <span>{{viewProfileController.userData.phone}}</span>
+    </div>
+
+    <div>
+      <h4>Email</h4>
+      <span>{{viewProfileController.userData.email}}</span>
+    </div>
+  </div>
+  <div class="usa-width-two-thirds">
+    <div class="usa-grid-full">
+      <div class="usa-width-one-whole">
+        <div class="usa-form float-right view-select">
+          <select id="recognition" name="recognition" ng-model="viewProfileController.recognition">
+            <option value="viewAll">View all recognition</option>
+            <option value="viewMine">Recognition received</option>
+            <option value="viewTheirs">Recognition given</option>
+          </select>
+        </div>
+      </div>
+      <div class="usa-grid-full">
+        <div class="usa-width-one-twelfth profile-pic-icon">
+          <profile-Pic-Icons></profile-Pic-Icons>
+        </div>
+        <div class="usa-width-eleven-twelfths">
+          <a href="jane_smith">Jane Smith</a> > You
+          <p>
+            <spa>
+              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
+            </spa>
+          </p>
+          <p><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
+            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
+            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
+            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
+            <a ng-click="viewProfileController.provideRecognition(userId)">Reply</a>
+            </span></p>
+        </div>
+      </div>
+      <div class="usa-grid-full">
+        <div class="usa-width-one-twelfth profile-pic-icon">
+          <profile-Pic-Icons></profile-Pic-Icons>
+        </div>
+        <div class="usa-width-eleven-twelfths">
+          You > <a href="jane_smith">Mary Lee</a>
+          <p>
+            <spa>
+              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
+            </spa>
+          </p>
+          <p><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
+            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
+            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
+            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
+            <a href="">Reply</a>
+            </span></p>
+        </div>
+      </div>
+      <div class="usa-grid-full">
+        <div class="usa-width-one-twelfth profile-pic-icon">
+          <profile-Pic-Icons></profile-Pic-Icons>
+        </div>
+        <div class="usa-width-eleven-twelfths">
+          <a href="jane_smith">Bob Jones</a> > You
+          <p>
+            <spa>
+              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
+            </spa>
+          </p>
+          <p><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
+            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
+            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
+            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
+            <a href="">Reply</a>
+            </span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,16 @@
-.profilePic {
+.profile-pic {
   width: auto;
+}
+
+.view-profile {
+  .view-select {
+    width:200px;
+  }
+  .profile-pic-icon {
+    img {
+      height: 50px;
+      width: 50px;
+    }
+    width: auto;
+  }
 }

@@ -26,6 +26,7 @@ angular
 
     'app.directives.footer',
     'app.directives.profilePic',
+    'app.directives.profilePicIcons',
 
     'models.user',
 

@@ -12,8 +12,6 @@
     </div>
   </div>
 </div>
-
-
 <header class="usa-header usa-header-extended" role="banner">
   <div class="usa-navbar">
     <button class="usa-menu-btn">Menu</button>
@@ -35,32 +33,32 @@
              {{ component.title }}
           </a>
         </li>
-        <!--<li>
-          <a class="usa-nav-link" href="#">
-            <span>Home</span>
-          </a>
-        </li>
-        <li>
-          <a class="usa-nav-link" href="#">
-            <span>Profile</span>
-          </a>
-        </li>-->
-        <!--<li>
-          <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-3">
-            <span>Section title</span>
-          </button>
-          <ul id="sidenav-3" class="usa-nav-submenu" aria-hidden="true">
-            <li>
-              <a href="#">Subsection title</a>
-            </li>
-            <li>
-              <a href="#">Subsection title</a>
-            </li>
-            <li>
-              <a href="#">Subsection title</a>
-            </li>
+        <!--<li>-->
+          <!--<a class="usa-nav-link" href="#">-->
+            <!--<span>Home</span>-->
+          <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<a class="usa-nav-link" href="#">-->
+            <!--<span>Profile</span>-->
+          <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-3">-->
+            <!--<span>Section title</span>-->
+          <!--</button>-->
+          <!--<ul id="sidenav-3" class="usa-nav-submenu" aria-hidden="true">-->
+            <!--<li>-->
+              <!--<a href="#">Subsection title</a>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<a href="#">Subsection title</a>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<a href="#">Subsection title</a>-->
+            <!--</li>-->
           </ul>
-        </li>-->
+        </li>
       </ul>
       <div class="usa-nav-secondary">
         <!--<form class="usa-search usa-search-small js-search-form">
@@ -85,8 +83,23 @@
         </ul>
       </div>
     </div>
+    <!--<div class="usa-grid-full navigationBar">-->
+      <!--<aside class="usa-width-one-fourth">-->
+        <!--<ul class="nav navbar-nav usa-sidenav-list">-->
+          <!--<li ng-repeat="component in layoutController.componentPages track by $index">-->
+            <!--<p class="navbar-text"><a class="navbar-link" ng-attr-class="{{$index == 0 && 'usa-current'}}" ng-click="layoutController.setPageSelected(component)">{{ component.title }}</a></p>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</aside>-->
+      <!--<div class="usa-width-one-forth">-->
+        <!--<div class="main-content right-content" id="main-content">-->
+          <!--<div ui-view="content" class="layout-content flex-height-content container"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
   </nav>
 </header>
+
 
 <div class="usa-overlay"></div>
 <main id="main-content" ui-view="content"></main>

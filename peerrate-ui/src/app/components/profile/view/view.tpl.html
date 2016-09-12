@@ -1,7 +1,7 @@
-<div class="styleguide-content usa-grid" ng-controller="ViewProfileController">
-  <div class="usa-width-one-third profilePic">
+<div class="usa-grid view-profile">
+  <div class="usa-width-one-third">&nbsp;</div>
+  <div class="usa-width-one-third profile-pic">
     <profile></profile>
-
     <div>
       <h2>{{viewProfileController.userData.firstName}} {{viewProfileController.userData.lastName}}</h2>
       <span><a ng-click="viewProfileController.viewProfilePage()">Edit my profile</a></span>
@@ -27,78 +27,5 @@
       <span>{{viewProfileController.userData.email}}</span>
     </div>
   </div>
-  <div class="usa-width-two-thirds">
-    <div class="usa-grid">
-      <div class="usa-width-one-whole">
-        <div class="usa-form float-right viewSelect">
-          <select id="recognition" name="recognition" ng-model="viewProfileController.recognition">
-            <option value="viewAll">View all recognition</option>
-            <option value="viewMine">Recognition received</option>
-            <option value="viewTheirs">Recognition given</option>
-          </select>
-        </div>
-      </div>
-      <div class="usa-grid">
-        <div class="usa-width-one-third profilePic">
-          <img class="img " src="img/profile-pic-1.png">
-        </div>
-        <div class="usa-width-two-thirds">
-          <a href="jane_smith">Jane Smith</a> > You
-          <p>
-            <spa>
-              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
-            </spa>
-          </p>
-          <p><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
-            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
-            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
-            <a ng-click="viewProfileController.provideRecognition(userId)">Reply</a>
-            </span></p>
-        </div>
-      </div>
-      <div class="usa-grid">
-        <div class="usa-width-one-third profilePic">
-          <profile></profile>
-
-        </div>
-        <div class="usa-width-two-thirds">
-          You > <a href="jane_smith">Mary Lee</a>
-          <p>
-            <spa>
-              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
-            </spa>
-          </p>
-          <p><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
-            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
-            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
-            <a href="">Reply</a>
-            </span></p>
-        </div>
-      </div>
-      <div class="usa-grid">
-        <div class="usa-width-one-third profilePic">
-          <img class="img " src="img/profile-pic-2.png">
-        </div>
-        <div class="usa-width-two-thirds">
-          <a href="jane_smith">Bob Jones</a> > You
-          <p>
-            <spa>
-              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
-            </spa>
-          </p>
-          <p><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
-            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
-            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
-            <a href="">Reply</a>
-            </span></p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="usa-width-one-third">&nbsp;</div>
 </div>

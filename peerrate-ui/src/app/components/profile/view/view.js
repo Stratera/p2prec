@@ -3,7 +3,8 @@ angular.module("app.components.profile.view", [
   "services.security",
   "models.user",
   "models.profile",
-  "app.directives.profilePic"
+  "app.directives.profilePic",
+  "app.directives.profilePicIcons"
 ])
 
   .config(function (componentProvider) {
@@ -18,7 +19,7 @@ angular.module("app.components.profile.view", [
       scope: true,
       reloadOnSearch: true,
       queryParams: [
-        'p',
+        'p'
       ]
     })
   })
@@ -30,7 +31,7 @@ function ViewProfileController($scope, $state, security, Profile) {
   vm.user = security.user;
   vm.profileModel = Profile;
   vm.allProfiles = [];
-  vm.profilesInUserDept = []; 
+  vm.profilesInUserDept = [];
   vm.profilePageData = {};
 
   vm.viewProfilePage = function() {
@@ -47,7 +48,7 @@ function ViewProfileController($scope, $state, security, Profile) {
     console.log(vm.allProfiles);
 
     vm.userData = vm.user;
-    
+
   });
 
 
