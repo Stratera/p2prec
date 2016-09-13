@@ -29,6 +29,7 @@ angular
     'app.directives.profilePicIcons',
 
     'models.user',
+    'models.recognitions',
 
     'services.router',
     'services.security',

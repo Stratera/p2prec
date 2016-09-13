@@ -1,102 +1,42 @@
 <div class="usa-grid view-profile">
-  <div class="usa-width-one-third profile-pic">
-    <profile></profile>
-    <div>
-      <h2>{{viewProfileController.userData.firstName}} {{viewProfileController.userData.lastName}}</h2>
-      <span><a ng-click="viewProfileController.viewProfilePage()">Edit my profile</a></span>
-    </div>
+  <div class="usa-grid-full">
+    <!--<div class="usa-alert usa-alert-success" ng-class="{isVisible: homeController.success}">-->
+      <!--<div class="usa-alert-body">-->
+        <!--<h3 class="usa-alert-heading">Success Status</h3>-->
+        <!--<p class="usa-alert-text">Point allotted successfully.</p>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div>
-      <h4>Department</h4>
-      <span>{{viewProfileController.userData.department}}</span>
-    </div>
+    <!--<div class="usa-alert usa-alert-warning" ng-class="{isVisible: homeController.success}">-->
+      <!--<div class="usa-alert-body">-->
+        <!--<h3 class="usa-alert-heading">Warning Status</h3>-->
+        <!--<p class="usa-alert-text">Point was not allocated.</p>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div>
-      <h4>Location</h4>
-      <span>{{viewProfileController.userData.city}}, {{viewProfileController.userData.state}}</span>
-    </div>
+    <h1>Give a point</h1>
+    <h4>All fields required.</h4>
 
-    <div>
-      <h4>Phone</h4>
-      <span>{{viewProfileController.userData.phone}}</span>
-    </div>
+    <form class="usa-form">
+      <fieldset>
 
-    <div>
-      <h4>Email</h4>
-      <span>{{viewProfileController.userData.email}}</span>
-    </div>
-  </div>
-  <div class="usa-width-two-thirds">
-    <div class="usa-grid-full">
-      <div class="usa-width-one-whole">
-        <div class="usa-form float-right view-select">
-          <select id="recognition" name="recognition" ng-model="viewProfileController.recognition">
-            <option value="viewAll">View all recognition</option>
-            <option value="viewMine">Recognition received</option>
-            <option value="viewTheirs">Recognition given</option>
-          </select>
+        <label for="name-select">Name</label>
+        <select id="name-select" name="name-select" ng-model="homeController.selectedPersonName" required="true">
+          <option ng-repeat="user in homeController.allProfiles track by $index" value="{{user.id}}">{{user.fullName}}</option>
+        </select>
+
+        <label for="category-select">Category</label>
+        <select id="category-select" name="category-select" ng-model="homeController.selectedCategory" required>
+          <option ng-repeat="category in homeController.pointCategories" value="{{category.id}}">{{category.name}}</option>
+        </select>
+        <label for="input-type-comments">Comments</label>
+        <textarea id="input-type-comments" ng-model="homeController.messageText" name="input-type-comments" required>{{homeController.messageText}}</textarea>
+
+        <div class="button_wrapper">
+          <button class="usa-button-outline" type="button">Cancel</button>
+          <button ng-click="homeController.submitForm()">Save</button>
         </div>
-      </div>
-      <div class="usa-grid-full">
-        <div class="usa-width-one-twelfth profile-pic-icon">
-          <profile-Pic-Icons></profile-Pic-Icons>
-        </div>
-        <div class="usa-width-eleven-twelfths">
-          <a href="jane_smith">Jane Smith</a> > You
-          <p>
-            <spa>
-              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
-            </spa>
-          </p>
-          <p><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
-            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
-            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
-            <a ng-click="viewProfileController.provideRecognition(userId)">Reply</a>
-            </span></p>
-        </div>
-      </div>
-      <div class="usa-grid-full">
-        <div class="usa-width-one-twelfth profile-pic-icon">
-          <profile-Pic-Icons></profile-Pic-Icons>
-        </div>
-        <div class="usa-width-eleven-twelfths">
-          You > <a href="jane_smith">Mary Lee</a>
-          <p>
-            <spa>
-              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
-            </spa>
-          </p>
-          <p><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
-            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
-            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
-            <a href="">Reply</a>
-            </span></p>
-        </div>
-      </div>
-      <div class="usa-grid-full">
-        <div class="usa-width-one-twelfth profile-pic-icon">
-          <profile-Pic-Icons></profile-Pic-Icons>
-        </div>
-        <div class="usa-width-eleven-twelfths">
-          <a href="jane_smith">Bob Jones</a> > You
-          <p>
-            <spa>
-              {{viewProfileController.date | date:'MMMM dd, yyyy HH:mm'}}
-            </spa>
-          </p>
-          <p><br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida
-            dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra
-            vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</br>
-            <a href="">Reply</a>
-            </span></p>
-        </div>
-      </div>
-    </div>
+      </fieldset>
+    </form>
   </div>
 </div>
